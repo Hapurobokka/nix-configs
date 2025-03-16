@@ -31,11 +31,13 @@ in
   # environment.
   home.packages = with pkgs; [
     atuin
+    bacon
     bat
     black
     cargo
     chafa
     deno
+    evcxr
     eza
     fastfetch
     fish

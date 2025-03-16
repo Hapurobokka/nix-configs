@@ -82,12 +82,19 @@
 
       local spell_dir = vim.fn.stdpath("data") .. "/spell"
       vim.opt.spellfile = spell_dir .. "/es.utf-8.add"
+
+      require("snacks").setup({
+        quickfile = { enabled = true },
+        bigfile = { enabled = true },
+      })
     '';
 
     extraPlugins = with pkgs.vimPlugins; [
       vim-signify
       goyo-vim
       limelight-vim
+      snacks-nvim
+      lazygit-nvim
     ];
 
     plugins = import ./plugins-nvim.nix;

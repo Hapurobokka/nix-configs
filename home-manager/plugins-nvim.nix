@@ -11,6 +11,7 @@
       ai = {};
       operators = {};
       statusline = {};
+      animate = {};
       starter = {};
       notify = {};
       bracketed = {};
@@ -46,6 +47,7 @@
   treesitter = {
     enable = true;
     settings = {
+      incremental_selection.enable = false;
       indent.enable = false;
       auto_install = true;
       highlight = {
@@ -104,7 +106,7 @@
         ];
       };
       completion = {
-        documentation.auto_show = false; 
+        documentation.auto_show = true; 
         ghost_text.enabled = true;
         list.selection = {
           preselect = false;
@@ -112,14 +114,6 @@
         };
       };
       snippets.preset = "luasnip";
-    };
-  };
-
-  snacks = {
-    enable = true;
-    settings = {
-      quickfile.enabled = true;
-      bigfile.enabled = true;
     };
   };
 
@@ -146,5 +140,9 @@
     settings = {
       preset = "helix";
     };
+  };
+
+  obsidian = {
+    enable = true;
   };
 }
