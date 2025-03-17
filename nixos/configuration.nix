@@ -23,6 +23,8 @@
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
+    nerd-fonts.dejavu-sans-mono
+    julia-mono
   ];
 
   environment.sessionVariables = {
@@ -49,8 +51,9 @@
 
   time.timeZone = "America/Mexico_City";
 
-  environment.shells = with pkgs; [ nushell ];  # Si usas NuShell
-  users.users.hapu.shell = pkgs.nushell;       #
+  environment.shells = with pkgs; [ fish ];  # Si usas NuShell
+  users.users.hapu.shell = pkgs.fish;       #
+  programs.fish.enable = true;
 
   programs.nix-ld = {
     enable = true;

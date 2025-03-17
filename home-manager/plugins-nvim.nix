@@ -58,7 +58,7 @@
   };
 
   neorg = {
-    enable = true;
+    enable = false;
     settings = {
       load = {
         "core.defaults".__empty = null;
@@ -142,7 +142,21 @@
     };
   };
 
+  glow.enable = true;
+
   obsidian = {
     enable = true;
+    settings = {
+      workspaces = [
+        {
+          name = "vault";
+          path = "~/vault";
+        }
+        {
+          name = "aire";
+          path = "~/aire";
+        }
+      ];
+    };
   };
 }

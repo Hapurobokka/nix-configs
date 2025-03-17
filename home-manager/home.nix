@@ -37,9 +37,11 @@ in
     cargo
     chafa
     deno
+    emacs
     evcxr
     eza
     fastfetch
+    fd
     fish
     fossil
     fzf
@@ -50,16 +52,16 @@ in
     just
     lazygit
     litecli
-    lua-language-server
     lua51Packages.lua
     luajitPackages.luarocks
+    lua-language-server
     myTex
     nethack
     nh
     nix-output-monitor
+    nodejs_22
     nodePackages.prettier
     nodePackages.typescript-language-server
-    nodejs_22
     nushell
     octaveFull
     pandoc
@@ -72,6 +74,7 @@ in
     rubocop
     ruby
     ruby-lsp
+    rust-analyzer
     rustc
     shfmt
     sqlite
@@ -112,17 +115,21 @@ in
 
   programs.zoxide = {
     enable = true;
-    # enableFishIntegration = true;
-    enableNushellIntegration = true;
+    enableFishIntegration = true;
+    # enableNushellIntegration = true;
   };
 
-  programs.nushell = {
-    enable = true;
-    extraConfig = /*nu*/ ''
-      $env.config.buffer_editor = "nvim"
-      $env.config.show_banner = false
-      $env.__zoxide_hooked = true
-    '';
+  # programs.nushell = {
+  #   enable = true;
+  #   extraConfig = /*nu*/ ''
+  #     $env.config.buffer_editor = "nvim"
+  #     $env.config.show_banner = false
+  #     $env.__zoxide_hooked = true
+  #   '';
+  # };
+
+  programs.fish = {
+      enable = true;
   };
 
   # programs.zellij = {
