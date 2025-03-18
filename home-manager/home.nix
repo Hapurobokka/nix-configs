@@ -30,13 +30,28 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    # deno
+    # lua-language-server
+    # nethack
+    # nodePackages.prettier
+    # nodePackages.typescript-language-server
+    # nodejs_22
+    # porsmo
+    # pyright
+    # rubocop
+    # ruby-lsp
+    # rust-analyzer
+    # texlab
+    # tree-sitter-grammars.tree-sitter-norg
+    # vscode-langservers-extracted
+    # yarn-berry
     atuin
     bacon
     bat
     black
     cargo
     chafa
-    deno
+    cmake
     emacs
     evcxr
     eza
@@ -51,46 +66,33 @@ in
     hello
     just
     lazygit
+    libtool
     litecli
     lua51Packages.lua
     luajitPackages.luarocks
-    lua-language-server
     myTex
-    nethack
     nh
     nix-output-monitor
-    nodejs_22
-    nodePackages.prettier
-    nodePackages.typescript-language-server
     nushell
     octaveFull
     pandoc
-    porsmo
     pylint
-    pyright
     python312Packages.bpython
     ripgrep
     rm-improved
-    rubocop
     ruby
-    ruby-lsp
-    rust-analyzer
     rustc
     shfmt
     sqlite
     starship
     stylua
-    texlab
     tldr
     tree-sitter
-    tree-sitter-grammars.tree-sitter-norg
     typescript
     universal-ctags
     valgrind
-    vscode-langservers-extracted
     wsl-open
     xclip
-    yarn-berry
     yazi
     zellij
     zoxide
@@ -119,6 +121,16 @@ in
     # enableNushellIntegration = true;
   };
 
+  programs.fish = {
+      enable = true;
+      shellInit = /*fish*/ ''
+        fish_add_path ~/.emacs.d/bin
+        fish_add_path ~/.local/bin
+        alias ls 'eza'
+        set -x DISPLAY 127.0.0.1:0.0
+      '';
+  };
+
   # programs.nushell = {
   #   enable = true;
   #   extraConfig = /*nu*/ ''
@@ -127,10 +139,6 @@ in
   #     $env.__zoxide_hooked = true
   #   '';
   # };
-
-  programs.fish = {
-      enable = true;
-  };
 
   # programs.zellij = {
   #   enable = true;

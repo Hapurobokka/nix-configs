@@ -58,7 +58,7 @@
   };
 
   neorg = {
-    enable = false;
+    enable = true;
     settings = {
       load = {
         "core.defaults".__empty = null;
@@ -142,11 +142,12 @@
     };
   };
 
-  glow.enable = true;
+  markview = { enable = false; };
 
   obsidian = {
     enable = true;
     settings = {
+      ui.enable = false;
       workspaces = [
         {
           name = "vault";

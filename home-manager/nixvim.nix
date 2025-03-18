@@ -77,6 +77,15 @@
       }
 		];
 
+
+    extraPlugins = with pkgs.vimPlugins; [
+      vim-signify
+      goyo-vim
+      limelight-vim
+      snacks-nvim
+      lazygit-nvim
+    ];
+
     extraConfigLua = /*lua*/ ''
       vim.cmd("set spelllang=es")
 
@@ -88,14 +97,6 @@
         bigfile = { enabled = true },
       })
     '';
-
-    extraPlugins = with pkgs.vimPlugins; [
-      vim-signify
-      goyo-vim
-      limelight-vim
-      snacks-nvim
-      lazygit-nvim
-    ];
 
     plugins = import ./plugins-nvim.nix;
 
