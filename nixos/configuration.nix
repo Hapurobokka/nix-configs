@@ -23,8 +23,7 @@
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
-    nerd-fonts.dejavu-sans-mono
-    julia-mono
+    nerd-fonts.iosevka
   ];
 
   environment.sessionVariables = {

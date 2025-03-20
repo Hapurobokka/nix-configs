@@ -2,7 +2,9 @@
 let
   myTex = (pkgs.texlive.combine {
     inherit (pkgs.texlive) scheme-medium
-      dirtytalk;
+      dirtytalk
+      wrapfig
+      capt-of;
   });
 in
 {
@@ -45,7 +47,8 @@ in
     # tree-sitter-grammars.tree-sitter-norg
     # vscode-langservers-extracted
     # yarn-berry
-    atuin
+    # atuin
+    (aspellWithDicts (dicts: with dicts; [ es en ]))
     bacon
     bat
     black
@@ -68,8 +71,8 @@ in
     lazygit
     libtool
     litecli
-    lua51Packages.lua
-    luajitPackages.luarocks
+    # lua51Packages.lua
+    # luajitPackages.luarocks
     myTex
     nh
     nix-output-monitor
@@ -82,13 +85,11 @@ in
     rm-improved
     ruby
     rustc
-    shfmt
     sqlite
     starship
-    stylua
     tldr
     tree-sitter
-    typescript
+    # typescript
     universal-ctags
     valgrind
     wsl-open
@@ -127,7 +128,7 @@ in
         fish_add_path ~/.emacs.d/bin
         fish_add_path ~/.local/bin
         alias ls 'eza'
-        set -x DISPLAY 127.0.0.1:0.0
+        #set -x DISPLAY 127.0.0.1:0.0
       '';
   };
 

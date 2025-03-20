@@ -100,17 +100,7 @@
 
     plugins = import ./plugins-nvim.nix;
 
-    keymaps = [
-      {
-        action = ":lua MiniFiles.open()<cr>";
-        key = "<leader>fo";
-        options = {
-          silent = true;
-          noremap = true;
-          desc = "Open Oil";
-        };
-      }
-    ];
+    keymaps = import ./keymaps-nvim.nix;
 
     colorschemes.monokai-pro = {
       enable = true;
