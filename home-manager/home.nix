@@ -9,14 +9,12 @@ let
 in
 {
   imports = [
-    # ./fish.nix
-    # ./nvim.nix 
-    # ./helix.nix
     ./helix.nix
     ./nixvim.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
+
   home.username = "hapu";
   home.homeDirectory = "/home/hapu";
 
@@ -32,31 +30,41 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    # atuin
+    # black
     # deno
+    # evcxr
+    # haskell.compiler.ghc983
+    # litecli
     # lua-language-server
+    # lua51Packages.lua
+    # luajitPackages.luarocks
     # nethack
     # nodePackages.prettier
     # nodePackages.typescript-language-server
     # nodejs_22
+    # nushell
     # porsmo
     # pyright
     # rubocop
     # ruby-lsp
     # rust-analyzer
+    # sqlite
     # texlab
     # tree-sitter-grammars.tree-sitter-norg
+    # typescript
+    # universal-ctags
     # vscode-langservers-extracted
+    # wsl-open
+    # xclip
     # yarn-berry
-    # atuin
     (aspellWithDicts (dicts: with dicts; [ es en ]))
     bacon
     bat
-    black
     cargo
     chafa
     cmake
     emacs
-    evcxr
     eza
     fastfetch
     fd
@@ -64,19 +72,17 @@ in
     fossil
     fzf
     gdb
-    haskell.compiler.ghc983
     helix
     hello
+    inputs.zen-browser.packages.${pkgs.system}.default
     just
+    kitty
     lazygit
     libtool
-    litecli
-    # lua51Packages.lua
-    # luajitPackages.luarocks
     myTex
+    nerd-fonts.jetbrains-mono
     nh
     nix-output-monitor
-    nushell
     octaveFull
     pandoc
     pylint
@@ -85,20 +91,16 @@ in
     rm-improved
     ruby
     rustc
-    sqlite
+    sbcl
     starship
     tldr
+    tmux
     tree-sitter
-    # typescript
-    universal-ctags
     valgrind
-    wsl-open
-    xclip
+    vesktop
     yazi
     zellij
     zoxide
-
-    # tree-sitter-grammars.tree-sitter-norg-meta
     
     # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
@@ -125,12 +127,25 @@ in
   programs.fish = {
       enable = true;
       shellInit = /*fish*/ ''
-        fish_add_path ~/.emacs.d/bin
         fish_add_path ~/.local/bin
         alias ls 'eza'
-        #set -x DISPLAY 127.0.0.1:0.0
       '';
   };
+
+
+  programs.tmux = {
+      enable = true;
+      plugins = with pkgs.tmuxPlugins; [ sensible catppuccin vim-tmux-navigator tmux-floax tmux-which-key ];
+      extraConfig = ''
+        set -g default-terminal "xterm-256color"
+        set -ga terminal-overrides ",*256col*:Tc"
+        set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
+        set-environment -g COLORTERM "truecolor"
+
+        unbind C-b
+        set -g prefix C-Space
+      '';
+    };
 
   # programs.nushell = {
   #   enable = true;

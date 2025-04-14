@@ -5,9 +5,6 @@
     # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
-    # needed for WSL
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-
     # home-manager
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -19,13 +16,17 @@
       # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
 
-  outputs = { nixpkgs, nixos-wsl, home-manager, nixvim, ... } @ inputs: 
+  outputs = { nixpkgs, home-manager, nixvim, ... } @ inputs: 
   let
     system = "x86_64-linux";
-
     pkgs = import nixpkgs {
       inherit system;
 
@@ -41,8 +42,8 @@
         inherit system;
 
         modules = [
-          nixos-wsl.nixosModules.default
           ./nixos/configuration.nix
+          ./nixos/hardware-configuration.nix
         ];
       };
     };
@@ -52,9 +53,9 @@
         inherit pkgs;
 
         modules = [
-	  nixvim.homeManagerModules.nixvim
-	  ./home-manager/home.nix
-	];
+          nixvim.homeManagerModules.nixvim
+          ./home-manager/home.nix
+        ];
 
         extraSpecialArgs = { inherit inputs; };
       };
