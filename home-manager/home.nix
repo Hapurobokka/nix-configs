@@ -11,6 +11,7 @@ in
   imports = [
     ./helix.nix
     ./nixvim.nix
+    ./hypr.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -101,6 +102,7 @@ in
     yazi
     zellij
     zoxide
+    zapzap
     
     # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 

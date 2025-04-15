@@ -21,6 +21,8 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
 
@@ -45,6 +47,8 @@
           ./nixos/configuration.nix
           ./nixos/hardware-configuration.nix
         ];
+
+        specialArgs = { inherit inputs; };
       };
     };
 

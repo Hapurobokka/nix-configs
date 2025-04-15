@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -13,6 +13,8 @@
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+
+  services.flatpak.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -46,6 +48,7 @@
     enable = true;
     withUWSM = true;
     xwayland.enable = true;
+    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
   };
 
   environment.sessionVariables = {
@@ -79,7 +82,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -98,9 +101,19 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
+      waybar
+      eww
     #  thunderbird
     ];
     shell = pkgs.fish;
+  };
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+    gamescopeSession.enable = true;
   };
 
   # Install firefox.
@@ -115,7 +128,15 @@
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
     home-manager
+    dunst
+    libnotify
+    hyprpaper
+    kitty
+    rofi-wayland
   ];
+
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
