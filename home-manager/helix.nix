@@ -4,7 +4,7 @@
     enable = true;
 
     settings = {
-      theme = "tokyonight_storm";
+      # theme = "tokyonight_storm";
         editor = {
           true-color = true;
           cursor-shape = {

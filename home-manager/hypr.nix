@@ -24,6 +24,7 @@ in
       "$terminal" = "kitty";
       "$fileManager" = "dolphin";
       "$menu" = "rofi -show drun -show-icons";
+      # "$menu" = "wofi --conf ~/.config/wofi/config/config --style ~/.config/wofi/src/frappe/style.css -I";
 
       monitor = ",highres,auto,1";
 
@@ -38,13 +39,15 @@ in
 
       bind = [
         "Alt, Space, exec, $menu"
+        ", PRINT, exec, hyprshot -m region"
+        "$mainMod, PRINT, exec, hypershot -m window"
 
         "$mainMod, H, movefocus, l"
         "$mainMod, L, movefocus, r"
         "$mainMod, K, movefocus, u"
         "$mainMod, J, movefocus, d"
 
-        "$mainMod, F, fullscreen"
+        "$mainMod, F, fullscreen, 0"
         "$mainMod, E, exec, $terminal"
         "$mainMod SHIFT, Q, killactive,"
         "$mainMod SHIFT, C, exit,"

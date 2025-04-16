@@ -23,6 +23,12 @@
     };
 
     hyprland.url = "github:hyprwm/Hyprland";
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    catppuccin.url = "github:catppuccin/nix";
   };
 
 
@@ -40,7 +46,7 @@
   {
 
     nixosConfigurations = {
-      myNixos = nixpkgs.lib.nixosSystem {
+      nixos = nixpkgs.lib.nixosSystem {
         inherit system;
 
         modules = [
@@ -59,6 +65,7 @@
         modules = [
           nixvim.homeManagerModules.nixvim
           ./home-manager/home.nix
+          inputs.catppuccin.homeModules.catppuccin
         ];
 
         extraSpecialArgs = { inherit inputs; };

@@ -84,6 +84,7 @@ in
     nerd-fonts.jetbrains-mono
     nh
     nix-output-monitor
+    nixd
     octaveFull
     pandoc
     pylint
@@ -103,6 +104,9 @@ in
     zellij
     zoxide
     zapzap
+    # wofi
+    hyprshot
+    rofi-wayland
     
     # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
@@ -122,12 +126,12 @@ in
 
   programs.zoxide = {
     enable = true;
-    enableFishIntegration = true;
-    # enableNushellIntegration = true;
+    # enableFishIntegration = true;
+    enableNushellIntegration = true;
   };
 
   programs.fish = {
-      enable = true;
+      enable = false;
       shellInit = /*fish*/ ''
         fish_add_path ~/.local/bin
         alias ls 'eza'
@@ -149,14 +153,19 @@ in
       '';
     };
 
-  # programs.nushell = {
-  #   enable = true;
-  #   extraConfig = /*nu*/ ''
-  #     $env.config.buffer_editor = "nvim"
-  #     $env.config.show_banner = false
-  #     $env.__zoxide_hooked = true
-  #   '';
-  # };
+  programs.nushell = {
+    enable = true;
+    extraConfig = /*nu*/ ''
+      $env.config.buffer_editor = "nvim"
+      $env.config.show_banner = false
+      $env.__zoxide_hooked = true
+    '';
+  };
+
+  catppuccin = {
+    flavor = "frappe";
+    enable = true;
+  };
 
   # programs.zellij = {
   #   enable = true;

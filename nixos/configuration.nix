@@ -38,7 +38,10 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "nvidia" ];
+  };
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -64,10 +67,13 @@
 
   hardware = {
     opengl.enable = true;
-    nvidia.modesetting.enable = true;
+    nvidia = {
+      modesetting.enable = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      open = true;
+    };
   };
 
-  # Configure console keymap
   console.keyMap = "la-latin1";
 
   # Enable CUPS to print documents.
@@ -92,7 +98,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  programs.fish.enable = true;
+  # programs.fish.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.hapu = {
@@ -105,7 +111,7 @@
       eww
     #  thunderbird
     ];
-    shell = pkgs.fish;
+    shell = pkgs.nushell;
   };
 
   programs.steam = {
@@ -114,6 +120,13 @@
     dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
     gamescopeSession.enable = true;
+    extraCompatPackages = [ pkgs.proton-ge-bin ];
+  };
+
+  programs.gamemode.enable = true;
+
+  environment.sessionVariables = {
+    FLAKE = "/home/hapu/nix-configs";
   };
 
   # Install firefox.
@@ -125,8 +138,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
     home-manager
     dunst
     libnotify
