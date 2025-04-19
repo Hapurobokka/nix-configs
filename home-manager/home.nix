@@ -10,7 +10,7 @@ in
 {
   imports = [
     ./helix.nix
-    ./nixvim.nix
+    ./nvim/nixvim.nix
     ./hypr.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
@@ -56,6 +56,7 @@ in
     # typescript
     # universal-ctags
     # vscode-langservers-extracted
+    # wofi
     # wsl-open
     # xclip
     # yarn-berry
@@ -75,6 +76,8 @@ in
     gdb
     helix
     hello
+    clang
+    hyprshot
     inputs.zen-browser.packages.${pkgs.system}.default
     just
     kitty
@@ -83,6 +86,7 @@ in
     myTex
     nerd-fonts.jetbrains-mono
     nh
+    nitch
     nix-output-monitor
     nixd
     octaveFull
@@ -91,6 +95,7 @@ in
     python312Packages.bpython
     ripgrep
     rm-improved
+    rofi-wayland
     ruby
     rustc
     sbcl
@@ -101,12 +106,12 @@ in
     valgrind
     vesktop
     yazi
+    zapzap
     zellij
     zoxide
-    zapzap
-    # wofi
-    hyprshot
-    rofi-wayland
+    xclip
+    xorg.xwininfo
+    xdotool
     
     # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
@@ -138,6 +143,30 @@ in
       '';
   };
 
+  programs.fastfetch = {
+    enable = true;
+    settings = {
+      logo = {
+        source = ./images/cropped-vivian.jpg;
+        padding = {
+          top = 1;
+          right = 5;
+        };
+      };
+      modules = [
+        "title"
+        "separator"
+        "os"
+        "packages"
+        "shell"
+        "de"
+        "wm"
+        "terminal"
+        "separator"
+        "colors"
+      ];
+    };
+  };
 
   programs.tmux = {
       enable = true;
@@ -156,9 +185,22 @@ in
   programs.nushell = {
     enable = true;
     extraConfig = /*nu*/ ''
+      use std/util "path add"
       $env.config.buffer_editor = "nvim"
       $env.config.show_banner = false
       $env.__zoxide_hooked = true
+
+      path add "~/.emacs.d/bin"
+
+      def --env y [...args] {
+        let tmp = (mktemp -t "yazi-cwd.XXXXXX")
+        yazi ...$args --cwd-file $tmp
+        let cwd = (open $tmp)
+        if $cwd != "" and $cwd != $env.PWD {
+          cd $cwd
+        }
+        rm -fp $tmp
+      }
     '';
   };
 

@@ -16,10 +16,32 @@
 
   services.flatpak.enable = true;
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  programs.appimage.enable = true;
 
+
+  # Bootloader.
+  boot.loader = {
+    grub = {
+      enable = true;
+      efiSupport = true;
+      useOSProber = true;
+      devices = [ "nodev" ];
+      configurationLimit = 5;
+      # extraEntries = ''
+      #  menuentry "Windows" {
+      #    insmod part_gpt
+      #    insmod fat
+      #    insmod search_fs_uuid
+      #    insmod chain
+      #    search --fs-uuid --set=root 0550-4AA4
+      #    chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+      #  }
+      # '';
+    };
+    efi.canTouchEfiVariables = true;
+    efi.efiSysMountPoint = "/boot";
+  };
+# #
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -57,6 +79,8 @@
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = 1;
     NIXOS_OZONE_WL = 1;
+    FLAKE = "/home/hapu/nix-configs";
+    EDITOR = "nvim";
   };
 
   # Configure keymap in X11
@@ -66,7 +90,7 @@
   };
 
   hardware = {
-    opengl.enable = true;
+    graphics.enable = true;
     nvidia = {
       modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -80,7 +104,8 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  # services.pulseaudio.enable = true;
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -109,6 +134,7 @@
       kdePackages.kate
       waybar
       eww
+      kdePackages.partitionmanager
     #  thunderbird
     ];
     shell = pkgs.nushell;
@@ -126,7 +152,6 @@
   programs.gamemode.enable = true;
 
   environment.sessionVariables = {
-    FLAKE = "/home/hapu/nix-configs";
   };
 
   # Install firefox.
@@ -144,6 +169,7 @@
     hyprpaper
     kitty
     rofi-wayland
+    neovim
   ];
 
   xdg.portal.enable = true;

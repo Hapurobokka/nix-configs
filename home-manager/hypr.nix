@@ -10,8 +10,8 @@ in
   services.hyprpaper = {
     enable = true;
     settings = {
-      preload = [ "~/briar-que-bajo-he-caido.jpg" ];
-      wallpaper = [ ", ~/briar-que-bajo-he-caido.jpg"];
+      preload = [ "~/briar-que-bajo-he-caido.jpg" "~/vivian-pero-con-paraguas.jpg" ];
+      wallpaper = [ ", ~/vivian-pero-con-paraguas.jpg"];
     };
   };
 
