@@ -1,19 +1,22 @@
-{ config, lib, pkgs, inputs, ... }:
+{ pkgs, inputs, ... }:
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &
     ${pkgs.dunst}/bin/dunst &
+    ${pkgs.kdePackages.kwallet}/bin/kwalled6 &
   '';
 in
 {
   services.hyprpaper = {
     enable = true;
-    settings = {
-      preload = [ "~/briar-que-bajo-he-caido.jpg" "~/vivian-pero-con-paraguas.jpg" ];
-      wallpaper = [ ", ~/vivian-pero-con-paraguas.jpg"];
-    };
+    # settings = {
+    #   preload = [ "~/briar-que-bajo-he-caido.jpg" "~/vivian-pero-con-paraguas.jpg" ];
+    #   wallpaper = [ ", ~/vivian-pero-con-paraguas.jpg"];
+    # };
   };
+
+  programs.hyprlock.enable = true;
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -23,8 +26,8 @@ in
       "$mainMod" = "SUPER";
       "$terminal" = "kitty";
       "$fileManager" = "dolphin";
-      "$menu" = "rofi -show drun -show-icons";
-      # "$menu" = "wofi --conf ~/.config/wofi/config/config --style ~/.config/wofi/src/frappe/style.css -I";
+      # "$menu" = "rofi -show drun -show-icons";
+      "$menu" = "wofi --show drun -I";
 
       monitor = ",highres,auto,1";
 
@@ -47,8 +50,10 @@ in
         "$mainMod, K, movefocus, u"
         "$mainMod, J, movefocus, d"
 
-        "$mainMod, F, fullscreen, 0"
+        "$mainMod, F, fullscreen, 1"
+        "$mainMod SHIFT, F, fullscreen, 0"
         "$mainMod, E, exec, $terminal"
+        "$mainMod SHIFT, L, exec, hyprlock"
         "$mainMod SHIFT, Q, killactive,"
         "$mainMod SHIFT, C, exit,"
         "$mainMod, V, togglefloating,"
@@ -112,6 +117,12 @@ in
 
         # Fix some dragging issues with XWayland
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        "opacity 0.0 override, class:^(xwaylandvideobridge)$"
+        "noanim, class:^(xwaylandvideobridge)$"
+        "noinitialfocus, class:^(xwaylandvideobridge)$"
+        "maxsize 1 1, class:^(xwaylandvideobridge)$"
+        "noblur, class:^(xwaylandvideobridge)$"
+        "nofocus, class:^(xwaylandvideobridge)$"
       ];
     };
   };

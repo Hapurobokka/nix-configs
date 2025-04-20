@@ -28,11 +28,10 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    catppuccin.url = "github:catppuccin/nix";
+    stylix.url = "github:danth/stylix";
   };
 
-
-  outputs = { nixpkgs, home-manager, nixvim, ... } @ inputs: 
+  outputs = { nixpkgs, home-manager, nixvim, ... } @ inputs:
   let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
@@ -44,7 +43,6 @@
     };
   in 
   {
-
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         inherit system;
@@ -64,8 +62,8 @@
 
         modules = [
           nixvim.homeManagerModules.nixvim
+          inputs.stylix.homeManagerModules.stylix
           ./home-manager/home.nix
-          inputs.catppuccin.homeModules.catppuccin
         ];
 
         extraSpecialArgs = { inherit inputs; };

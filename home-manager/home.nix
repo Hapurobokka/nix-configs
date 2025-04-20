@@ -85,6 +85,7 @@ in
     libtool
     myTex
     nerd-fonts.jetbrains-mono
+    nerd-fonts.iosevka
     nh
     nitch
     nix-output-monitor
@@ -95,7 +96,6 @@ in
     python312Packages.bpython
     ripgrep
     rm-improved
-    rofi-wayland
     ruby
     rustc
     sbcl
@@ -109,9 +109,8 @@ in
     zapzap
     zellij
     zoxide
-    xclip
-    xorg.xwininfo
-    xdotool
+    wofi
+    direnv
     
     # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
@@ -123,6 +122,13 @@ in
     # '')
   ];
 
+  services.lorri.enable = true;
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   programs.git = {
     enable = true;
     userName = "Hapurobokka";
@@ -131,7 +137,6 @@ in
 
   programs.zoxide = {
     enable = true;
-    # enableFishIntegration = true;
     enableNushellIntegration = true;
   };
 
@@ -149,8 +154,8 @@ in
       logo = {
         source = ./images/cropped-vivian.jpg;
         padding = {
-          top = 1;
-          right = 5;
+          top = 0;
+          right = 0;
         };
       };
       modules = [
@@ -193,20 +198,19 @@ in
       path add "~/.emacs.d/bin"
 
       def --env y [...args] {
-        let tmp = (mktemp -t "yazi-cwd.XXXXXX")
-        yazi ...$args --cwd-file $tmp
-        let cwd = (open $tmp)
-        if $cwd != "" and $cwd != $env.PWD {
-          cd $cwd
-        }
-        rm -fp $tmp
+          let tmp = (mktemp -t "yazi-cwd.XXXXXX")
+          yazi ...$args --cwd-file $tmp
+          let cwd = (open $tmp)
+          if $cwd != "" and $cwd != $env.PWD {
+              cd $cwd
+          }
+          rm -fp $tmp
       }
-    '';
-  };
 
-  catppuccin = {
-    flavor = "frappe";
-    enable = true;
+      $env.config.hooks.env_change.PWD = {
+          $env.config.hooks.env_change.PWD | append (source ./nu-hooks/direnv.nu)
+      };
+    '';
   };
 
   # programs.zellij = {
@@ -260,6 +264,12 @@ in
   #
   home.sessionVariables = {
     EDITOR = "nvim";
+  };
+
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/stella.yaml";
+    image = ./images/vivian-pero-con-paraguas.jpg;
   };
 
   # Let Home Manager install and manage itself.

@@ -18,8 +18,7 @@
 
   programs.appimage.enable = true;
 
-
-  # Bootloader.
+  # Bootloader
   boot.loader = {
     grub = {
       enable = true;
@@ -27,16 +26,6 @@
       useOSProber = true;
       devices = [ "nodev" ];
       configurationLimit = 5;
-      # extraEntries = ''
-      #  menuentry "Windows" {
-      #    insmod part_gpt
-      #    insmod fat
-      #    insmod search_fs_uuid
-      #    insmod chain
-      #    search --fs-uuid --set=root 0550-4AA4
-      #    chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-      #  }
-      # '';
     };
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot";
@@ -114,6 +103,7 @@
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     jack.enable = true;
+    wireplumber.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -128,7 +118,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.hapu = {
     isNormalUser = true;
-    description = "Hapubokka";
+    description = "Hapurobokka";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
@@ -173,7 +163,11 @@
   ];
 
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.extraPortals = with pkgs; [
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-hyprland
+    xdg-desktop-portal-kde
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -201,5 +195,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
-
 }

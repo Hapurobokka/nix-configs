@@ -60,4 +60,4 @@ site-lisp/package/
 /bookmarks
 /custom-vars.el
 /custom.el
-/nixos/hardware-configuration.nix
+home-manager/config.nu
