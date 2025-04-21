@@ -55,14 +55,18 @@
   };
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+
+  services.xserver.windowManager.awesome.enable = true;
 
   programs.hyprland = {
     enable = true;
     withUWSM = true;
     xwayland.enable = true;
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    portalPackage =  inputs.hyprland.packages."${pkgs.system}".xdg-desktop-portal-hyprland;
   };
 
   environment.sessionVariables = {
@@ -78,14 +82,21 @@
     variant = "";
   };
 
-  hardware = {
-    graphics.enable = true;
-    nvidia = {
-      modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-      open = true;
-    };
-  };
+  # hardware = {
+  #   graphics.enable = true;
+  #   nvidia = {
+  #     modesetting.enable = true;
+  #     package = config.boot.kernelPackages.nvidiaPackages.stable;
+  #     open = true;
+  #     nvidiaSettings = true;
+  #     prime = {
+  #       intelBusId = "PCI:0:2:0";
+  #       nvidiaBusId = "PCI:1:0:0";
+  #     };
+  #   };
+  # };
+
+  boot.blacklistedKernelModules = [ "nouveau" ];
 
   console.keyMap = "la-latin1";
 
@@ -165,8 +176,7 @@
   xdg.portal.enable = true;
   xdg.portal.extraPortals = with pkgs; [
     xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
-    xdg-desktop-portal-kde
+    kdePackages.xdg-desktop-portal-kde
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

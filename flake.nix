@@ -29,6 +29,8 @@
     };
 
     stylix.url = "github:danth/stylix";
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = { nixpkgs, home-manager, nixvim, ... } @ inputs:
@@ -50,6 +52,7 @@
         modules = [
           ./nixos/configuration.nix
           ./nixos/hardware-configuration.nix
+          inputs.nixos-hardware.nixosModules.lenovo-ideapad-15ach6
         ];
 
         specialArgs = { inherit inputs; };

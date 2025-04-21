@@ -111,8 +111,8 @@ in
     zoxide
     wofi
     direnv
-    nerdfetch
-    
+    nitch
+    brave
     # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
     # # You can also create simple shell scripts directly inside your
@@ -152,10 +152,12 @@ in
     enable = true;
     settings = {
       logo = {
-        source = ./images/cropped-vivian.jpg;
+        type = "kitty";
+        width = 25;
+        source = ./images/vivian-aaaa.jpg;
         padding = {
           top = 0;
-          right = 0;
+          right = 2;
         };
       };
       modules = [
@@ -163,11 +165,13 @@ in
         "separator"
         "os"
         "packages"
+        "disk"
         "shell"
         "de"
         "wm"
         "terminal"
-        "separator"
+        "datetime"
+        "editor"
         "colors"
       ];
     };
