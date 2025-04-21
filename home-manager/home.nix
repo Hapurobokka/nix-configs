@@ -111,6 +111,7 @@ in
     zoxide
     wofi
     direnv
+    nerdfetch
     
     # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
