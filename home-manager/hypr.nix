@@ -20,6 +20,9 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
+    plugins = [
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+    ];
     settings = {
       exec-once = ''${startupScript}/bin/start'';
 
@@ -30,6 +33,19 @@ in
       "$menu" = "wofi --show drun -I";
 
       monitor = ",highres,auto,1";
+
+      plugin = {
+        hyprbars = {
+          # example config
+          "bar_height" = 20
+          # example buttons (R -> L)
+          # hyprbars-button = color, size, on-click
+          hyprbars-button = [
+            "rgb(ff4040), 10, 󰖭, hyprctl dispatch killactive"
+            "rgb(eeee11), 10, , hyprctl dispatch fullscreen 1"
+          ];
+        };
+      };
 
       input = {
         kb_layout = "latam";
