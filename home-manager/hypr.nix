@@ -37,7 +37,7 @@ in
       plugin = {
         hyprbars = {
           # example config
-          "bar_height" = 20
+          "bar_height" = 20;
           # example buttons (R -> L)
           # hyprbars-button = color, size, on-click
           hyprbars-button = [
