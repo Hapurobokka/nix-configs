@@ -83,6 +83,7 @@ in
     kitty
     lazygit
     libtool
+    playerctl
     myTex
     nerd-fonts.jetbrains-mono
     nerd-fonts.iosevka
