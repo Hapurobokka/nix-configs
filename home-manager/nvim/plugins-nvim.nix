@@ -120,6 +120,7 @@
   lsp = {
     enable = true;
     servers = {
+      nim_langserver.enable = true;
       nixd.enable = true;
       pyright.enable = true;
       clangd.enable = true;

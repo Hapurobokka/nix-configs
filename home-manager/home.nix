@@ -117,6 +117,12 @@ in
     cava
     godot
     gimp
+    r2modman
+    obsidian
+    vscode
+    bottles
+    lutris
+    wl-clipboard
     # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
     # # You can also create simple shell scripts directly inside your
