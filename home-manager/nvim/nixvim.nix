@@ -52,16 +52,17 @@
         };
 				pattern = [
 					"javascript"
-          "typescript"
-          "html"
           "css"
-          "nix"
-          "lua"
-          "javascriptreact"
-          "typescriptreact" 
-          "svelte"
-          "xml"
           "haskell"
+          "html"
+          "javascriptreact"
+          "lua"
+          "nim"
+          "nix"
+          "svelte"
+          "typescript"
+          "typescriptreact" 
+          "xml"
 				];
 			}
       {

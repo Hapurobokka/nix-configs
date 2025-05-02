@@ -32,7 +32,7 @@
   fzf-lua = {
     enable = true;
     keymaps = {
-      "<leader>ff" = "files";
+      "<leader>." = "files";
       "<leader>fm" = "marks";
       "<leader>fr" = "oldfiles";
       "<leader>fs" = "treesitter";
