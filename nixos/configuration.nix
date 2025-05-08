@@ -11,6 +11,21 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  services.power-profiles-daemon.enable = false;
+
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+      STOP_CHARGE_THRESH_BAT0 = 1;
+    };
+  };
+
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 
@@ -30,7 +45,7 @@
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot";
   };
-# #
+
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -74,14 +89,15 @@
     withUWSM = true;
     xwayland.enable = true;
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-    portalPackage =  inputs.hyprland.packages."${pkgs.system}".xdg-desktop-portal-hyprland;
+    portalPackage = inputs.hyprland.packages."${pkgs.system}".xdg-desktop-portal-hyprland;
   };
 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = 1;
     NIXOS_OZONE_WL = 1;
-    FLAKE = "/home/hapu/nix-configs";
+    NH_FLAKE = "/home/hapu/nix-configs";
     EDITOR = "nvim";
+    XDG_PICTURES_DIR = "~/Imágenes";
   };
 
   # Configure keymap in X11
@@ -144,6 +160,7 @@
       waybar
       eww
       kdePackages.partitionmanager
+      ghostty
     #  thunderbird
     ];
     shell = pkgs.nushell;
@@ -159,9 +176,6 @@
   };
 
   programs.gamemode.enable = true;
-
-  environment.sessionVariables = {
-  };
 
   # Install firefox.
   programs.firefox.enable = true;

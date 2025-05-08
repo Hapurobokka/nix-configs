@@ -5,7 +5,17 @@
     options = {
       silent = true;
       noremap = true;
-      desc = "Open Oil";
+      desc = "Open Yazi";
+    };
+  }
+
+  {
+    action = ":LazyGit <cr>";
+    key = "<leader>gg";
+    options = {
+      silent = true;
+      noremap = true;
+      desc = "Open Git";
     };
   }
 

@@ -1,10 +1,9 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &
     ${pkgs.dunst}/bin/dunst &
-    ${pkgs.kdePackages.kwallet}/bin/kwalled6 &
   '';
 in
 {
@@ -17,6 +16,8 @@ in
   };
 
   programs.hyprlock.enable = true;
+  services.hypridle.enable = true;
+  services.hyprpolkitagent.enable = true;
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -24,7 +25,7 @@ in
       exec-once = ''${startupScript}/bin/start'';
 
       "$mainMod" = "SUPER";
-      "$terminal" = "kitty";
+      "$terminal" = "ghostty";
       "$fileManager" = "dolphin";
       # "$menu" = "rofi -show drun -show-icons";
       "$menu" = "wofi --show drun -I";

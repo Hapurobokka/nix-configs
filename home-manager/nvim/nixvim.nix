@@ -104,11 +104,15 @@
 
     keymaps = import ./keymaps-nvim.nix;
 
-    colorschemes.monokai-pro = {
-      enable = true;
+    colorschemes.catppuccin = {
+      enable = false;
       settings = {
-        filter = "octagon";
+        flavour = "macchiato";
       };
+    };
+
+    colorschemes.kanagawa = {
+      enable = true;
     };
   };
 }

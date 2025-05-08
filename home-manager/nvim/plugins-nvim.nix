@@ -5,7 +5,6 @@
       icons = {};
       indentscope = {};
       jump = {};
-      jump2d.mappings.start_jumping = "s";
       pairs = {};
       files = {};
       ai = {};
@@ -15,17 +14,6 @@
       starter = {};
       notify = {};
       bracketed = {};
-      surround = {
-        mappings = {
-          add = "gsa";
-          delete = "gsd";
-          find = "gsf";
-          find_left = "gsF";
-          highlight = "gsh";
-          replace = "gsr";
-          update_n_lines = "gsn";
-        };
-      };
     };
   };
 
@@ -44,11 +32,18 @@
     };
   };
 
+  leap = {
+    enable = true;
+    addDefaultMappings = true;
+  };
+
+  nvim-surround.enable = true;
+
   treesitter = {
     enable = true;
     settings = {
       incremental_selection.enable = false;
-      indent.enable = false;
+      indent.enable = true;
       auto_install = true;
       highlight = {
         enable = true;
@@ -120,7 +115,7 @@
   lsp = {
     enable = true;
     servers = {
-      nim_langserver.enable = true;
+      nimls.enable = true;
       nixd.enable = true;
       pyright.enable = true;
       clangd.enable = true;
