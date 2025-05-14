@@ -6,6 +6,11 @@ let
       wrapfig
       capt-of;
   });
+  retroarchWithCores = (pkgs.retroarch.withCores (cores: with cores; [
+    melonds
+    ppsspp
+    vba-m
+  ]));
 in
 {
   imports = [
@@ -33,6 +38,7 @@ in
   home.packages = with pkgs; [
     # atuin
     # black
+    # bottles
     # deno
     # evcxr
     # haskell.compiler.ghc983
@@ -40,10 +46,10 @@ in
     # lua-language-server
     # lua51Packages.lua
     # luajitPackages.luarocks
+    # lutris
     # nethack
     # nodePackages.prettier
     # nodePackages.typescript-language-server
-    # nodejs_22
     # nushell
     # porsmo
     # pyright
@@ -60,12 +66,17 @@ in
     # wsl-open
     # xclip
     # yarn-berry
+    # zellij
     (aspellWithDicts (dicts: with dicts; [ es en ]))
     bacon
     bat
+    brave
     cargo
+    cava
     chafa
+    clang
     cmake
+    direnv
     emacs
     eza
     fastfetch
@@ -74,55 +85,47 @@ in
     fossil
     fzf
     gdb
+    gfn-electron
+    gimp
+    godot
     helix
     hello
-    clang
     hyprshot
     inputs.zen-browser.packages.${pkgs.system}.default
     just
     kitty
     lazygit
     libtool
-    playerctl
     myTex
-    nerd-fonts.jetbrains-mono
     nerd-fonts.iosevka
+    nerd-fonts.jetbrains-mono
     nh
     nitch
     nix-output-monitor
     nixd
+    nodejs_22
+    obsidian
     octaveFull
     pandoc
-    pylint
-    python312Packages.bpython
+    playerctl
+    r2modman
+    retroarchWithCores
     ripgrep
     rm-improved
-    ruby
-    rustc
-    sbcl
     starship
     tldr
+    kew
     tmux
     tree-sitter
     valgrind
     vesktop
-    zapzap
-    zellij
-    zoxide
-    wofi
-    direnv
-    nitch
-    brave
-    gfn-electron
-    cava
-    godot
-    gimp
-    r2modman
-    obsidian
     vscode
-    bottles
-    lutris
     wl-clipboard
+    wofi
+    zapzap
+    zoxide
+    hyprpolkitagent
+    brightnessctl
     # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
     # # You can also create simple shell scripts directly inside your
@@ -189,12 +192,25 @@ in
 
   programs.tmux = {
       enable = true;
-      plugins = with pkgs.tmuxPlugins; [ sensible catppuccin vim-tmux-navigator tmux-floax tmux-which-key ];
+      plugins = with pkgs.tmuxPlugins; [
+        sensible
+        catppuccin
+        vim-tmux-navigator
+        tmux-floax
+      ];
       extraConfig = ''
         set -g default-terminal "xterm-256color"
         set -ga terminal-overrides ",*256col*:Tc"
         set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
         set-environment -g COLORTERM "truecolor"
+
+        set -g mouse on
+
+        # Start windows and panes at 1
+        set -g base-index 1
+        set -g pane-base-index 1
+        set-window-option -g pane-base-index 1
+        set-option -g renumber-windows on
 
         unbind C-b
         set -g prefix C-Space
@@ -233,6 +249,15 @@ in
 
   programs.starship = {
     enable = true;
+  };
+
+  programs.ghostty = {
+    enable = true;
+    settings = {
+      theme = "Kanagawa Wave";
+      background-opacity = 0.8;
+      font-size = 11;
+    };
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

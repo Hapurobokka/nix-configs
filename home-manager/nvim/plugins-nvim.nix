@@ -10,7 +10,6 @@
       ai = {};
       operators = {};
       statusline = {};
-      animate = {};
       starter = {};
       notify = {};
       bracketed = {};
@@ -28,7 +27,7 @@
       "<leader>fz" = "grep_curbuf";
       "<leader>fd" = "lsp_definitions";
       "<leader>ft" = "tags";
-      "<leader>fb" = "buffers";
+      "<leader>," = "buffers";
     };
   };
 
@@ -115,6 +114,7 @@
   lsp = {
     enable = true;
     servers = {
+      nushell.enable = true;
       nimls.enable = true;
       nixd.enable = true;
       pyright.enable = true;
@@ -157,5 +157,13 @@
     };
   };
 
-  overseer.enable = true;
+  vimtex.enable = true;
+
+  presence-nvim.enable = true;
+
+  undotree.enable = true;
+
+  rainbow-delimiters.enable = true;
+
+  tmux-navigator.enable = true;
 }

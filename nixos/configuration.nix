@@ -69,6 +69,11 @@
     videoDrivers = [ "nvidia" ];
   };
 
+  security.pam.services."hapu".kwallet = {
+    enable = true;
+    package = pkgs.kdePackages.kwallet-pam;
+  };
+
   services.displayManager = {
     sddm = {
       enable = true;
@@ -88,8 +93,7 @@
     enable = true;
     withUWSM = true;
     xwayland.enable = true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-    portalPackage = inputs.hyprland.packages."${pkgs.system}".xdg-desktop-portal-hyprland;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
 
   environment.sessionVariables = {

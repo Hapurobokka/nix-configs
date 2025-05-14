@@ -85,7 +85,6 @@
       limelight-vim
       snacks-nvim
       lazygit-nvim
-      tmux-navigator
     ];
 
     extraConfigLua = /*lua*/ ''

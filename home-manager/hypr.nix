@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
-    ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &
+    ${pkgs.plasma5Packages.kwallet-pam}/libexec/pam_kwallet_init & ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator
     ${pkgs.dunst}/bin/dunst &
   '';
 in
@@ -25,10 +25,11 @@ in
       exec-once = ''${startupScript}/bin/start'';
 
       "$mainMod" = "SUPER";
-      "$terminal" = "ghostty";
+      "$terminal" = "kitty";
       "$fileManager" = "dolphin";
       # "$menu" = "rofi -show drun -show-icons";
       "$menu" = "wofi --show drun -I";
+      "$broswer" = "zen";
 
       monitor = ",highres,auto,1";
 
@@ -50,6 +51,8 @@ in
         "$mainMod, L, movefocus, r"
         "$mainMod, K, movefocus, u"
         "$mainMod, J, movefocus, d"
+
+        "$mainMod, T, exec, $browser"
 
         "$mainMod, F, fullscreen, 1"
         "$mainMod SHIFT, F, fullscreen, 0"
