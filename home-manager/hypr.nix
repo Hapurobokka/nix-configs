@@ -2,8 +2,7 @@
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
-    ${pkgs.plasma5Packages.kwallet-pam}/libexec/pam_kwallet_init & ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator
-    ${pkgs.dunst}/bin/dunst &
+    ${pkgs.plasma5Packages.kwallet-pam}/libexec/pam_kwallet_init & ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator & ${pkgs.dunst}/bin/dunst &
   '';
 in
 {

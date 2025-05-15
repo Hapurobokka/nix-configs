@@ -36,41 +36,11 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # atuin
-    # black
-    # bottles
-    # deno
-    # evcxr
-    # haskell.compiler.ghc983
-    # litecli
-    # lua-language-server
-    # lua51Packages.lua
-    # luajitPackages.luarocks
-    # lutris
-    # nethack
-    # nodePackages.prettier
-    # nodePackages.typescript-language-server
-    # nushell
-    # porsmo
-    # pyright
-    # rubocop
-    # ruby-lsp
-    # rust-analyzer
-    # sqlite
-    # texlab
-    # tree-sitter-grammars.tree-sitter-norg
-    # typescript
-    # universal-ctags
-    # vscode-langservers-extracted
-    # wofi
-    # wsl-open
-    # xclip
-    # yarn-berry
-    # zellij
     (aspellWithDicts (dicts: with dicts; [ es en ]))
     bacon
     bat
     brave
+    brightnessctl
     cargo
     cava
     chafa
@@ -90,9 +60,11 @@ in
     godot
     helix
     hello
+    hyprpolkitagent
     hyprshot
     inputs.zen-browser.packages.${pkgs.system}.default
     just
+    kew
     kitty
     lazygit
     libtool
@@ -107,6 +79,7 @@ in
     obsidian
     octaveFull
     pandoc
+    pavucontrol
     playerctl
     r2modman
     retroarchWithCores
@@ -114,7 +87,6 @@ in
     rm-improved
     starship
     tldr
-    kew
     tmux
     tree-sitter
     valgrind
@@ -124,16 +96,6 @@ in
     wofi
     zapzap
     zoxide
-    hyprpolkitagent
-    brightnessctl
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
   ];
 
   programs.direnv = {
