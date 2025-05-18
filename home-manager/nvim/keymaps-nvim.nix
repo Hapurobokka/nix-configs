@@ -10,7 +10,7 @@
   }
 
   {
-    action = ":LazyGit <cr>";
+    action = ":Neogit <cr>";
     key = "<leader>gg";
     options = {
       silent = true;

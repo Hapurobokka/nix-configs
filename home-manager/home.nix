@@ -51,6 +51,7 @@ in
     eza
     fastfetch
     fd
+    feh
     fish
     fossil
     fzf
@@ -73,8 +74,8 @@ in
     nerd-fonts.jetbrains-mono
     nh
     nitch
-    nix-output-monitor
     nixd
+    nix-output-monitor
     nodejs_22
     obsidian
     octaveFull

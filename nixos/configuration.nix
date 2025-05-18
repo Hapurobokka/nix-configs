@@ -23,8 +23,6 @@ in
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  services.power-profiles-daemon.enable = false;
-
   systemd.timers.battery-check = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
@@ -43,18 +41,26 @@ in
     };
   };
 
+  services.power-profiles-daemon.enable = false;
+
   services.tlp = {
     enable = true;
     settings = {
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MAX_PERF_ON_AC = 100;
+    
+      CPU_BOOST_ON_AC = 1;
+      CPU_BOOST_ON_BAT = 0;
 
       STOP_CHARGE_THRESH_BAT0 = 1;
     };
   };
+
+  services.thermald.enable = true;
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
@@ -154,8 +160,6 @@ in
   #   };
   # };
 
-  boot.blacklistedKernelModules = [ "nouveau" ];
-
   console.keyMap = "la-latin1";
 
   # Enable CUPS to print documents.
@@ -192,9 +196,10 @@ in
     packages = with pkgs; [
       kdePackages.kate
       waybar
-      eww
       kdePackages.partitionmanager
       ghostty
+      qbittorrent
+      libreoffice
     #  thunderbird
     ];
     shell = pkgs.nushell;

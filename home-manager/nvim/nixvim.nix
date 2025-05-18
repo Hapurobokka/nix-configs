@@ -84,7 +84,6 @@
       goyo-vim
       limelight-vim
       snacks-nvim
-      lazygit-nvim
     ];
 
     extraConfigLua = /*lua*/ ''

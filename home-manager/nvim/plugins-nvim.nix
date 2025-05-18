@@ -157,6 +157,8 @@
     };
   };
 
+  neogit.enable = true;
+
   vimtex.enable = true;
 
   presence-nvim.enable = true;
