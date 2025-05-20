@@ -189,6 +189,7 @@ in
       $env.__zoxide_hooked = true
 
       path add "~/.emacs.d/bin"
+      source ./scripts/dices.nu
     '';
   };
 
