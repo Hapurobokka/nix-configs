@@ -267,7 +267,7 @@ in
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/stella.yaml";
-    image = ./images/vivian-pero-con-paraguas.jpg;
+    image = ./images/zani-ayayay.jpg;
     targets = {
       neovim.enable = false;
       nixvim.enable = false;

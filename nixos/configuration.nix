@@ -232,6 +232,8 @@ in
     kitty
     rofi-wayland
     neovim
+    wineWayland
+    winetricks
   ];
 
   xdg.portal.enable = true;
