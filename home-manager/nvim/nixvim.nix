@@ -96,6 +96,9 @@
         quickfile = { enabled = true },
         bigfile = { enabled = true },
       })
+
+      vim.o.shell = "nu"
+      vim.o.shellcmdflag = "-l -c"
     '';
 
     plugins = import ./plugins-nvim.nix;

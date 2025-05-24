@@ -36,6 +36,8 @@
     addDefaultMappings = true;
   };
 
+  hardtime.enable = true;
+
   nvim-surround.enable = true;
 
   treesitter = {
@@ -121,12 +123,12 @@
       clangd.enable = true;
       hls = {
         enable = true;
-        installGhc = true;
+        installGhc = false;
       };
       rust_analyzer = {
         enable = true;
-        installCargo = true;
-        installRustc = true;
+        installCargo = false;
+        installRustc = false;
       };
     };
   };

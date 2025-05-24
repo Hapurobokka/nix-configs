@@ -28,7 +28,15 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    stylix.url = "github:danth/stylix";
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };

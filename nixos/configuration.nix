@@ -3,43 +3,12 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, inputs, ... }:
-let
-  checkBatteryScript = pkgs.pkgs.writers.writeNuBin "start" /*nu*/ ''
-    let low_threshold = 20
-    let full_battery = 99
-    let battery_info = (^${pkgs.acpi}/bin/acpi -b) | ^grep -oP "[0-9]+(?=%)" | into int
-
-    if ( $battery_info <= $low_threshold )  {
-      notify-send -u critical "💖 ¡Alerta de Batería Baja, maestro! 💖" $"¡Kyaa! Tu batería está en ($battery_info)% o menos. ¡Es hora de recargar, onegai! 🙏🔋"
-    } else if $battery_info >= $full_battery {
-      notify-send "🎉 ¡Kyaa! ¡Bateria Completa, maestro! 🎉" "¡Arigato! Tu laptop esta al 100%. ¡Lista para la aventura, nya! 🌟💖"
-    }
-  '';
-in
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  systemd.timers.battery-check = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnBootSec = "10sec";
-      OnUnitInactiveSec = "1min";
-    };
-  };
-
-  systemd.services.battery-check = {
-    serviceConfig = {
-      Description = ''Muerte'';
-      Wants = "graphical-session.target";
-      After = "graphical-session.target";
-      Type = "oneshot";
-      ExecStart = "${checkBatteryScript}/bin/start";
-    };
-  };
 
   services.power-profiles-daemon.enable = false;
 
@@ -137,7 +106,7 @@ in
     NIXOS_OZONE_WL = 1;
     NH_FLAKE = "/home/hapu/nix-configs";
     EDITOR = "nvim";
-    XDG_PICTURES_DIR = "~/Imágenes";
+    XDG_PICTURES_DIR = "/home/hapu/Imágenes";
   };
 
   # Configure keymap in X11
@@ -196,10 +165,8 @@ in
     packages = with pkgs; [
       kdePackages.kate
       waybar
-      kdePackages.partitionmanager
       ghostty
       qbittorrent
-      libreoffice
     #  thunderbird
     ];
     shell = pkgs.nushell;
@@ -216,9 +183,6 @@ in
 
   programs.gamemode.enable = true;
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -232,8 +196,6 @@ in
     kitty
     rofi-wayland
     neovim
-    wineWayland
-    winetricks
   ];
 
   xdg.portal.enable = true;

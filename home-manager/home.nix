@@ -11,6 +11,7 @@ let
     ppsspp
     vba-m
   ]));
+  quickshellPkg = inputs.quickshell.packages."x86_64-linux".default;
 in
 {
   imports = [
@@ -37,7 +38,6 @@ in
   # environment.
   home.packages = with pkgs; [
     (aspellWithDicts (dicts: with dicts; [ es en ]))
-    bacon
     bat
     brave
     brightnessctl
@@ -52,10 +52,8 @@ in
     fastfetch
     fd
     feh
-    fish
     fossil
     fzf
-    gdb
     gfn-electron
     gimp
     godot
@@ -78,7 +76,6 @@ in
     nix-output-monitor
     nodejs_22
     obsidian
-    octaveFull
     pandoc
     pavucontrol
     playerctl
@@ -90,13 +87,12 @@ in
     tldr
     tmux
     tree-sitter
-    valgrind
     vesktop
-    vscode
     wl-clipboard
     wofi
     zapzap
     zoxide
+    quickshellPkg
   ];
 
   programs.direnv = {
@@ -189,7 +185,7 @@ in
       $env.__zoxide_hooked = true
 
       path add "~/.emacs.d/bin"
-      source ./scripts/dices.nu
+      source ~/nix-configs/home-manager/scripts/dices.nu
     '';
   };
 
@@ -268,7 +264,7 @@ in
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/stella.yaml";
-    image = ./images/zani-ayayay.jpg;
+    image = ./images/acheron-ooo.jpeg;
     targets = {
       neovim.enable = false;
       nixvim.enable = false;
