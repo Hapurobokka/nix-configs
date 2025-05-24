@@ -68,6 +68,7 @@ in
     lazygit
     libtool
     myTex
+    presenterm
     nerd-fonts.iosevka
     nerd-fonts.jetbrains-mono
     nh
@@ -93,6 +94,7 @@ in
     zapzap
     zoxide
     quickshellPkg
+    bluetui
   ];
 
   programs.direnv = {
