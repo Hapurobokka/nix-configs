@@ -11,7 +11,7 @@ let
     ppsspp
     vba-m
   ]));
-  quickshellPkg = inputs.quickshell.packages."x86_64-linux".default;
+  agsPkg = inputs.ags.packages."x86_64-linux".default;
 in
 {
   imports = [
@@ -39,6 +39,7 @@ in
   home.packages = with pkgs; [
     (aspellWithDicts (dicts: with dicts; [ es en ]))
     bat
+    bluetui
     brave
     brightnessctl
     cargo
@@ -68,18 +69,18 @@ in
     lazygit
     libtool
     myTex
-    presenterm
     nerd-fonts.iosevka
     nerd-fonts.jetbrains-mono
     nh
     nitch
-    nixd
     nix-output-monitor
+    nixd
     nodejs_22
     obsidian
     pandoc
     pavucontrol
     playerctl
+    presenterm
     r2modman
     retroarchWithCores
     ripgrep
@@ -93,8 +94,9 @@ in
     wofi
     zapzap
     zoxide
-    quickshellPkg
-    bluetui
+    agsPkg
+    lutris
+    protonup
   ];
 
   programs.direnv = {
@@ -261,6 +263,7 @@ in
   #
   home.sessionVariables = {
     EDITOR = "nvim";
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\\\${HOME}/.steam/root/compatibilitytools.d";
   };
 
   stylix = {

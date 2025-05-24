@@ -120,6 +120,7 @@
       nimls.enable = true;
       nixd.enable = true;
       pyright.enable = true;
+      denols.enable = true;
       clangd.enable = true;
       hls = {
         enable = true;

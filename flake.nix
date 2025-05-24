@@ -28,15 +28,12 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ags.url = "github:aylur/ags";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
@@ -73,7 +70,7 @@
 
         modules = [
           nixvim.homeManagerModules.nixvim
-          inputs.stylix.homeManagerModules.stylix
+          inputs.stylix.homeModules.stylix
           ./home-manager/home.nix
         ];
 
