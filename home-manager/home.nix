@@ -38,6 +38,8 @@ in
   # environment.
   home.packages = with pkgs; [
     (aspellWithDicts (dicts: with dicts; [ es en ]))
+    acpi
+    agsPkg
     bat
     bluetui
     brave
@@ -81,6 +83,7 @@ in
     pavucontrol
     playerctl
     presenterm
+    protonup
     r2modman
     retroarchWithCores
     ripgrep
@@ -94,15 +97,12 @@ in
     wofi
     zapzap
     zoxide
-    agsPkg
-    lutris
-    protonup
   ];
 
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
-    enableNushellIntegration = true;
+    enableNushellIntegration = false;
   };
 
   programs.git = {
@@ -113,11 +113,12 @@ in
 
   programs.zoxide = {
     enable = true;
-    enableNushellIntegration = true;
+    enableNushellIntegration = false;
+    enableFishIntegration = true;
   };
 
   programs.fish = {
-      enable = false;
+      enable = true;
       shellInit = /*fish*/ ''
         fish_add_path ~/.local/bin
         alias ls 'eza'
@@ -181,29 +182,23 @@ in
     };
 
   programs.nushell = {
-    enable = true;
+    enable = false;
     extraConfig = /*nu*/ ''
       use std/util "path add"
       $env.config.buffer_editor = "nvim"
       $env.config.show_banner = false
       $env.__zoxide_hooked = true
+      $env.config.edit_mode = "vi"
 
       path add "~/.emacs.d/bin"
       source ~/nix-configs/home-manager/scripts/dices.nu
     '';
   };
 
-  # programs.zellij = {
-  #   enable = true;
-  #   settings = {
-  #     theme = "kanagawa";
-  #     pane_frames = false;
-  #   };
-  # };
-
   programs.yazi = {
     enable = true;
-    enableNushellIntegration = true;
+    enableNushellIntegration = false;
+    enableFishIntegration = true;
     settings = {
       manager = {
         show_hidden = true;
@@ -212,6 +207,7 @@ in
   };
 
   programs.starship = {
+    enableFishIntegration = true;
     enable = true;
   };
 

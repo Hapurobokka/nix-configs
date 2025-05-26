@@ -1,6 +1,7 @@
 {
   mini = {
     enable = true;
+    mockDevIcons = true;
     modules = {
       icons = {};
       indentscope = {};
@@ -116,7 +117,7 @@
   lsp = {
     enable = true;
     servers = {
-      nushell.enable = true;
+      nushell.enable = false;
       nimls.enable = true;
       nixd.enable = true;
       pyright.enable = true;
@@ -164,9 +165,9 @@
 
   vimtex.enable = true;
 
-  presence-nvim.enable = true;
-
   undotree.enable = true;
+
+  diffview.enable = true;
 
   rainbow-delimiters.enable = true;
 

@@ -29,6 +29,8 @@
     };
   };
 
+  virtualisation.waydroid.enable = true;
+
   services.thermald.enable = true;
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
@@ -106,7 +108,7 @@
     NIXOS_OZONE_WL = 1;
     NH_FLAKE = "/home/hapu/nix-configs";
     EDITOR = "nvim";
-    XDG_PICTURES_DIR = "/home/hapu/Imágenes";
+    XDG_PICTURES_DIR = "/home/hapu/Imágenes/screenshots";
   };
 
   # Configure keymap in X11
@@ -169,8 +171,10 @@
       qbittorrent
     #  thunderbird
     ];
-    shell = pkgs.nushell;
+    shell = pkgs.fish;
   };
+
+  programs.fish.enable = true;
 
   programs.steam = {
     enable = true;
