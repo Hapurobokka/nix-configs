@@ -20,7 +20,7 @@
   }
 
   {
-    action = ":UndotreeToogle<cr>";
+    action = ":UndotreeToggle<cr>";
     key = "<leader>tu";
     options = {
       silent = true;

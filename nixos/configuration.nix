@@ -21,7 +21,7 @@
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_MIN_PERF_ON_AC = 0;
       CPU_MAX_PERF_ON_AC = 100;
-    
+
       CPU_BOOST_ON_AC = 1;
       CPU_BOOST_ON_BAT = 0;
 
@@ -29,14 +29,14 @@
     };
   };
 
-  virtualisation.waydroid.enable = true;
-
   services.thermald.enable = true;
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 
   services.flatpak.enable = true;
+
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   programs.appimage.enable = true;
 
@@ -76,39 +76,14 @@
     videoDrivers = [ "nvidia" ];
   };
 
-  security.pam.services."hapu".kwallet = {
-    enable = true;
-    package = pkgs.kdePackages.kwallet-pam;
-  };
-
-  services.displayManager = {
-    sddm = {
-      enable = true;
-      wayland.enable = true;
-      settings = {
-        Theme = {
-          EnableAvatars = true;
-        };
-      };
-    };
-  };
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.desktopManager.plasma6.enable = true;
-
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-    xwayland.enable = true;
-    portalPackage = pkgs.xdg-desktop-portal-hyprland;
-  };
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = 1;
     NIXOS_OZONE_WL = 1;
     NH_FLAKE = "/home/hapu/nix-configs";
     EDITOR = "nvim";
-    XDG_PICTURES_DIR = "/home/hapu/Imágenes/screenshots";
   };
 
   # Configure keymap in X11
@@ -165,8 +140,6 @@
     description = "Hapurobokka";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      kdePackages.kate
-      waybar
       ghostty
       qbittorrent
     #  thunderbird
@@ -196,17 +169,18 @@
     home-manager
     dunst
     libnotify
-    hyprpaper
-    kitty
-    rofi-wayland
     neovim
   ];
 
   xdg.portal.enable = true;
   xdg.portal.extraPortals = with pkgs; [
     xdg-desktop-portal-gtk
-    kdePackages.xdg-desktop-portal-kde
   ];
+
+  virtualisation.podman = {
+    enable = true;
+    defaultNetwork.settings.dns_enabled = true;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

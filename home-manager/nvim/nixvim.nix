@@ -38,11 +38,10 @@
       register = "unnamedplus";
     };
 
-		autoCmd = [
-			{
-        desc = "Changes the indent size to 2 in certain files";
-				event = "FileType";
-				callback = { __raw = /*lua*/ ''
+    autoCmd = [			{
+      desc = "Changes the indent size to 2 in certain files";
+      event = "FileType";
+      callback = { __raw = /*lua*/ ''
             function()
               vim.bo.tabstop = 2
               vim.bo.shiftwidth = 2

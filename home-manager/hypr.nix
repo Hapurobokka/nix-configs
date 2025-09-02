@@ -24,11 +24,11 @@ in
       exec-once = ''${startupScript}/bin/start'';
 
       "$mainMod" = "SUPER";
-      "$terminal" = "kitty";
+      "$terminal" = "ghostty";
       "$fileManager" = "dolphin";
       # "$menu" = "rofi -show drun -show-icons";
       "$menu" = "wofi --show drun -I";
-      "$broswer" = "zen";
+      "$broswer" = "brave";
 
       monitor = ",highres,auto,1";
 

@@ -11,13 +11,12 @@ let
     ppsspp
     vba-m
   ]));
-  agsPkg = inputs.ags.packages."x86_64-linux".default;
 in
 {
   imports = [
     ./helix.nix
     ./nvim/nixvim.nix
-    ./hypr.nix
+    # ./hypr.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -39,12 +38,8 @@ in
   home.packages = with pkgs; [
     (aspellWithDicts (dicts: with dicts; [ es en ]))
     acpi
-    agsPkg
     bat
-    bluetui
     brave
-    brightnessctl
-    cargo
     cava
     chafa
     clang
@@ -54,34 +49,22 @@ in
     eza
     fastfetch
     fd
-    feh
-    fossil
     fzf
     gfn-electron
     gimp
     godot
     helix
     hello
-    hyprpolkitagent
-    hyprshot
-    inputs.zen-browser.packages.${pkgs.system}.default
     just
     kew
-    kitty
     lazygit
-    libtool
     myTex
     nerd-fonts.iosevka
     nerd-fonts.jetbrains-mono
     nh
     nitch
     nix-output-monitor
-    nixd
-    nodejs_22
     obsidian
-    pandoc
-    pavucontrol
-    playerctl
     presenterm
     protonup
     r2modman
@@ -97,6 +80,10 @@ in
     wofi
     zapzap
     zoxide
+    docker-compose
+    podman-tui
+    podman-compose
+    gnomePackages.blur-my-shell
   ];
 
   programs.direnv = {
@@ -121,6 +108,7 @@ in
       enable = true;
       shellInit = /*fish*/ ''
         fish_add_path ~/.local/bin
+        fish_add_path ~/.cargo/bin
         alias ls 'eza'
       '';
   };
@@ -265,7 +253,7 @@ in
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/stella.yaml";
-    image = ./images/acheron-ooo.jpeg;
+    image = ./images/acheron-ultraresolucion.jpg;
     targets = {
       neovim.enable = false;
       nixvim.enable = false;
