@@ -83,7 +83,7 @@ in
     docker-compose
     podman-tui
     podman-compose
-    gnomePackages.blur-my-shell
+    gnomeExtensions.blur-my-shell
   ];
 
   programs.direnv = {
@@ -107,9 +107,11 @@ in
   programs.fish = {
       enable = true;
       shellInit = /*fish*/ ''
+        fish_vi_key_bindings
         fish_add_path ~/.local/bin
         fish_add_path ~/.cargo/bin
-        alias ls 'eza'
+        fish_add_path ~/.bin
+        alias ls 'eza --icons'
       '';
   };
 
