@@ -62,7 +62,7 @@
         inherit pkgs;
 
         modules = [
-          nixvim.homeManagerModules.nixvim
+          nixvim.homeManager.nixvim
           inputs.stylix.homeModules.stylix
           ./home-manager/home.nix
         ];
