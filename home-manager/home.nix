@@ -45,7 +45,6 @@ in
     clang
     cmake
     direnv
-    emacs
     eza
     fastfetch
     fd
@@ -84,7 +83,13 @@ in
     podman-tui
     podman-compose
     gnomeExtensions.blur-my-shell
+    chiaki-ng
   ];
+
+  programs.emacs = {
+    enable = true;
+    extraPackages = epkgs: [ epkgs.vterm ];
+  };
 
   programs.direnv = {
     enable = true;
@@ -259,6 +264,7 @@ in
     targets = {
       neovim.enable = false;
       nixvim.enable = false;
+      emacs.enable = false;
     };
   };
 
