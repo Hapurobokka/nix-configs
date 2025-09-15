@@ -84,11 +84,16 @@ in
     podman-compose
     gnomeExtensions.blur-my-shell
     chiaki-ng
+    mpd
+    mpc
+    nicotine-plus
+    qemu_full
+    qtemu
   ];
 
   programs.emacs = {
     enable = true;
-    extraPackages = epkgs: [ epkgs.vterm ];
+    extraPackages = epkgs: [ epkgs.vterm pkgs.python313 ];
   };
 
   programs.direnv = {
@@ -117,6 +122,7 @@ in
         fish_add_path ~/.cargo/bin
         fish_add_path ~/.bin
         alias ls 'eza --icons'
+        source ~/nix-configs/home-manager/scripts/dices.fish
       '';
   };
 
