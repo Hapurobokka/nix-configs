@@ -89,6 +89,7 @@ in
     nicotine-plus
     qemu_full
     qtemu
+    kdePackages.okular
   ];
 
   programs.emacs = {
@@ -266,7 +267,7 @@ in
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/stella.yaml";
-    image = ./images/acheron-ultraresolucion.jpg;
+    image = ./images/ellen-amarillo.jpeg;
     targets = {
       neovim.enable = false;
       nixvim.enable = false;
