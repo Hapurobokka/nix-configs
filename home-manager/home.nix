@@ -37,33 +37,45 @@ in
   # environment.
   home.packages = with pkgs; [
     (aspellWithDicts (dicts: with dicts; [ es en ]))
+    # qemu_full
     acpi
     bat
     brave
+    cataclysm-dda
     cava
     chafa
+    chiaki-ng
     clang
     cmake
+    daggerfall-unity
     direnv
+    docker-compose
     eza
     fastfetch
     fd
     fzf
     gfn-electron
     gimp
+    gnomeExtensions.blur-my-shell
     godot
     helix
-    hello
     just
+    kdePackages.okular
     kew
     lazygit
+    mpc
+    mpd
     myTex
+    mysql-workbench
     nerd-fonts.iosevka
     nerd-fonts.jetbrains-mono
     nh
+    nicotine-plus
     nitch
     nix-output-monitor
     obsidian
+    podman-compose
+    podman-tui
     presenterm
     protonup
     r2modman
@@ -75,21 +87,11 @@ in
     tmux
     tree-sitter
     vesktop
+    vscode-fhs
     wl-clipboard
     wofi
     zapzap
     zoxide
-    docker-compose
-    podman-tui
-    podman-compose
-    gnomeExtensions.blur-my-shell
-    chiaki-ng
-    mpd
-    mpc
-    nicotine-plus
-    qemu_full
-    qtemu
-    kdePackages.okular
   ];
 
   programs.emacs = {
