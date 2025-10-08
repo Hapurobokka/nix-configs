@@ -53,7 +53,7 @@ in
         "$mainMod SHIFT, Q, killactive,"
         "$mainMod SHIFT, C, exit,"
         "$mainMod, V, togglefloating,"
-        "$mainMod, P, pseudo," # dwindle
+        "$mainMod, D, pseudo," # dwindle
 
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
@@ -84,6 +84,12 @@ in
         # Scroll through existing workspaces with mainMod + scroll
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
+
+        "$mainMod, N, workspace, next"
+        "$mainMod, P, workspace, prev"
+
+        "$mainMod, H, workspace, m-1"
+        "$mainMod, L, workspace, m+1"
       ];
 
       bindm = [

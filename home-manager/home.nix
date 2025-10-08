@@ -59,6 +59,7 @@ in
     gnomeExtensions.blur-my-shell
     godot
     helix
+    jujutsu
     just
     kdePackages.okular
     kew
@@ -88,11 +89,11 @@ in
     tree-sitter
     vesktop
     vscode-fhs
+    waybar
     wl-clipboard
     wofi
     zapzap
     zoxide
-    jujutsu
   ];
 
   programs.emacs = {
