@@ -2,18 +2,11 @@
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
-    ${pkgs.plasma5Packages.kwallet-pam}/libexec/pam_kwallet_init & ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator & ${pkgs.dunst}/bin/dunst &
+    ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &
+    ${pkgs.dunst}/bin/dunst &
   '';
 in
 {
-  services.hyprpaper = {
-    enable = true;
-    # settings = {
-    #   preload = [ "~/briar-que-bajo-he-caido.jpg" "~/vivian-pero-con-paraguas.jpg" ];
-    #   wallpaper = [ ", ~/vivian-pero-con-paraguas.jpg"];
-    # };
-  };
-
   programs.hyprlock.enable = true;
   services.hypridle.enable = true;
   services.hyprpolkitagent.enable = true;

@@ -16,7 +16,7 @@ in
   imports = [
     ./helix.nix
     ./nvim/nixvim.nix
-    # ./hypr.nix
+    ./hypr.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -92,6 +92,7 @@ in
     wofi
     zapzap
     zoxide
+    jujutsu
   ];
 
   programs.emacs = {
