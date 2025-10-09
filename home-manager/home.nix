@@ -14,6 +14,7 @@ let
 in
 {
   imports = [
+    inputs.zen-browser.homeModules.beta
     ./helix.nix
     ./nvim/nixvim.nix
     ./hypr.nix
@@ -94,12 +95,15 @@ in
     wofi
     zapzap
     zoxide
+    python313
   ];
 
   programs.emacs = {
     enable = true;
     extraPackages = epkgs: [ epkgs.vterm pkgs.python313 ];
   };
+
+  programs.zen-browser.enable = true;
 
   programs.direnv = {
     enable = true;

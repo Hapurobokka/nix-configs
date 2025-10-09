@@ -49,7 +49,7 @@ in
         "$mainMod, F, fullscreen, 1"
         "$mainMod SHIFT, F, fullscreen, 0"
         "$mainMod, E, exec, $terminal"
-        "$mainMod SHIFT, L, exec, hyprlock"
+        "$mainMod SHIFT, B, exec, hyprlock"
         "$mainMod SHIFT, Q, killactive,"
         "$mainMod SHIFT, C, exit,"
         "$mainMod, V, togglefloating,"
@@ -88,8 +88,8 @@ in
         "$mainMod, N, workspace, next"
         "$mainMod, P, workspace, prev"
 
-        "$mainMod, H, workspace, m-1"
-        "$mainMod, L, workspace, m+1"
+        "$mainMod SHIFT, H, workspace, m-1"
+        "$mainMod SHIFT, L, workspace, m+1"
       ];
 
       bindm = [
