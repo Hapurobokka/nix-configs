@@ -96,7 +96,18 @@ in
     zapzap
     zoxide
     python313
+    papirus-icon-theme
+    hyprshot
+    playerctl
   ];
+
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "Papirus";
+      package = pkgs.papirus-icon-theme;
+    };
+  };
 
   programs.emacs = {
     enable = true;
