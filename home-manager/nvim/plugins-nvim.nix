@@ -123,6 +123,7 @@
       pyright.enable = true;
       denols.enable = true;
       clangd.enable = true;
+      ts_ls.enable = true;
       hls = {
         enable = true;
         installGhc = false;
