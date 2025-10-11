@@ -16,8 +16,8 @@ in
   imports = [
     inputs.zen-browser.homeModules.beta
     ./helix.nix
-    ./nvim/nixvim.nix
     ./hypr.nix
+    ./nvf-configuration.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -295,6 +295,7 @@ in
     targets = {
       neovim.enable = false;
       nixvim.enable = false;
+      nvf.enable = false;
       emacs.enable = false;
     };
   };

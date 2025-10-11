@@ -17,6 +17,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Required, nvf works best and only directly supports flakes
+    nvf = {
+      url = "github:NotAShelf/nvf";
+      # You can override the input nixpkgs to follow your system's
+      # instance of nixpkgs. This is safe to do as nvf does not depend
+      # on a binary cache.
+      inputs.nixpkgs.follows = "nixpkgs";
+      # Optionally, you can also override individual plugins
+      # for example:
+      inputs.obsidian-nvim.follows = "obsidian-nvim"; # <- this will use the obsidian-nvim from your inputs
+    };
+
     # hyprland.url = "github:hyprwm/Hyprland";
     # hyprland-plugins = {
     #   url = "github:hyprwm/hyprland-plugins";
@@ -69,7 +81,8 @@
         inherit pkgs;
 
         modules = [
-          nixvim.homeModules.nixvim
+          # nixvim.homeModules.nixvim
+          inputs.nvf.homeManagerModules.default
           inputs.stylix.homeModules.stylix
           ./home-manager/home.nix
         ];
