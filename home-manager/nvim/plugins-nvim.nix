@@ -17,10 +17,14 @@
     };
   };
 
+  presence-nvim = {
+    enable = true;
+  };
+
   fzf-lua = {
     enable = true;
     keymaps = {
-      "<leader>." = "files";
+      "<leader>ff" = "files";
       "<leader>fm" = "marks";
       "<leader>fr" = "oldfiles";
       "<leader>fs" = "treesitter";
@@ -28,7 +32,7 @@
       "<leader>fz" = "grep_curbuf";
       "<leader>fd" = "lsp_definitions";
       "<leader>ft" = "tags";
-      "<leader>," = "buffers";
+      "<leader>bb" = "buffers";
     };
   };
 

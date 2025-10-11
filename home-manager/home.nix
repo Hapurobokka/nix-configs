@@ -146,6 +146,11 @@ in
       '';
   };
 
+  programs.atuin = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   programs.fastfetch = {
     enable = true;
     settings = {
