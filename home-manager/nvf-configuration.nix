@@ -65,10 +65,27 @@
     				];
           }
         ];
+        
+        lsp = {
+          enable = true;
+        };
+
+        extraPlugins = with pkgs.vimPlugins; {
+          plenary = {
+            package = plenary-nvim;
+          };      
+        };
 
         mini = {
           statusline.enable = true;
           pairs.enable = true;
+          ai.enable = true;
+          bracketed.enable = true;
+          jump.enable = true;
+          notify.enable = true;
+          operators.enable = true;
+          starter.enable = true;
+          icons.enable = true;
         };
         fzf-lua.enable = true;
         autocomplete.blink-cmp.enable = true;
@@ -76,6 +93,27 @@
           enable = true;
         };
         git.gitsigns.enable = true;
+        utility = {
+          oil-nvim.enable = true;
+          motion.flash-nvim.enable = true;
+        }; 
+
+        notes.obsidian = {
+          enable = true;
+          setupOpts = {
+            workspaces = [
+              {
+                name = "vault";
+                path = "~/Documentos/vault";
+              }
+            ];
+            daily_notes = {
+              folder = "fleeting/";
+              date = "%d-%m-%Y";
+              default_tags = [ "fleeting" ];
+            };
+          };
+        };
 
         languages = {
           nix = {
@@ -90,6 +128,7 @@
             lsp.enable = true;
             treesitter.enable = true;
           };
+          markdown.extensions.markview-nvim.enable = true;
         };
 
         treesitter = {
@@ -131,6 +170,27 @@
             mode = "n";
             silent = true;
             desc = "Open recent files";
+          }
+          {
+            action = ":FzfLua lsp_document_symbols<cr>";
+            key = "<leader>fs";
+            mode = "n";
+            silent = true;
+            desc = "Open Oil";
+          }
+          {
+            action = ":Oil<cr>";
+            key = "<leader>oo";
+            mode = "n";
+            silent = true;
+            desc = "Open Oil";
+          }
+          {
+            action = ":bdelete<cr>";
+            key = "<leader>bd";
+            mode = "n";
+            silent = true;
+            desc = "Delete buffer";
           }
         ];
       };
