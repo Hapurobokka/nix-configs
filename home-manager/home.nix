@@ -22,8 +22,6 @@ in
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
 
-  home.username = "hapu";
-  home.homeDirectory = "/home/hapu";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -32,7 +30,11 @@ in
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+  home = {
+    stateVersion = "24.05"; # Please read the comment before changing.
+    username = "hapu";
+    homeDirectory = "/home/hapu";
+  };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -42,6 +44,7 @@ in
     acpi
     bat
     brave
+    cargo
     cataclysm-dda
     cava
     chafa
@@ -60,6 +63,7 @@ in
     gnomeExtensions.blur-my-shell
     godot
     helix
+    hyprshot
     jujutsu
     just
     kdePackages.okular
@@ -76,10 +80,13 @@ in
     nitch
     nix-output-monitor
     obsidian
+    papirus-icon-theme
+    playerctl
     podman-compose
     podman-tui
     presenterm
     protonup
+    python313
     r2modman
     retroarchWithCores
     ripgrep
@@ -95,10 +102,6 @@ in
     wofi
     zapzap
     zoxide
-    python313
-    papirus-icon-theme
-    hyprshot
-    playerctl
   ];
 
   gtk = {
@@ -297,6 +300,7 @@ in
       nixvim.enable = false;
       nvf.enable = false;
       emacs.enable = false;
+      zen-browser.enable = false;
     };
   };
 
