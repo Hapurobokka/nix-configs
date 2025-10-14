@@ -31,11 +31,9 @@
           termguicolors = true;
           timeoutlen = 400;
           undofile = true;
-          conceallevel = 2;
 
           wrap = true;
           linebreak = true;
-          foldlevel = 1;
         };
 
         autocmds = [
@@ -74,6 +72,9 @@
           plenary = {
             package = plenary-nvim;
           };      
+          markview = {
+            package = markview-nvim;
+          };
         };
 
         mini = {
@@ -101,6 +102,7 @@
         notes.obsidian = {
           enable = true;
           setupOpts = {
+            ui.enable = false;
             workspaces = [
               {
                 name = "vault";
@@ -112,6 +114,21 @@
               date = "%d-%m-%Y";
               default_tags = [ "fleeting" ];
             };
+            note_id_func = lib.generators.mkLuaInline /*lua*/ ''
+              function(title)
+                local suffix = ""
+                if title ~= nil then
+                  -- If title is given, transform it into valid file name.
+                  suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+                else
+                  -- If title is nil, just add 4 random uppercase letters to the suffix.
+                  for _ = 1, 4 do
+                    suffix = suffix .. string.char(math.random(65, 90))
+                  end
+                end
+                return tostring(os.time()) .. "-" .. suffix
+              end
+            '';
           };
         };
 
@@ -128,7 +145,11 @@
             lsp.enable = true;
             treesitter.enable = true;
           };
-          markdown.extensions.markview-nvim.enable = true;
+          clang = {
+            enable = true;
+            lsp.enable = true;
+            treesitter.enable = true;
+          };
         };
 
         treesitter = {

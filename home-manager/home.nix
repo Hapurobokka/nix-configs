@@ -102,6 +102,7 @@ in
     wofi
     zapzap
     zoxide
+    ppsspp
   ];
 
   gtk = {
