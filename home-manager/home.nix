@@ -6,11 +6,6 @@ let
       wrapfig
       capt-of;
   });
-  retroarchWithCores = (pkgs.retroarch.withCores (cores: with cores; [
-    melonds
-    ppsspp
-    vba-m
-  ]));
 in
 {
   imports = [
@@ -84,11 +79,11 @@ in
     playerctl
     podman-compose
     podman-tui
+    ppsspp
     presenterm
     protonup
     python313
     r2modman
-    retroarchWithCores
     ripgrep
     rm-improved
     starship
@@ -102,7 +97,6 @@ in
     wofi
     zapzap
     zoxide
-    ppsspp
   ];
 
   gtk = {
@@ -230,7 +224,7 @@ in
     enableNushellIntegration = false;
     enableFishIntegration = true;
     settings = {
-      manager = {
+      mgr = {
         show_hidden = true;
       };
     };

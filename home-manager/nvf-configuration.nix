@@ -25,6 +25,8 @@
           ignorecase = true;
           smartcase = true;
 
+          foldlevelstart = 99;
+
           signcolumn = "yes";
           splitbelow = true;
           splitright = true;
@@ -63,6 +65,12 @@
     				];
           }
         ];
+
+        spellcheck = {
+          enable = true;
+          languages = [ "es" ];
+          ignoredFiletypes = [ "toggleterm" "term" ];
+        };
         
         lsp = {
           enable = true;
@@ -77,27 +85,31 @@
           };
         };
 
+        ui.noice.enable = true;
         mini = {
           statusline.enable = true;
           pairs.enable = true;
           ai.enable = true;
           bracketed.enable = true;
           jump.enable = true;
-          notify.enable = true;
           operators.enable = true;
           starter.enable = true;
           icons.enable = true;
         };
         fzf-lua.enable = true;
         autocomplete.blink-cmp.enable = true;
-        binds.whichKey = {
-          enable = true;
+        binds = {
+          whichKey = {
+            enable = true;
+          };
+          hardtime-nvim.enable = true;
         };
         git.gitsigns.enable = true;
         utility = {
           oil-nvim.enable = true;
           motion.flash-nvim.enable = true;
         }; 
+        visuals.fidget-nvim.enable = true;
 
         notes.obsidian = {
           enable = true;
@@ -157,6 +169,7 @@
         };
 
         keymaps = [
+          # Fzf-Lua binds
           {
             action = ":FzfLua files<cr>";
             key = "<leader>ff";
@@ -200,18 +213,47 @@
             desc = "Open Oil";
           }
           {
+
+          # Oil binds
             action = ":Oil<cr>";
             key = "<leader>oo";
             mode = "n";
             silent = true;
             desc = "Open Oil";
           }
+
+          # Buffer binds
           {
             action = ":bdelete<cr>";
             key = "<leader>bd";
             mode = "n";
             silent = true;
             desc = "Delete buffer";
+          }
+
+          # Misc binds
+          {
+            action = ":e ~/nix-configs/home-manager/nvf-configuration.nix<cr>";
+            key = "<leader>fnd";
+            mode = "n";
+            silent = true;
+            desc = "Open NVF file";
+          }
+
+          # Obsidian binds
+          {
+            action = ":ObsidianQuickSwitch<cr>";
+            key = "<leader>oq";
+            mode = "n";
+            silent = true;
+            desc = "Quick switch Obsidian notes";
+          }
+          {
+            action = ":ObsidianNew<cr>";
+            key = "<leader>on";
+            mode = "n";
+            silent = true;
+            desc = "New Obsidian note";
           }
         ];
       };
