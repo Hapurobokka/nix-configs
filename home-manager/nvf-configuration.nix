@@ -64,6 +64,16 @@
               "xml"
     				];
           }
+
+          {
+            event = [ "FileType" ];
+            pattern = [ "norg" ];
+            callback = lib.generators.mkLuaInline /*lua*/ ''
+              function()
+                vim.keymap.set("n", "<S-CR>", "<Plug>(neorg.esupports.hop.hop-link)", { buffer = true })
+                end
+            '';
+          }
         ];
 
         spellcheck = {
@@ -83,18 +93,23 @@
           markview = {
             package = markview-nvim;
           };
+          table-mode = {
+            package = vim-table-mode;
+          };
         };
 
-        ui.noice.enable = true;
+        ui.noice.enable = false;
         mini = {
-          statusline.enable = true;
-          pairs.enable = true;
           ai.enable = true;
           bracketed.enable = true;
-          jump.enable = true;
-          operators.enable = true;
-          starter.enable = true;
           icons.enable = true;
+          jump.enable = true;
+          jump2d.enable = true;
+          operators.enable = true;
+          pairs.enable = true;
+          starter.enable = true;
+          statusline.enable = true;
+          surround.enable = true;
         };
         fzf-lua.enable = true;
         autocomplete.blink-cmp.enable = true;
@@ -102,17 +117,21 @@
           whichKey = {
             enable = true;
           };
-          hardtime-nvim.enable = true;
+          hardtime-nvim.enable = false;
         };
         git.gitsigns.enable = true;
         utility = {
           oil-nvim.enable = true;
-          motion.flash-nvim.enable = true;
+          motion = {
+            precognition.enable = true;
+          };
         }; 
         visuals.fidget-nvim.enable = true;
+        presence.neocord.enable = true;
+        terminal.toggleterm.enable = true;
 
         notes.obsidian = {
-          enable = true;
+          enable = false;
           setupOpts = {
             ui.enable = false;
             workspaces = [
@@ -144,6 +163,26 @@
           };
         };
 
+        notes.neorg = {
+          enable = true;
+          setupOpts = {
+            load = {
+              "core.defaults".enable = true;
+              "core.concealer" = {};
+              "core.dirman" = {
+                config = {
+                  workspaces = {
+                    main = "~/neorg";
+                  };
+                  index = "index.norg";
+                  default_workspace = "main";
+                };
+              };
+            };
+          };
+          treesitter.enable = true;
+        };
+
         languages = {
           nix = {
             enable = true;
@@ -158,6 +197,11 @@
             treesitter.enable = true;
           };
           clang = {
+            enable = true;
+            lsp.enable = true;
+            treesitter.enable = true;
+          };
+          python = {
             enable = true;
             lsp.enable = true;
             treesitter.enable = true;
@@ -240,21 +284,36 @@
             desc = "Open NVF file";
           }
 
-          # Obsidian binds
           {
-            action = ":ObsidianQuickSwitch<cr>";
-            key = "<leader>oq";
+            action = ":ToggleTerm<cr>";
+            key = "<leader>ot";
             mode = "n";
             silent = true;
-            desc = "Quick switch Obsidian notes";
+            desc = "Open terminal";
           }
+
           {
-            action = ":ObsidianNew<cr>";
-            key = "<leader>on";
-            mode = "n";
+            action = "<C-\\><C-n>";
+            key = "<C-d>";
+            mode = "t";
             silent = true;
-            desc = "New Obsidian note";
+            desc = "Exit term mode";
           }
+          # # Obsidian binds
+          # {
+          #   action = ":ObsidianQuickSwitch<cr>";
+          #   key = "<leader>oq";
+          #   mode = "n";
+          #   silent = true;
+          #   desc = "Quick switch Obsidian notes";
+          # }
+          # {
+          #   action = ":ObsidianNew<cr>";
+          #   key = "<leader>on";
+          #   mode = "n";
+          #   silent = true;
+          #   desc = "New Obsidian note";
+          # }
         ];
       };
     };

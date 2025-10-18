@@ -31,6 +31,12 @@ in
     homeDirectory = "/home/hapu";
   };
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-35.7.5"
+    "obsidian"
+  ];
+  nixpkgs.config.allowUnfree = true;
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -97,6 +103,10 @@ in
     wofi
     zapzap
     zoxide
+    vivaldi
+    zellij
+    wine
+    lutris
   ];
 
   gtk = {
