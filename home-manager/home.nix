@@ -301,7 +301,7 @@ in
 
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/stella.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/stella.yaml";
     image = ./images/firefly-gato.jpeg;
     targets = {
       neovim.enable = false;
@@ -309,6 +309,8 @@ in
       nvf.enable = false;
       emacs.enable = false;
       zen-browser.enable = false;
+      ghostty.enable = false;
+      fish.enable = false;
     };
   };
 
