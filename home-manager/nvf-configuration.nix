@@ -38,6 +38,10 @@
           linebreak = true;
         };
 
+        clipboard = {
+          enable = true;
+          registers = "unnamedplus";
+        };
         autocmds = [
           {
             desc = "Changes the indent size to 2 in certain files";
@@ -98,7 +102,7 @@
           };
         };
 
-        ui.noice.enable = false;
+        ui.noice.enable = true;
         mini = {
           ai.enable = true;
           bracketed.enable = true;
@@ -117,7 +121,7 @@
           whichKey = {
             enable = true;
           };
-          hardtime-nvim.enable = false;
+          hardtime-nvim.enable = true;
         };
         git.gitsigns.enable = true;
         utility = {
@@ -254,7 +258,7 @@
             key = "<leader>fs";
             mode = "n";
             silent = true;
-            desc = "Open Oil";
+            desc = "Show lsp symbols";
           }
           {
 

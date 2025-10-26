@@ -21,7 +21,7 @@ in
       "$fileManager" = "dolphin";
       # "$menu" = "rofi -show drun -show-icons";
       "$menu" = "wofi --show drun -I";
-      "$broswer" = "brave";
+      "$web" = "vivaldi";
 
       monitor = ",highres,auto,1";
 
@@ -44,7 +44,7 @@ in
         "$mainMod, K, movefocus, u"
         "$mainMod, J, movefocus, d"
 
-        "$mainMod, T, exec, $browser"
+        "$mainMod, T, exec, $web"
 
         "$mainMod, F, fullscreen, 1"
         "$mainMod SHIFT, F, fullscreen, 0"

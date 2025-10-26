@@ -107,6 +107,9 @@ in
     zellij
     wine
     lutris
+    winetricks
+    bottles
+    zed-editor-fhs
   ];
 
   gtk = {
@@ -299,7 +302,7 @@ in
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/stella.yaml";
-    image = ./images/ellen-amarillo.jpeg;
+    image = ./images/firefly-gato.jpeg;
     targets = {
       neovim.enable = false;
       nixvim.enable = false;
