@@ -1,11 +1,11 @@
 { config, pkgs, inputs, ... }:
 let
-  myTex = (pkgs.texlive.combine {
+  myTex = pkgs.texlive.combine {
     inherit (pkgs.texlive) scheme-medium
       dirtytalk
       wrapfig
       capt-of;
-  });
+  };
 in
 {
   imports = [
@@ -49,7 +49,7 @@ in
     cataclysm-dda
     cava
     chafa
-    chiaki-ng
+    # chiaki-ng
     clang
     cmake
     daggerfall-unity
@@ -135,8 +135,10 @@ in
 
   programs.git = {
     enable = true;
-    userName = "Hapurobokka";
-    userEmail = "flaco.legos@gmail.com";
+    settings.user = {
+      name = "Hapurobokka";
+      email = "flaco.legos@gmail.com";
+    };
   };
 
   programs.zoxide = {
@@ -301,7 +303,7 @@ in
 
   stylix = {
     enable = true;
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/stella.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/stella.yaml";
     image = ./images/firefly-gato.jpeg;
     targets = {
       neovim.enable = false;

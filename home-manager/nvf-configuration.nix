@@ -167,7 +167,7 @@
         utility = {
           oil-nvim.enable = true;
           motion = {
-            precognition.enable = true;
+            # precognition.enable = true;
           };
         }; 
         visuals.fidget-nvim.enable = true;
@@ -246,6 +246,11 @@
             treesitter.enable = true;
           };
           python = {
+            enable = true;
+            lsp.enable = true;
+            treesitter.enable = true;
+          };
+          typst = {
             enable = true;
             lsp.enable = true;
             treesitter.enable = true;
@@ -342,6 +347,13 @@
             mode = "t";
             silent = true;
             desc = "Exit term mode";
+          }
+          {
+            action = ":FzfLua spell_suggest<cr>";
+            key = "z=";
+            mode = "n";
+            silent = true;
+            desc = "Trigger spell suggestions";
           }
           # # Obsidian binds
           # {
