@@ -107,8 +107,8 @@
           ai.enable = true;
           bracketed.enable = true;
           icons.enable = true;
-          jump.enable = true;
-          jump2d.enable = true;
+          jump.enable = false;
+          jump2d.enable = false;
           operators.enable = true;
           pairs.enable = true;
           starter.enable = true;
@@ -177,7 +177,14 @@
         utility = {
           oil-nvim.enable = true;
           motion = {
-            # precognition.enable = true;
+            precognition.enable = false;
+            flash-nvim = {
+              enable = true;
+              mappings = {
+                jump = "S";
+                treesitter = null;
+              };
+            };
           };
         }; 
         visuals.fidget-nvim.enable = true;
