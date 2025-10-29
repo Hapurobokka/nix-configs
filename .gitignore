@@ -62,4 +62,3 @@ site-lisp/package/
 /custom.el
 home-manager/config.nu
 .jj/
-nixos/hardware-configuration.nix

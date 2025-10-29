@@ -144,7 +144,7 @@ in
   programs.zoxide = {
     enable = true;
     enableNushellIntegration = true;
-    enableFishIntegration = true;
+    enableFishIntegration = false;
   };
 
   programs.fish = {
@@ -246,7 +246,8 @@ in
   };
 
   programs.starship = {
-    enableFishIntegration = true;
+    enableFishIntegration = false;
+    enableNushellIntegration = true;
     enable = true;
   };
 
