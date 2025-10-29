@@ -126,6 +126,9 @@
                 { mode = "n"; keys = "g"; }
                 { mode = "x"; keys = "g"; }
 
+                { mode = "n"; keys = ","; }
+                { mode = "x"; keys = ","; }
+
                 { mode = "n"; keys = "\""; }
                 { mode = "n"; keys = "\`"; }
                 { mode = "x"; keys = "\""; }
@@ -159,7 +162,14 @@
           };
         };
         fzf-lua.enable = true;
-        autocomplete.blink-cmp.enable = true;
+        autocomplete.blink-cmp = {
+          enable = true;
+          friendly-snippets.enable = true;
+          setupOpts = {
+            keymap.preset = "default";
+            cmdline.keymap.preset = "default";
+          };
+        };
         binds = {
           hardtime-nvim.enable = true;
         };
@@ -259,6 +269,7 @@
 
         treesitter = {
           grammars = pkgs.vimPlugins.nvim-treesitter.allGrammars;
+          indent.enable = false;
         };
 
         keymaps = [
