@@ -130,7 +130,7 @@ in
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
-    enableNushellIntegration = false;
+    enableNushellIntegration = true;
   };
 
   programs.git = {
@@ -143,12 +143,12 @@ in
 
   programs.zoxide = {
     enable = true;
-    enableNushellIntegration = false;
+    enableNushellIntegration = true;
     enableFishIntegration = true;
   };
 
   programs.fish = {
-      enable = true;
+      enable = false;
       shellInit = /*fish*/ ''
         fish_vi_key_bindings
         fish_add_path ~/.local/bin
@@ -221,7 +221,7 @@ in
     };
 
   programs.nushell = {
-    enable = false;
+    enable = true;
     extraConfig = /*nu*/ ''
       use std/util "path add"
       $env.config.buffer_editor = "nvim"
@@ -236,8 +236,8 @@ in
 
   programs.yazi = {
     enable = true;
-    enableNushellIntegration = false;
-    enableFishIntegration = true;
+    enableNushellIntegration = true;
+    enableFishIntegration = false;
     settings = {
       mgr = {
         show_hidden = true;

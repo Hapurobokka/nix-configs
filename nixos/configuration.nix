@@ -146,10 +146,11 @@
       qbittorrent
     #  thunderbird
     ];
-    shell = pkgs.fish;
+    shell = pkgs.nushell;
+    # shell = pkgs.fish;
   };
 
-  programs.fish.enable = true;
+  programs.fish.enable = false;
 
   programs.steam = {
     enable = true;
