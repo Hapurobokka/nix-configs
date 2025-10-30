@@ -1,14 +1,18 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, inputs, ... }:
 {
-  imports = [ # Include the results of the hardware scan.
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   services.power-profiles-daemon.enable = false;
 
@@ -40,13 +44,19 @@
 
   programs.appimage.enable = true;
 
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
   # Bootloader
   boot.loader = {
     grub = {
       enable = true;
       efiSupport = true;
       useOSProber = true;
-      devices = [ "nodev" ];
+      devices = ["nodev"];
       configurationLimit = 5;
     };
     efi.canTouchEfiVariables = true;
@@ -73,11 +83,21 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver = {
     enable = true;
-    videoDrivers = [ "nvidia" ];
+    videoDrivers = ["nvidia"];
   };
 
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
+  # services.displayManager.gdm.enable = true;
+  # services.desktopManager.gnome.enable = true;
+
+  services = {
+    desktopManager.plasma6.enable = true;
+    displayManager = {
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+    };
+  };
 
   programs.hyprland.enable = true;
 
@@ -140,11 +160,11 @@
   users.users.hapu = {
     isNormalUser = true;
     description = "Hapurobokka";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       ghostty
       qbittorrent
-    #  thunderbird
+      #  thunderbird
     ];
     shell = pkgs.nushell;
     # shell = pkgs.fish;
@@ -158,7 +178,7 @@
     dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
     gamescopeSession.enable = true;
-    extraCompatPackages = [ pkgs.proton-ge-bin ];
+    extraCompatPackages = [pkgs.proton-ge-bin];
   };
 
   programs.gamemode.enable = true;
@@ -169,6 +189,10 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    kdePackages.discover
+    kdePackages.kcalc
+    kdePackages.sddm-kcm
+    wayland-utils
     home-manager
     dunst
     libnotify
@@ -181,9 +205,25 @@
     xdg-desktop-portal-hyprland
   ];
 
-  virtualisation.podman = {
-    enable = true;
-    defaultNetwork.settings.dns_enabled = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+    containers.containersConf.settings = {
+      network = {
+        default_subnet_pools = [
+          {
+            base = "10.89.0.0/16";
+            size = 24;
+          }
+          {
+            base = "10.90.0.0/16";
+            size = 24;
+          }
+        ];
+      };
+    };
   };
 
   virtualisation.waydroid.enable = true;

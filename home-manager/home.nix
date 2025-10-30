@@ -11,7 +11,7 @@ in
   imports = [
     inputs.zen-browser.homeModules.beta
     ./helix.nix
-    ./hypr.nix
+    # ./hypr.nix
     ./nvf-configuration.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
@@ -54,7 +54,6 @@ in
     cmake
     daggerfall-unity
     direnv
-    docker-compose
     eza
     fastfetch
     fd
@@ -87,7 +86,7 @@ in
     podman-tui
     ppsspp
     presenterm
-    protonup
+    protonup-ng
     python313
     r2modman
     ripgrep
@@ -230,7 +229,6 @@ in
       $env.config.edit_mode = "vi"
 
       path add "~/.emacs.d/bin"
-      source ~/nix-configs/home-manager/scripts/dices.nu
     '';
   };
 
@@ -257,6 +255,7 @@ in
       theme = "Kanagawa Wave";
       background-opacity = 0.8;
       font-size = 11;
+      background-blur = true;
     };
   };
 
@@ -314,6 +313,7 @@ in
       zen-browser.enable = false;
       ghostty.enable = false;
       fish.enable = false;
+      hyprpaper.enable = false;
     };
   };
 

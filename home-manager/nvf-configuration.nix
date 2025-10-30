@@ -1,6 +1,8 @@
-{ pkgs, lib, ... }:
-
 {
+  pkgs,
+  lib,
+  ...
+}: {
   programs.nvf = {
     enable = true;
     settings = {
@@ -45,16 +47,21 @@
         autocmds = [
           {
             desc = "Changes the indent size to 2 in certain files";
-            event = [ "FileType" ];
-            callback = lib.generators.mkLuaInline /*lua*/ ''
-              function()
-                  vim.bo.tabstop = 2
-                  vim.bo.shiftwidth = 2
-                  vim.bo.expandtab = true
-              end
-    				'';
-    				pattern = [
-    					"javascript"
+            event = ["FileType"];
+            callback =
+              lib.generators.mkLuaInline
+              /*
+              lua
+              */
+              ''
+                function()
+                    vim.bo.tabstop = 2
+                    vim.bo.shiftwidth = 2
+                    vim.bo.expandtab = true
+                end
+              '';
+            pattern = [
+              "javascript"
               "css"
               "haskell"
               "html"
@@ -64,36 +71,45 @@
               "nix"
               "svelte"
               "typescript"
-              "typescriptreact" 
+              "typescriptreact"
               "xml"
-    				];
+            ];
           }
 
           {
-            event = [ "FileType" ];
-            pattern = [ "norg" ];
-            callback = lib.generators.mkLuaInline /*lua*/ ''
-              function()
-                vim.keymap.set("n", "<S-CR>", "<Plug>(neorg.esupports.hop.hop-link)", { buffer = true })
-                end
-            '';
+            event = ["FileType"];
+            pattern = ["norg"];
+            callback =
+              lib.generators.mkLuaInline
+              /*
+              lua
+              */
+              ''
+                function()
+                  vim.keymap.set("n", "<S-CR>", "<Plug>(neorg.esupports.hop.hop-link)", { buffer = true })
+                  end
+              '';
           }
         ];
 
         spellcheck = {
           enable = true;
-          languages = [ "es" ];
-          ignoredFiletypes = [ "toggleterm" "term" ];
+          languages = ["es"];
+          ignoredFiletypes = ["toggleterm" "term"];
         };
-        
+
         lsp = {
           enable = true;
+        };
+        formatter.conform-nvim = {
+          enable = true;
+          setupOpts.formatters_by_ft = {python = ["black"];};
         };
 
         extraPlugins = with pkgs.vimPlugins; {
           plenary = {
             package = plenary-nvim;
-          };      
+          };
           markview = {
             package = markview-nvim;
           };
@@ -107,7 +123,7 @@
           ai.enable = true;
           bracketed.enable = true;
           icons.enable = true;
-          jump.enable = false;
+          jump.enable = true;
           jump2d.enable = false;
           operators.enable = true;
           pairs.enable = true;
@@ -118,46 +134,111 @@
             enable = true;
             setupOpts = {
               triggers = [
-                { mode = "n"; keys = "<Leader>"; }
-                { mode = "x"; keys = "<Leader>"; }
-
-                { mode = "i"; keys = "<C-x>"; }
-
-                { mode = "n"; keys = "g"; }
-                { mode = "x"; keys = "g"; }
-
-                { mode = "n"; keys = ","; }
-                { mode = "x"; keys = ","; }
-
-                { mode = "n"; keys = "\""; }
-                { mode = "n"; keys = "\`"; }
-                { mode = "x"; keys = "\""; }
-                { mode = "x"; keys = "`"; }
-
-                { mode = "n"; keys = "s"; }
-                { mode = "x"; keys = "s"; }
-
-                { mode = "n"; keys = "\""; }
-                { mode = "x"; keys = "\""; }
-                { mode = "i"; keys = "<C-r>"; }
-                { mode = "c"; keys = "<C-r>"; }
-
-                { mode = "n"; keys = "<C-w>"; }
-
-                { mode = "n"; keys = "z"; }
-                { mode = "x"; keys = "z"; }
-              ];
-              clues = lib.generators.mkLuaInline /*lua*/ ''
                 {
-                  require('mini.clue').gen_clues.builtin_completion(),
-                  require('mini.clue').gen_clues.g(),
-                  require('mini.clue').gen_clues.marks(),
-                  require('mini.clue').gen_clues.registers(),
-                  require('mini.clue').gen_clues.windows(),
-                  require('mini.clue').gen_clues.z(),
-
+                  mode = "n";
+                  keys = "<Leader>";
                 }
-              '';
+                {
+                  mode = "x";
+                  keys = "<Leader>";
+                }
+
+                {
+                  mode = "i";
+                  keys = "<C-x>";
+                }
+
+                {
+                  mode = "n";
+                  keys = "g";
+                }
+                {
+                  mode = "x";
+                  keys = "g";
+                }
+
+                {
+                  mode = "n";
+                  keys = ",";
+                }
+                {
+                  mode = "x";
+                  keys = ",";
+                }
+
+                {
+                  mode = "n";
+                  keys = "\"";
+                }
+                {
+                  mode = "n";
+                  keys = "\`";
+                }
+                {
+                  mode = "x";
+                  keys = "\"";
+                }
+                {
+                  mode = "x";
+                  keys = "`";
+                }
+
+                {
+                  mode = "n";
+                  keys = "s";
+                }
+                {
+                  mode = "x";
+                  keys = "s";
+                }
+
+                {
+                  mode = "n";
+                  keys = "\"";
+                }
+                {
+                  mode = "x";
+                  keys = "\"";
+                }
+                {
+                  mode = "i";
+                  keys = "<C-r>";
+                }
+                {
+                  mode = "c";
+                  keys = "<C-r>";
+                }
+
+                {
+                  mode = "n";
+                  keys = "<C-w>";
+                }
+
+                {
+                  mode = "n";
+                  keys = "z";
+                }
+                {
+                  mode = "x";
+                  keys = "z";
+                }
+              ];
+              clues =
+                lib.generators.mkLuaInline
+                /*
+                lua
+                */
+                ''
+                  {
+                    require('mini.clue').gen_clues.builtin_completion(),
+                    require('mini.clue').gen_clues.g(),
+                    require('mini.clue').gen_clues.marks(),
+                    require('mini.clue').gen_clues.registers(),
+                    require('mini.clue').gen_clues.windows(),
+                    require('mini.clue').gen_clues.z(),
+
+                  }
+                '';
             };
           };
         };
@@ -186,10 +267,11 @@
               };
             };
           };
-        }; 
+        };
         visuals.fidget-nvim.enable = true;
         presence.neocord.enable = true;
         terminal.toggleterm.enable = true;
+        filetree.neo-tree.enable = true;
 
         notes.obsidian = {
           enable = false;
@@ -204,23 +286,28 @@
             daily_notes = {
               folder = "fleeting/";
               date = "%d-%m-%Y";
-              default_tags = [ "fleeting" ];
+              default_tags = ["fleeting"];
             };
-            note_id_func = lib.generators.mkLuaInline /*lua*/ ''
-              function(title)
-                local suffix = ""
-                if title ~= nil then
-                  -- If title is given, transform it into valid file name.
-                  suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
-                else
-                  -- If title is nil, just add 4 random uppercase letters to the suffix.
-                  for _ = 1, 4 do
-                    suffix = suffix .. string.char(math.random(65, 90))
+            note_id_func =
+              lib.generators.mkLuaInline
+              /*
+              lua
+              */
+              ''
+                function(title)
+                  local suffix = ""
+                  if title ~= nil then
+                    -- If title is given, transform it into valid file name.
+                    suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+                  else
+                    -- If title is nil, just add 4 random uppercase letters to the suffix.
+                    for _ = 1, 4 do
+                      suffix = suffix .. string.char(math.random(65, 90))
+                    end
                   end
+                  return tostring(os.time()) .. "-" .. suffix
                 end
-                return tostring(os.time()) .. "-" .. suffix
-              end
-            '';
+              '';
           };
         };
 
@@ -245,6 +332,7 @@
         };
 
         languages = {
+          enableFormat = true;
           nix = {
             enable = true;
             extraDiagnostics.enable = true;
@@ -266,6 +354,7 @@
             enable = true;
             lsp.enable = true;
             treesitter.enable = true;
+            format.enable = true;
           };
           typst = {
             enable = true;
@@ -324,8 +413,7 @@
             desc = "Show lsp symbols";
           }
           {
-
-          # Oil binds
+            # Oil binds
             action = ":Oil<cr>";
             key = "<leader>oo";
             mode = "n";
@@ -372,6 +460,27 @@
             mode = "n";
             silent = true;
             desc = "Trigger spell suggestions";
+          }
+          {
+            action = ":FzfLua live_grep<cr>";
+            key = "g/";
+            mode = "n";
+            silent = true;
+            desc = "Search in all files";
+          }
+          {
+            action = ":Neotree<cr>";
+            key = "<Leader>ot";
+            mode = "n";
+            silent = true;
+            desc = "Open Neotree";
+          }
+          {
+            action = ":lua require('conform').format()<cr>";
+            key = "<Leader>lf";
+            mode = "n";
+            silent = true;
+            desc = "Custom format funcion";
           }
           # # Obsidian binds
           # {
