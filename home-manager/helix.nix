@@ -4,16 +4,17 @@
     enable = true;
 
     settings = {
-      # theme = "tokyonight_storm";
-        editor = {
-          true-color = true;
-          cursor-shape = {
-            normal = "block";
-            insert = "bar";
-            select = "underline";
-          };
-        }; 
-      };
+      theme = "kanagawa";
+      editor = {
+        true-color = true;
+        line-number = "relative";
+        cursor-shape = {
+          normal = "block";
+          insert = "bar";
+          select = "underline";
+        };
+      }; 
+    };
 
     languages = {
       language-server.rubocop = {

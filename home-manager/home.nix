@@ -44,13 +44,12 @@ in
     # qemu_full
     acpi
     bat
+    bottles
     brave
     cargo
     cataclysm-dda
     cava
     chafa
-    # chiaki-ng
-    clang
     cmake
     daggerfall-unity
     direnv
@@ -58,10 +57,10 @@ in
     fastfetch
     fd
     fzf
-    gfn-electron
     gimp
     gnomeExtensions.blur-my-shell
     godot
+    grex
     helix
     hyprshot
     jujutsu
@@ -69,6 +68,7 @@ in
     kdePackages.okular
     kew
     lazygit
+    lutris
     mpc
     mpd
     myTex
@@ -84,6 +84,8 @@ in
     playerctl
     podman-compose
     podman-tui
+    porsmo
+    porsmo
     ppsspp
     presenterm
     protonup-ng
@@ -96,19 +98,17 @@ in
     tmux
     tree-sitter
     vesktop
+    vivaldi
     vscode-fhs
     waybar
+    wine
+    winetricks
     wl-clipboard
     wofi
     zapzap
-    zoxide
-    vivaldi
-    zellij
-    wine
-    lutris
-    winetricks
-    bottles
     zed-editor-fhs
+    zellij
+    zoxide
   ];
 
   gtk = {
@@ -119,34 +119,30 @@ in
     };
   };
 
-  programs.emacs = {
-    enable = true;
-    extraPackages = epkgs: [ epkgs.vterm pkgs.python313 ];
-  };
-
-  programs.zen-browser.enable = true;
-
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-    enableNushellIntegration = true;
-  };
-
-  programs.git = {
-    enable = true;
-    settings.user = {
-      name = "Hapurobokka";
-      email = "flaco.legos@gmail.com";
+  programs = {
+    emacs = {
+      enable = true;
+      extraPackages = epkgs: [ epkgs.vterm pkgs.python313 ];
     };
-  };
-
-  programs.zoxide = {
-    enable = true;
-    enableNushellIntegration = true;
-    enableFishIntegration = false;
-  };
-
-  programs.fish = {
+    zen-browser.enable = false;
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      enableNushellIntegration = true;
+    };
+    git = {
+      enable = true;
+      settings.user = {
+        name = "Hapurobokka";
+        email = "flaco.legos@gmail.com";
+      };
+    };
+    zoxide = {
+      enable = true;
+      enableNushellIntegration = true;
+      enableFishIntegration = false;
+    };
+    fish = {
       enable = false;
       shellInit = /*fish*/ ''
         fish_vi_key_bindings
@@ -156,44 +152,41 @@ in
         alias ls 'eza --icons'
         source ~/nix-configs/home-manager/scripts/dices.fish
       '';
-  };
-
-  programs.atuin = {
-    enable = true;
-    enableFishIntegration = true;
-  };
-
-  programs.fastfetch = {
-    enable = true;
-    settings = {
-      logo = {
-        type = "kitty";
-        width = 25;
-        source = ./images/vivian-aaaa.jpg;
-        padding = {
-          top = 0;
-          right = 2;
-        };
-      };
-      modules = [
-        "title"
-        "separator"
-        "os"
-        "packages"
-        "disk"
-        "shell"
-        "de"
-        "wm"
-        "terminal"
-        "datetime"
-        "editor"
-        "colors"
-      ];
     };
-  };
-
-  programs.tmux = {
+    atuin = {
       enable = true;
+      enableFishIntegration = true;
+    };
+    fastfetch = {
+      enable = true;
+      settings = {
+        logo = {
+          type = "kitty";
+          width = 25;
+          source = ./images/vivian-aaaa.jpg;
+          padding = {
+            top = 0;
+            right = 2;
+          };
+        };
+        modules = [
+          "title"
+          "separator"
+          "os"
+          "packages"
+          "disk"
+          "shell"
+          "de"
+          "wm"
+          "terminal"
+          "datetime"
+          "editor"
+          "colors"
+        ];
+      };
+    };
+    tmux = {
+      enable = false;
       plugins = with pkgs.tmuxPlugins; [
         sensible
         catppuccin
@@ -216,46 +209,43 @@ in
 
         unbind C-b
         set -g prefix C-Space
+        '';
+    };
+    nushell = {
+      enable = true;
+      extraConfig = /*nu*/ ''
+        use std/util "path add"
+        $env.config.buffer_editor = "nvim"
+        $env.config.show_banner = false
+        $env.__zoxide_hooked = true
+        $env.config.edit_mode = "vi"
+
+        path add "~/.emacs.d/bin"
       '';
     };
-
-  programs.nushell = {
-    enable = true;
-    extraConfig = /*nu*/ ''
-      use std/util "path add"
-      $env.config.buffer_editor = "nvim"
-      $env.config.show_banner = false
-      $env.__zoxide_hooked = true
-      $env.config.edit_mode = "vi"
-
-      path add "~/.emacs.d/bin"
-    '';
-  };
-
-  programs.yazi = {
-    enable = true;
-    enableNushellIntegration = true;
-    enableFishIntegration = false;
-    settings = {
-      mgr = {
-        show_hidden = true;
+    yazi = {
+      enable = true;
+      enableNushellIntegration = true;
+      enableFishIntegration = false;
+      settings = {
+        mgr = {
+          show_hidden = true;
+        };
       };
     };
-  };
-
-  programs.starship = {
-    enableFishIntegration = false;
-    enableNushellIntegration = true;
-    enable = true;
-  };
-
-  programs.ghostty = {
-    enable = true;
-    settings = {
-      theme = "Kanagawa Wave";
-      background-opacity = 0.8;
-      font-size = 11;
-      background-blur = true;
+    starship = {
+      enableFishIntegration = false;
+      enableNushellIntegration = true;
+      enable = true;
+    };
+    ghostty = {
+      enable = true;
+      settings = {
+        theme = "Kanagawa Wave";
+        background-opacity = 0.8;
+        font-size = 11;
+        background-blur = true;
+      };
     };
   };
 
@@ -314,6 +304,7 @@ in
       ghostty.enable = false;
       fish.enable = false;
       hyprpaper.enable = false;
+      helix.enable = false;
     };
   };
 

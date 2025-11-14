@@ -8,7 +8,7 @@
     settings = {
       vim = {
         theme = {
-          enable = true;
+          enable = false;
           name = "catppuccin";
           style = "frappe";
         };
@@ -115,6 +115,10 @@
           };
           table-mode = {
             package = vim-table-mode;
+          };
+          kanagawa = {
+            package = kanagawa-nvim;
+            setup = /*lua*/ "vim.cmd 'colorscheme kanagawa'";
           };
         };
 
