@@ -40,7 +40,7 @@
 
   services.flatpak.enable = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  # boot.kernelPackages = pkgs.linuxPackages_zen;
 
   programs.appimage.enable = true;
 

@@ -54,7 +54,7 @@
         modules = [
           ./nixos/configuration.nix
           ./nixos/hardware-configuration.nix
-          inputs.nixos-hardware.nixosModules.lenovo-ideapad-15ach6
+          # inputs.nixos-hardware.nixosModules.lenovo-ideapad-15ach6
         ];
 
         specialArgs = { inherit inputs; };

@@ -122,7 +122,7 @@ in
   programs = {
     emacs = {
       enable = true;
-      extraPackages = epkgs: [ epkgs.vterm pkgs.python313 ];
+      extraPackages = epkgs: [ epkgs.vterm pkgs.python313 pkgs.uv ];
     };
     zen-browser.enable = false;
     direnv = {

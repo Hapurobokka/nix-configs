@@ -127,6 +127,7 @@
           ai.enable = true;
           bracketed.enable = true;
           icons.enable = true;
+          map.enable = true;
           jump.enable = true;
           jump2d.enable = false;
           operators.enable = true;
