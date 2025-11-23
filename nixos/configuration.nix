@@ -197,6 +197,7 @@
     dunst
     libnotify
     neovim
+    clang
   ];
 
   xdg.portal.enable = true;

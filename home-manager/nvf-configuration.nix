@@ -120,6 +120,15 @@
             package = kanagawa-nvim;
             setup = /*lua*/ "vim.cmd 'colorscheme kanagawa'";
           };
+          orgmode = {
+            package = orgmode;
+            setup = /*lua*/ ''
+              require('orgmode').setup({
+                org_agenda_files = '~/org/**/*',
+                org_default_notes_file = '~/org/notes.org',
+              })
+            '';
+          };
         };
 
         ui.noice.enable = true;
@@ -362,6 +371,11 @@
             format.enable = true;
           };
           typst = {
+            enable = true;
+            lsp.enable = true;
+            treesitter.enable = true;
+          };
+          clojure = {
             enable = true;
             lsp.enable = true;
             treesitter.enable = true;

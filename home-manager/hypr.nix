@@ -17,11 +17,12 @@ in
       exec-once = ''${startupScript}/bin/start'';
 
       "$mainMod" = "SUPER";
-      "$terminal" = "ghostty";
-      "$fileManager" = "dolphin";
-      # "$menu" = "rofi -show drun -show-icons";
+      "$terminal" = "ghostty +new-window";
+      "$fileManager" = "ghostty -e yazi";
       "$menu" = "wofi --show drun -I";
       "$web" = "vivaldi";
+      "$volume" = "ghostty -e ncpamixer";
+      "$blue" = "ghostty -e bluetui";
 
       monitor = ",highres,auto,1";
 
@@ -45,6 +46,9 @@ in
         "$mainMod, J, movefocus, d"
 
         "$mainMod, T, exec, $web"
+        "$mainMod SHIFT, V, exec, $volume"
+        "$mainMod, B, exec, $blue"
+        "$mainMod, y, exec, $fileManager"
 
         "$mainMod, F, fullscreen, 1"
         "$mainMod SHIFT, F, fullscreen, 0"

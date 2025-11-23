@@ -11,7 +11,7 @@ in
   imports = [
     inputs.zen-browser.homeModules.beta
     ./helix.nix
-    # ./hypr.nix
+    ./hypr.nix
     ./nvf-configuration.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
@@ -40,10 +40,11 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    (aspellWithDicts (dicts: with dicts; [ es en ]))
     # qemu_full
+    (aspellWithDicts (dicts: with dicts; [ es en ]))
     acpi
     bat
+    bluetui
     bottles
     brave
     cargo
@@ -63,6 +64,7 @@ in
     grex
     helix
     hyprshot
+    btop
     jujutsu
     just
     kdePackages.okular
@@ -73,6 +75,7 @@ in
     mpd
     myTex
     mysql-workbench
+    ncpamixer
     nerd-fonts.iosevka
     nerd-fonts.jetbrains-mono
     nh
@@ -122,7 +125,7 @@ in
   programs = {
     emacs = {
       enable = true;
-      extraPackages = epkgs: [ epkgs.vterm pkgs.python313 pkgs.uv ];
+      extraPackages = epkgs: [ epkgs.vterm pkgs.python313 pkgs.uv pkgs.clang-tools ];
     };
     zen-browser.enable = false;
     direnv = {
@@ -294,7 +297,7 @@ in
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/stella.yaml";
-    image = ./images/firefly-gato.jpeg;
+    image = ./images/yidhari.png;
     targets = {
       neovim.enable = false;
       nixvim.enable = false;
@@ -303,7 +306,7 @@ in
       zen-browser.enable = false;
       ghostty.enable = false;
       fish.enable = false;
-      hyprpaper.enable = false;
+      hyprpaper.enable = true;
       helix.enable = false;
     };
   };
