@@ -74,6 +74,7 @@ in
     mpc
     mpd
     myTex
+    dolphin-emu
     mysql-workbench
     ncpamixer
     nerd-fonts.iosevka

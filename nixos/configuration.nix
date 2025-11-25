@@ -189,15 +189,15 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    clang
+    dunst
+    home-manager
     kdePackages.discover
     kdePackages.kcalc
     kdePackages.sddm-kcm
-    wayland-utils
-    home-manager
-    dunst
     libnotify
     neovim
-    clang
+    wayland-utils
   ];
 
   xdg.portal.enable = true;
