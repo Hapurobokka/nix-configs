@@ -116,6 +116,10 @@
           table-mode = {
             package = vim-table-mode;
           };
+          jj = {
+            package = jj-nvim;
+            setup = /*lua*/ "require('jj').setup({})";
+          };
           kanagawa = {
             package = kanagawa-nvim;
             setup = /*lua*/ "vim.cmd 'colorscheme kanagawa'";

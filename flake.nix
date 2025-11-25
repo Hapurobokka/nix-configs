@@ -33,6 +33,11 @@
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    jj-nvim = {
+      url = "github:NicolasGB/jj.nvim";
+      flake = false;
+    };
   };
 
   outputs = { nixpkgs, home-manager, ... } @ inputs:
@@ -45,8 +50,18 @@
         allowUnfree = true;
       };
     };
+    vimOverlay = final: prev: {
+      vimPlugins = prev.vimPlugins // {
+        jj-nvim = prev.vimUtils.buildVimPlugin {
+          pname = "jj-nvim";
+          version = inputs.jj-nvim.lastModifiedDate;
+          src = inputs.jj-nvim;
+        };
+      };
+    };
   in
   {
+
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         inherit system;
@@ -66,6 +81,9 @@
         inherit pkgs;
 
         modules = [
+          {
+            nixpkgs.overlays = [ vimOverlay ];
+          }
           inputs.nvf.homeManagerModules.default
           inputs.stylix.homeModules.stylix
           ./home-manager/home.nix

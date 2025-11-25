@@ -216,6 +216,22 @@
         "type": "github"
       }
     },
+    "jj-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1764058212,
+        "narHash": "sha256-Eixgmhj9DZrdcJH8MveQCfv6kIVWxoVL1w0PLC3Nr6E=",
+        "owner": "NicolasGB",
+        "repo": "jj.nvim",
+        "rev": "7329e89a85eca4849c79957525e9ab71b5ee8873",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NicolasGB",
+        "repo": "jj.nvim",
+        "type": "github"
+      }
+    },
     "mnw": {
       "locked": {
         "lastModified": 1758834834,
@@ -315,6 +331,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "jj-nvim": "jj-nvim",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nvf": "nvf",
