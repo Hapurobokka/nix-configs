@@ -54,6 +54,7 @@ in
     cmake
     daggerfall-unity
     direnv
+    kitty
     eza
     fastfetch
     fd
@@ -96,6 +97,7 @@ in
     python313
     r2modman
     ripgrep
+    pegasus-frontend
     rm-improved
     starship
     tldr
@@ -113,6 +115,8 @@ in
     zed-editor-fhs
     zellij
     zoxide
+    basilk
+    cachix
   ];
 
   gtk = {
@@ -144,17 +148,17 @@ in
     zoxide = {
       enable = true;
       enableNushellIntegration = true;
-      enableFishIntegration = false;
+      enableFishIntegration = true;
     };
     fish = {
-      enable = false;
+      enable = true;
       shellInit = /*fish*/ ''
         fish_vi_key_bindings
         fish_add_path ~/.local/bin
         fish_add_path ~/.cargo/bin
         fish_add_path ~/.bin
+        fish_add_path ~/.nimble/bin
         alias ls 'eza --icons'
-        source ~/nix-configs/home-manager/scripts/dices.fish
       '';
     };
     atuin = {
@@ -216,7 +220,7 @@ in
         '';
     };
     nushell = {
-      enable = true;
+      enable = false;
       extraConfig = /*nu*/ ''
         use std/util "path add"
         $env.config.buffer_editor = "nvim"
@@ -225,12 +229,13 @@ in
         $env.config.edit_mode = "vi"
 
         path add "~/.emacs.d/bin"
+        path add "~/.bin"
       '';
     };
     yazi = {
       enable = true;
       enableNushellIntegration = true;
-      enableFishIntegration = false;
+      enableFishIntegration = true;
       settings = {
         mgr = {
           show_hidden = true;
@@ -238,13 +243,14 @@ in
       };
     };
     starship = {
-      enableFishIntegration = false;
+      enableFishIntegration = true;
       enableNushellIntegration = true;
       enable = true;
     };
     ghostty = {
       enable = true;
       settings = {
+        font-family = "JetBrains Mono";
         theme = "Kanagawa Wave";
         background-opacity = 0.8;
         font-size = 11;

@@ -17,12 +17,12 @@ in
       exec-once = ''${startupScript}/bin/start'';
 
       "$mainMod" = "SUPER";
-      "$terminal" = "ghostty +new-window";
-      "$fileManager" = "ghostty -e yazi";
+      "$terminal" = "kitty";
+      "$fileManager" = "kitty yazi";
       "$menu" = "wofi --show drun -I";
       "$web" = "vivaldi";
-      "$volume" = "ghostty -e ncpamixer";
-      "$blue" = "ghostty -e bluetui";
+      "$volume" = "kitty ncpamixer";
+      "$blue" = "kitty bluetui";
 
       monitor = ",highres,auto,1";
 

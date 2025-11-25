@@ -75,27 +75,12 @@
               "xml"
             ];
           }
-
-          {
-            event = ["FileType"];
-            pattern = ["norg"];
-            callback =
-              lib.generators.mkLuaInline
-              /*
-              lua
-              */
-              ''
-                function()
-                  vim.keymap.set("n", "<S-CR>", "<Plug>(neorg.esupports.hop.hop-link)", { buffer = true })
-                  end
-              '';
-          }
         ];
 
         spellcheck = {
           enable = true;
           languages = ["es"];
-          ignoredFiletypes = ["toggleterm" "term"];
+          ignoredFiletypes = ["toggleterm" "term" "scratch"];
         };
 
         lsp = {
@@ -103,7 +88,7 @@
         };
         formatter.conform-nvim = {
           enable = true;
-          setupOpts.formatters_by_ft = {python = ["black"];};
+          setupOpts.formatters_by_ft = {python = ["black"]; cpp = ["clang-format"];};
         };
 
         extraPlugins = with pkgs.vimPlugins; {
@@ -122,7 +107,12 @@
           };
           kanagawa = {
             package = kanagawa-nvim;
-            setup = /*lua*/ "vim.cmd 'colorscheme kanagawa'";
+            setup = /*lua*/ "
+              require('kanagawa').setup({
+                transparent = true;
+              })
+              vim.cmd 'colorscheme kanagawa'
+            ";
           };
           orgmode = {
             package = orgmode;
@@ -147,6 +137,9 @@
           pairs.enable = true;
           starter.enable = true;
           statusline.enable = true;
+          pick.enable = true;
+          extra.enable = true;
+          files.enable = true;
           surround.enable = true;
           clue = {
             enable = true;
@@ -260,7 +253,7 @@
             };
           };
         };
-        fzf-lua.enable = true;
+        fzf-lua.enable = false;
         autocomplete.blink-cmp = {
           enable = true;
           friendly-snippets.enable = true;
@@ -274,7 +267,7 @@
         };
         git.gitsigns.enable = true;
         utility = {
-          oil-nvim.enable = true;
+          oil-nvim.enable = false;
           motion = {
             precognition.enable = false;
             flash-nvim = {
@@ -289,7 +282,6 @@
         visuals.fidget-nvim.enable = true;
         presence.neocord.enable = true;
         terminal.toggleterm.enable = true;
-        filetree.neo-tree.enable = true;
 
         notes.obsidian = {
           enable = false;
@@ -351,10 +343,20 @@
 
         languages = {
           enableFormat = true;
+          go = {
+            enable = true;
+            lsp.enable = true;
+            treesitter.enable = true;
+          };
           nix = {
             enable = true;
             extraDiagnostics.enable = true;
             format.enable = true;
+            lsp.enable = true;
+            treesitter.enable = true;
+          };
+          nim = {
+            enable = true;
             lsp.enable = true;
             treesitter.enable = true;
           };
@@ -388,48 +390,60 @@
 
         treesitter = {
           grammars = pkgs.vimPlugins.nvim-treesitter.allGrammars;
-          indent.enable = false;
         };
 
         keymaps = [
-          # Fzf-Lua binds
           {
-            action = ":FzfLua files<cr>";
+            action = ":Pick spellsuggest<cr>";
+            key = "z=";
+            mode = "n";
+            silent = true;
+            desc = "Trigger spell suggestions";
+          }
+          {
+            action = ":Pick grep_live<cr>";
+            key = "g/";
+            mode = "n";
+            silent = true;
+            desc = "Search in all files";
+          }
+          {
+            action = ":Pick files<cr>";
             key = "<leader>ff";
             mode = "n";
             silent = true;
             desc = "Open files";
           }
           {
-            action = ":FzfLua buffers<cr>";
+            action = ":Pick buffers<cr>";
             key = "<leader>bb";
             mode = "n";
             silent = true;
             desc = "Open buffers";
           }
           {
-            action = ":FzfLua live_grep<cr>";
-            key = "<leader>fg";
-            mode = "n";
-            silent = true;
-            desc = "Open buffers";
-          }
-          {
-            action = ":FzfLua diagnostics_document<cr>";
+            action = ":Pick diagnostic<cr>";
             key = "<leader>fd";
             mode = "n";
             silent = true;
             desc = "Open diagnostics";
           }
           {
-            action = ":FzfLua oldfiles<cr>";
+            action = ":Pick oldfiles<cr>";
             key = "<leader>fr";
             mode = "n";
             silent = true;
             desc = "Open recent files";
           }
           {
-            action = ":FzfLua lsp_document_symbols<cr>";
+            action = ":Pick lsp scope='document_symbol'<cr>";
+            key = "<leader>fs";
+            mode = "n";
+            silent = true;
+            desc = "Show lsp symbols";
+          }
+          {
+            action = ":Pick lsp scope='document_symbol'<cr>";
             key = "<leader>fs";
             mode = "n";
             silent = true;
@@ -437,11 +451,11 @@
           }
           {
             # Oil binds
-            action = ":Oil<cr>";
+            action = ":lua MiniFiles.open()<cr>";
             key = "<leader>oo";
             mode = "n";
             silent = true;
-            desc = "Open Oil";
+            desc = "Open files";
           }
 
           # Buffer binds
@@ -478,29 +492,8 @@
             desc = "Exit term mode";
           }
           {
-            action = ":FzfLua spell_suggest<cr>";
-            key = "z=";
-            mode = "n";
-            silent = true;
-            desc = "Trigger spell suggestions";
-          }
-          {
-            action = ":FzfLua live_grep<cr>";
-            key = "g/";
-            mode = "n";
-            silent = true;
-            desc = "Search in all files";
-          }
-          {
-            action = ":Neotree<cr>";
-            key = "<Leader>ot";
-            mode = "n";
-            silent = true;
-            desc = "Open Neotree";
-          }
-          {
             action = ":lua require('conform').format()<cr>";
-            key = "<Leader>lf";
+            key = "<Leader>of";
             mode = "n";
             silent = true;
             desc = "Custom format funcion";

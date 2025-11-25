@@ -44,6 +44,8 @@
 
   programs.appimage.enable = true;
 
+  programs.nix-index.enable = true;
+
   services.avahi = {
     enable = true;
     nssmdns4 = true;
@@ -166,11 +168,11 @@
       qbittorrent
       #  thunderbird
     ];
-    shell = pkgs.nushell;
-    # shell = pkgs.fish;
+    # shell = pkgs.nushell;
+    shell = pkgs.fish;
   };
 
-  programs.fish.enable = false;
+  programs.fish.enable = true;
 
   programs.steam = {
     enable = true;

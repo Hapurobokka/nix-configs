@@ -38,6 +38,9 @@
       url = "github:NicolasGB/jj.nvim";
       flake = false;
     };
+
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { nixpkgs, home-manager, ... } @ inputs:
@@ -69,6 +72,7 @@
         modules = [
           ./nixos/configuration.nix
           ./nixos/hardware-configuration.nix
+          inputs.nix-index-database.nixosModules.nix-index
           # inputs.nixos-hardware.nixosModules.lenovo-ideapad-15ach6
         ];
 
