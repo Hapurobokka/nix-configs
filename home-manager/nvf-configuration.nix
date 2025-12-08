@@ -141,6 +141,7 @@
           extra.enable = true;
           files.enable = true;
           surround.enable = true;
+          animate.enable = true;
           clue = {
             enable = true;
             setupOpts = {

@@ -304,7 +304,7 @@ in
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/stella.yaml";
-    image = ./images/yidhari.png;
+    image = ./images/castorice-que.jpeg;
     targets = {
       neovim.enable = false;
       nixvim.enable = false;
