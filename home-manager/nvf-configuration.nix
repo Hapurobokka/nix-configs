@@ -128,20 +128,22 @@
         ui.noice.enable = true;
         mini = {
           ai.enable = true;
+          animate.enable = true;
           bracketed.enable = true;
-          icons.enable = true;
-          map.enable = true;
-          jump.enable = true;
-          jump2d.enable = false;
-          operators.enable = true;
-          pairs.enable = true;
-          starter.enable = true;
-          statusline.enable = true;
-          pick.enable = true;
           extra.enable = true;
           files.enable = true;
+          bufremove.enable = true;
+          icons.enable = true;
+          jump.enable = true;
+          jump2d.enable = false;
+          map.enable = true;
+          operators.enable = true;
+          pairs.enable = true;
+          pick.enable = true;
+          starter.enable = true;
+          statusline.enable = true;
           surround.enable = true;
-          animate.enable = true;
+          tabline.enable = true;
           clue = {
             enable = true;
             setupOpts = {
@@ -461,11 +463,44 @@
 
           # Buffer binds
           {
-            action = ":bdelete<cr>";
+            action = ":lua MiniBufremove.delete()<cr>";
             key = "<leader>bd";
             mode = "n";
             silent = true;
             desc = "Delete buffer";
+          }
+
+          {
+            action = ":lua MiniBufremove.wipeout()<cr>";
+            key = "<leader>bw";
+            mode = "n";
+            silent = true;
+            desc = "Wipe all buffers";
+          }
+
+          # Window binds
+          {
+            action = ":split<cr>";
+            key = "<leader>ws";
+            mode = "n";
+            silent = true;
+            desc = "Split window";
+          }
+
+          {
+            action = ":vsplit<cr>";
+            key = "<leader>wv";
+            mode = "n";
+            silent = true;
+            desc = "Vertically split window";
+          }
+
+          {
+            action = ":quit<cr>";
+            key = "<leader>wq";
+            mode = "n";
+            silent = true;
+            desc = "Close window";
           }
 
           # Misc binds
@@ -498,6 +533,13 @@
             mode = "n";
             silent = true;
             desc = "Custom format funcion";
+          }
+          {
+            action = ":J log<cr>";
+            key = "<Leader>oj";
+            mode = "n";
+            silent = true;
+            desc = "Open Jujutsu Log";
           }
           # # Obsidian binds
           # {
