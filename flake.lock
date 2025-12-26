@@ -394,6 +394,7 @@
         "nixpkgs": "nixpkgs",
         "nvf": "nvf",
         "stylix": "stylix",
+        "warp-nvim": "warp-nvim",
         "zen-browser": "zen-browser"
       }
     },
@@ -539,6 +540,22 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "base16-zed",
+        "type": "github"
+      }
+    },
+    "warp-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1765691514,
+        "narHash": "sha256-ctNTuFdhcxYhBxupUMOof0veHiVL2SFtB8803aFHjyk=",
+        "owner": "y3owk1n",
+        "repo": "warp.nvim",
+        "rev": "09cc22501ae5d0a7eb36b759f889f75339eb1c21",
+        "type": "github"
+      },
+      "original": {
+        "owner": "y3owk1n",
+        "repo": "warp.nvim",
         "type": "github"
       }
     },

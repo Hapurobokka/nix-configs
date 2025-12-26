@@ -39,6 +39,11 @@
       flake = false;
     };
 
+    warp-nvim = {
+      url = "github:y3owk1n/warp.nvim";
+      flake = false;
+    };
+
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -59,6 +64,11 @@
           pname = "jj-nvim";
           version = inputs.jj-nvim.lastModifiedDate;
           src = inputs.jj-nvim;
+        };
+        warp-nvim = prev.vimUtils.buildVimPlugin {
+          pname = "warp-nvim";
+          version = inputs.warp-nvim.lastModifiedDate;
+          src = inputs.warp-nvim;
         };
       };
     };

@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   programs.nvf = {
     enable = true;
     settings = {
@@ -47,19 +48,14 @@
         autocmds = [
           {
             desc = "Changes the indent size to 2 in certain files";
-            event = ["FileType"];
-            callback =
-              lib.generators.mkLuaInline
-              /*
-              lua
-              */
-              ''
-                function()
-                    vim.bo.tabstop = 2
-                    vim.bo.shiftwidth = 2
-                    vim.bo.expandtab = true
-                end
-              '';
+            event = [ "FileType" ];
+            callback = lib.generators.mkLuaInline /* lua */ ''
+              function()
+                  vim.bo.tabstop = 2
+                  vim.bo.shiftwidth = 2
+                  vim.bo.expandtab = true
+              end
+            '';
             pattern = [
               "javascript"
               "css"
@@ -79,8 +75,12 @@
 
         spellcheck = {
           enable = true;
-          languages = ["es"];
-          ignoredFiletypes = ["toggleterm" "term" "scratch"];
+          languages = [ "es" ];
+          ignoredFiletypes = [
+            "toggleterm"
+            "term"
+            "scratch"
+          ];
         };
 
         lsp = {
@@ -88,7 +88,10 @@
         };
         formatter.conform-nvim = {
           enable = true;
-          setupOpts.formatters_by_ft = {python = ["black"]; cpp = ["clang-format"];};
+          setupOpts.formatters_by_ft = {
+            python = [ "black" ];
+            cpp = [ "clang-format" ];
+          };
         };
 
         extraPlugins = with pkgs.vimPlugins; {
@@ -103,11 +106,19 @@
           };
           jj = {
             package = jj-nvim;
-            setup = /*lua*/ "require('jj').setup({})";
+            setup = /* lua */ "require('jj').setup({})";
+          };
+          undotree = {
+            package = undotree;
+          };
+          warp = {
+            package = warp-nvim;
+            setup = /* lua */ "require('warp').setup({})";
+
           };
           kanagawa = {
             package = kanagawa-nvim;
-            setup = /*lua*/ "
+            setup = /* lua */ "
               require('kanagawa').setup({
                 transparent = true;
               })
@@ -116,7 +127,7 @@
           };
           orgmode = {
             package = orgmode;
-            setup = /*lua*/ ''
+            setup = /* lua */ ''
               require('orgmode').setup({
                 org_agenda_files = '~/org/**/*',
                 org_default_notes_file = '~/org/notes.org',
@@ -237,22 +248,17 @@
                   keys = "z";
                 }
               ];
-              clues =
-                lib.generators.mkLuaInline
-                /*
-                lua
-                */
-                ''
-                  {
-                    require('mini.clue').gen_clues.builtin_completion(),
-                    require('mini.clue').gen_clues.g(),
-                    require('mini.clue').gen_clues.marks(),
-                    require('mini.clue').gen_clues.registers(),
-                    require('mini.clue').gen_clues.windows(),
-                    require('mini.clue').gen_clues.z(),
+              clues = lib.generators.mkLuaInline /* lua */ ''
+                {
+                  require('mini.clue').gen_clues.builtin_completion(),
+                  require('mini.clue').gen_clues.g(),
+                  require('mini.clue').gen_clues.marks(),
+                  require('mini.clue').gen_clues.registers(),
+                  require('mini.clue').gen_clues.windows(),
+                  require('mini.clue').gen_clues.z(),
 
-                  }
-                '';
+                }
+              '';
             };
           };
         };
@@ -299,28 +305,23 @@
             daily_notes = {
               folder = "fleeting/";
               date = "%d-%m-%Y";
-              default_tags = ["fleeting"];
+              default_tags = [ "fleeting" ];
             };
-            note_id_func =
-              lib.generators.mkLuaInline
-              /*
-              lua
-              */
-              ''
-                function(title)
-                  local suffix = ""
-                  if title ~= nil then
-                    -- If title is given, transform it into valid file name.
-                    suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
-                  else
-                    -- If title is nil, just add 4 random uppercase letters to the suffix.
-                    for _ = 1, 4 do
-                      suffix = suffix .. string.char(math.random(65, 90))
-                    end
+            note_id_func = lib.generators.mkLuaInline /* lua */ ''
+              function(title)
+                local suffix = ""
+                if title ~= nil then
+                  -- If title is given, transform it into valid file name.
+                  suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+                else
+                  -- If title is nil, just add 4 random uppercase letters to the suffix.
+                  for _ = 1, 4 do
+                    suffix = suffix .. string.char(math.random(65, 90))
                   end
-                  return tostring(os.time()) .. "-" .. suffix
                 end
-              '';
+                return tostring(os.time()) .. "-" .. suffix
+              end
+            '';
           };
         };
 
@@ -329,7 +330,7 @@
           setupOpts = {
             load = {
               "core.defaults".enable = true;
-              "core.concealer" = {};
+              "core.concealer" = { };
               "core.dirman" = {
                 config = {
                   workspaces = {
