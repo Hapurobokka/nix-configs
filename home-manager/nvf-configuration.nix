@@ -104,6 +104,10 @@
           table-mode = {
             package = vim-table-mode;
           };
+          typst-preview = {
+            package = typst-preview-nvim;
+            setup = /* lua */ "require 'typst-preview'.setup {}"; 
+          };
           jj = {
             package = jj-nvim;
             setup = /* lua */ "require('jj').setup({})";
@@ -114,7 +118,6 @@
           warp = {
             package = warp-nvim;
             setup = /* lua */ "require('warp').setup({})";
-
           };
           kanagawa = {
             package = kanagawa-nvim;
@@ -472,7 +475,7 @@
           }
 
           {
-            action = ":lua MiniBufremove.wipeout()<cr>";
+            action = "%bd|edit #|normal'<cr>";
             key = "<leader>bw";
             mode = "n";
             silent = true;

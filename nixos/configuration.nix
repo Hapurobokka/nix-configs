@@ -39,7 +39,9 @@
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 
-  services.flatpak.enable = true;
+  services.flatpak = {
+    enable = true;
+  };
 
   # boot.kernelPackages = pkgs.linuxPackages_zen;
 
@@ -89,18 +91,21 @@
     videoDrivers = ["nvidia"];
   };
 
-  # services.displayManager.gdm.enable = true;
-  # services.desktopManager.gnome.enable = true;
+  services.logmein-hamachi.enable = true;
 
-  services = {
-    desktopManager.plasma6.enable = true;
-    displayManager = {
-      sddm = {
-        enable = true;
-        wayland.enable = true;
-      };
-    };
-  };
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
+
+  # services = {
+  #   desktopManager.plasma6.enable = true;
+  #   displayManager = {
+  #     defaultSession = "plasma";
+  #     sddm = {
+  #       enable = true;
+  #       wayland.enable = true;
+  #     };
+  #   };
+  # };
 
   programs.hyprland.enable = true;
 
@@ -145,13 +150,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    jack.enable = true;
     wireplumber.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -195,23 +194,26 @@
     clang
     dunst
     home-manager
-    kdePackages.discover
-    kdePackages.kcalc
-    kdePackages.sddm-kcm
+    gnome-tweaks
     libnotify
     neovim
     wayland-utils
   ];
 
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = with pkgs; [
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
-  ];
+  environment.pathsToLink = ["/share/xdg-desktop-portal" "/share/applications"];
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-gnome
+    ];
+  };
 
   virtualisation = {
     podman = {
       enable = true;
+      dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
     };
     containers.containersConf.settings = {
@@ -223,6 +225,54 @@
           }
           {
             base = "10.90.0.0/16";
+            size = 24;
+          }
+          {
+            base = "10.91.0.0/16";
+            size = 24;
+          }
+          {
+            base = "10.92.0.0/16";
+            size = 24;
+          }
+          {
+            base = "10.93.0.0/16";
+            size = 24;
+          }
+          {
+            base = "10.94.0.0/16";
+            size = 24;
+          }
+          {
+            base = "10.95.0.0/16";
+            size = 24;
+          }
+          {
+            base = "10.96.0.0/16";
+            size = 24;
+          }
+          {
+            base = "172.20.0.0/16";
+            size = 24;
+          }
+          {
+            base = "172.21.0.0/16";
+            size = 24;
+          }
+          {
+            base = "172.22.0.0/16";
+            size = 24;
+          }
+          {
+            base = "172.23.0.0/16";
+            size = 24;
+          }
+          {
+            base = "192.168.100.0/16";
+            size = 24;
+          }
+          {
+            base = "192.168.110.0/16";
             size = 24;
           }
         ];

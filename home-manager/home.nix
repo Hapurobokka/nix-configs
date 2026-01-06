@@ -49,6 +49,8 @@ in
     brave
     cargo
     cataclysm-dda
+    jetbrains.idea
+    # chiaki-ng
     cava
     chafa
     cmake
@@ -56,11 +58,14 @@ in
     direnv
     kitty
     eza
+    qemu_full
     fastfetch
     fd
+    television
     fzf
     gimp
     gnomeExtensions.blur-my-shell
+    gnomeExtensions.appindicator
     godot
     grex
     helix
@@ -68,12 +73,12 @@ in
     btop
     jujutsu
     just
+    podman-desktop
     kdePackages.okular
     kew
     lazygit
     lutris
     mpc
-    mpd
     myTex
     dolphin-emu
     mysql-workbench
@@ -86,8 +91,9 @@ in
     nix-output-monitor
     obsidian
     papirus-icon-theme
+    postman
     playerctl
-    podman-compose
+    docker-compose
     podman-tui
     porsmo
     porsmo
@@ -95,6 +101,7 @@ in
     presenterm
     protonup-ng
     python313
+    kakoune
     r2modman
     ripgrep
     pegasus-frontend
@@ -102,7 +109,6 @@ in
     starship
     tldr
     tmux
-    tree-sitter
     vesktop
     vivaldi
     vscode-fhs
@@ -112,25 +118,52 @@ in
     wl-clipboard
     wofi
     zapzap
-    zed-editor-fhs
     zellij
     zoxide
     basilk
+    prismlauncher
     cachix
+    (tree-sitter.withPlugins (p: [
+      p.tree-sitter-python
+      p.tree-sitter-nix
+      p.tree-sitter-c
+      p.tree-sitter-cpp
+      p.tree-sitter-bash
+      p.tree-sitter-json
+      p.tree-sitter-yaml
+      p.tree-sitter-typst
+      # añade las que necesites, miau~
+    ]))
   ];
 
   gtk = {
     enable = true;
     iconTheme = {
-      name = "Papirus";
+      name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
+  };
+
+  services.mpd = {
+    enable = true;
+    musicDirectory = "~/Música";
+    extraConfig = ''
+      audio_output {
+        type "pipewire"
+        name "My PipeWire Output"
+      }
+    '';
   };
 
   programs = {
     emacs = {
       enable = true;
-      extraPackages = epkgs: [ epkgs.vterm pkgs.python313 pkgs.uv pkgs.clang-tools ];
+      extraPackages = epkgs: [ 
+        epkgs.vterm
+        pkgs.python313
+        pkgs.uv
+        pkgs.clang-tools 
+      ];
     };
     zen-browser.enable = false;
     direnv = {
@@ -259,6 +292,11 @@ in
     };
   };
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome ];
+  };
+
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
@@ -304,6 +342,7 @@ in
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/stella.yaml";
+    polarity = "dark";
     image = ./images/castorice-que.jpeg;
     targets = {
       neovim.enable = false;

@@ -44,12 +44,19 @@
       flake = false;
     };
 
+    prism-launcher = {
+      url = "github:Diegiwg/PrismLauncher-Cracked";
+    };
+
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, home-manager, ... } @ inputs:
-  let
+  outputs = {
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
@@ -59,22 +66,22 @@
       };
     };
     vimOverlay = final: prev: {
-      vimPlugins = prev.vimPlugins // {
-        jj-nvim = prev.vimUtils.buildVimPlugin {
-          pname = "jj-nvim";
-          version = inputs.jj-nvim.lastModifiedDate;
-          src = inputs.jj-nvim;
+      vimPlugins =
+        prev.vimPlugins
+        // {
+          jj-nvim = prev.vimUtils.buildVimPlugin {
+            pname = "jj-nvim";
+            version = inputs.jj-nvim.lastModifiedDate;
+            src = inputs.jj-nvim;
+          };
+          warp-nvim = prev.vimUtils.buildVimPlugin {
+            pname = "warp-nvim";
+            version = inputs.warp-nvim.lastModifiedDate;
+            src = inputs.warp-nvim;
+          };
         };
-        warp-nvim = prev.vimUtils.buildVimPlugin {
-          pname = "warp-nvim";
-          version = inputs.warp-nvim.lastModifiedDate;
-          src = inputs.warp-nvim;
-        };
-      };
     };
-  in
-  {
-
+  in {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         inherit system;
@@ -86,7 +93,7 @@
           # inputs.nixos-hardware.nixosModules.lenovo-ideapad-15ach6
         ];
 
-        specialArgs = { inherit inputs; };
+        specialArgs = {inherit inputs;};
       };
     };
 
@@ -96,14 +103,17 @@
 
         modules = [
           {
-            nixpkgs.overlays = [ vimOverlay ];
+            nixpkgs.overlays = [
+              vimOverlay
+              inputs.prism-launcher.overlays.default
+            ];
           }
           inputs.nvf.homeManagerModules.default
           inputs.stylix.homeModules.stylix
           ./home-manager/home.nix
         ];
 
-        extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = {inherit inputs;};
       };
     };
   };

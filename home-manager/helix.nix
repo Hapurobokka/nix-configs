@@ -6,6 +6,7 @@
     settings = {
       theme = "kanagawa";
       editor = {
+        soft-wrap.enable = true;
         true-color = true;
         line-number = "relative";
         cursor-shape = {
