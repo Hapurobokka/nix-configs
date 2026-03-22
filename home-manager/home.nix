@@ -1,22 +1,28 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 let
   myTex = pkgs.texlive.combine {
-    inherit (pkgs.texlive) scheme-medium
+    inherit (pkgs.texlive)
+      scheme-medium
       dirtytalk
       wrapfig
-      capt-of;
+      capt-of
+      ;
   };
 in
 {
   imports = [
     inputs.zen-browser.homeModules.beta
     ./helix.nix
-    ./hypr.nix
+    # ./hypr.nix
     ./nvf-configuration.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -41,7 +47,12 @@ in
   # environment.
   home.packages = with pkgs; [
     # qemu_full
-    (aspellWithDicts (dicts: with dicts; [ es en ]))
+    (aspellWithDicts (
+      dicts: with dicts; [
+        es
+        en
+      ]
+    ))
     acpi
     bat
     bluetui
@@ -96,11 +107,11 @@ in
     docker-compose
     podman-tui
     porsmo
-    porsmo
     ppsspp
     presenterm
     protonup-ng
     python313
+    firefox
     kakoune
     r2modman
     ripgrep
@@ -158,11 +169,11 @@ in
   programs = {
     emacs = {
       enable = true;
-      extraPackages = epkgs: [ 
+      extraPackages = epkgs: [
         epkgs.vterm
         pkgs.python313
         pkgs.uv
-        pkgs.clang-tools 
+        pkgs.clang-tools
       ];
     };
     zen-browser.enable = false;
@@ -185,7 +196,7 @@ in
     };
     fish = {
       enable = true;
-      shellInit = /*fish*/ ''
+      shellInit = /* fish */ ''
         fish_vi_key_bindings
         fish_add_path ~/.local/bin
         fish_add_path ~/.cargo/bin
@@ -250,11 +261,11 @@ in
 
         unbind C-b
         set -g prefix C-Space
-        '';
+      '';
     };
     nushell = {
       enable = false;
-      extraConfig = /*nu*/ ''
+      extraConfig = /* nu */ ''
         use std/util "path add"
         $env.config.buffer_editor = "nvim"
         $env.config.show_banner = false
@@ -294,7 +305,10 @@ in
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
