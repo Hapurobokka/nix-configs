@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  programs.nvf.settings.vim = {
+  vim = {
     options = {
       autoindent = true;
       cursorline = true;
@@ -12,9 +12,6 @@
       infercase = true;
       linebreak = true;
       number = true;
-      pubmaxwidth = 100;
-      pumborder = "single";
-      pumheight = 10;
       relativenumber = true;
       shiftwidth = 4;
       shortmess = "CFOSWaco";

@@ -1,5 +1,5 @@
 _: {
-  programs.nvf.settings.vim.keymaps = [
+  vim.keymaps = [
     {
       action = ":Pick spellsuggest<cr>";
       key = "z=";

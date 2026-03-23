@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  programs.nvf.settings.vim = {
+  vim = {
     lsp = {
       enable = true;
       inlayHints.enable = true;

@@ -1,5 +1,5 @@
 { lib, ... }: {
-  programs.nvf.settings.vim.mini = {
+  vim.mini = {
     ai.enable = true;
     animate.enable = true;
     bracketed.enable = true;

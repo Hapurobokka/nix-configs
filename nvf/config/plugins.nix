@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  programs.nvf.settings.vim = {
+  vim = {
     theme = {
       enable = false;
       name = "catppuccin";
@@ -47,26 +47,26 @@
         };
       };
     };
-    lazy.plugins.jj-nvim = {
-      package = "jj-nvim";
-      setupModule = "jj";
-      keys = [
-        {
-          action = ":J log<cr>";
-          key = "<Leader>ojj";
-          mode = "n";
-          silent = true;
-          desc = "Open Jujutsu Log";
-        }
-        {
-          action = ":J status<cr>";
-          key = "<Leader>ojs";
-          mode = "n";
-          silent = true;
-          desc = "Open Jujutsu Log";
-        }
-      ];
-    };
+    # lazy.plugins.jj-nvim = {
+    #   package = "jj-nvim";
+    #   setupModule = "jj";
+    #   keys = [
+    #     {
+    #       action = ":J log<cr>";
+    #       key = "<Leader>ojj";
+    #       mode = "n";
+    #       silent = true;
+    #       desc = "Open Jujutsu Log";
+    #     }
+    #     {
+    #       action = ":J status<cr>";
+    #       key = "<Leader>ojs";
+    #       mode = "n";
+    #       silent = true;
+    #       desc = "Open Jujutsu Log";
+    #     }
+    #   ];
+    # };
     extraPlugins = with pkgs.vimPlugins; {
       plenary = {
         package = plenary-nvim;

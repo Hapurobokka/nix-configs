@@ -14,6 +14,6 @@
       inputs.nix-index-database.nixosModules.default
       # inputs.nixos-hardware.nixosModules.lenovo-ideapad-15ach6
     ];
-    specialArgs = { inherit inputs; };
+    specialArgs = { inherit inputs; self = inputs.self; };
   };
 }
