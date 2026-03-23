@@ -28,16 +28,6 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    jj-nvim = {
-      url = "github:NicolasGB/jj.nvim";
-      flake = false;
-    };
-
-    warp-nvim = {
-      url = "github:y3owk1n/warp.nvim";
-      flake = false;
-    };
-
     prism-launcher = {
       url = "github:Diegiwg/PrismLauncher-Cracked";
     };
@@ -72,20 +62,6 @@
           allowUnfree = true;
         };
       };
-      # vimOverlay = final: prev: {
-      #   vimPlugins = prev.vimPlugins // {
-      #     jj-nvim = prev.vimUtils.buildVimPlugin {
-      #       pname = "jj-nvim";
-      #       version = inputs.jj-nvim.lastModifiedDate;
-      #       src = inputs.jj-nvim;
-      #     };
-      #     warp-nvim = prev.vimUtils.buildVimPlugin {
-      #       pname = "warp-nvim";
-      #       version = inputs.warp-nvim.lastModifiedDate;
-      #       src = inputs.warp-nvim;
-      #     };
-      #   };
-      # };
     in
     {
       nixosConfigurations = {
@@ -110,7 +86,6 @@
           modules = [
             {
               nixpkgs.overlays = [
-                # vimOverlay
                 inputs.prism-launcher.overlays.default
               ];
             }

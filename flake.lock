@@ -218,22 +218,6 @@
         "type": "github"
       }
     },
-    "jj-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1769076007,
-        "narHash": "sha256-EfMsFZziZVtA9BPJO/aNIxT92uknp6pvC8lDYV8j59I=",
-        "owner": "NicolasGB",
-        "repo": "jj.nvim",
-        "rev": "9a20b2484909dc50122ace28fe2f5e0d49959fb8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NicolasGB",
-        "repo": "jj.nvim",
-        "type": "github"
-      }
-    },
     "libnbtplusplus": {
       "flake": false,
       "locked": {
@@ -485,7 +469,6 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "jj-nvim": "jj-nvim",
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
@@ -494,7 +477,6 @@
         "nvf": "nvf",
         "prism-launcher": "prism-launcher",
         "stylix": "stylix",
-        "warp-nvim": "warp-nvim",
         "zen-browser": "zen-browser"
       }
     },
@@ -673,22 +655,6 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "warp-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1765691514,
-        "narHash": "sha256-ctNTuFdhcxYhBxupUMOof0veHiVL2SFtB8803aFHjyk=",
-        "owner": "y3owk1n",
-        "repo": "warp.nvim",
-        "rev": "09cc22501ae5d0a7eb36b759f889f75339eb1c21",
-        "type": "github"
-      },
-      "original": {
-        "owner": "y3owk1n",
-        "repo": "warp.nvim",
         "type": "github"
       }
     },
