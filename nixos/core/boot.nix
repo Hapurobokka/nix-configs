@@ -12,4 +12,8 @@ _: {
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot";
   };
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 }

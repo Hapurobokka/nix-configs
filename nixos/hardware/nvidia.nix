@@ -11,10 +11,10 @@
         intelBusId = "";
       };
       # If you need it one day...
-      sync.enable = false;
+      # sync.enable = false;
     };
   };
-  services.xserver.videoDrives = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
   environment.sessionVariables = {
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
