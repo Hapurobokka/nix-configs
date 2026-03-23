@@ -106,7 +106,7 @@
           };
           typst-preview = {
             package = typst-preview-nvim;
-            setup = /* lua */ "require 'typst-preview'.setup {}"; 
+            setup = /* lua */ "require 'typst-preview'.setup {}";
           };
           jj = {
             package = jj-nvim;
@@ -162,94 +162,33 @@
             enable = true;
             setupOpts = {
               triggers = [
-                {
-                  mode = "n";
-                  keys = "<Leader>";
-                }
-                {
-                  mode = "x";
-                  keys = "<Leader>";
-                }
+                { mode = "n"; keys = "<Leader>"; } { mode = "x"; keys = "<Leader>"; }
 
-                {
-                  mode = "i";
-                  keys = "<C-x>";
-                }
+                { mode = "i"; keys = "<C-x>"; }
 
-                {
-                  mode = "n";
-                  keys = "g";
-                }
-                {
-                  mode = "x";
-                  keys = "g";
-                }
+                { mode = "n"; keys = "g"; }
+                { mode = "x"; keys = "g"; }
 
-                {
-                  mode = "n";
-                  keys = ",";
-                }
-                {
-                  mode = "x";
-                  keys = ",";
-                }
+                { mode = "n"; keys = ","; }
+                { mode = "x"; keys = ","; }
 
-                {
-                  mode = "n";
-                  keys = "\"";
-                }
-                {
-                  mode = "n";
-                  keys = "\`";
-                }
-                {
-                  mode = "x";
-                  keys = "\"";
-                }
-                {
-                  mode = "x";
-                  keys = "`";
-                }
+                { mode = "n"; keys = "\""; }
+                { mode = "n"; keys = "\`"; }
+                { mode = "x"; keys = "\""; }
+                { mode = "x"; keys = "`"; }
 
-                {
-                  mode = "n";
-                  keys = "s";
-                }
-                {
-                  mode = "x";
-                  keys = "s";
-                }
+                { mode = "n"; keys = "s"; }
+                { mode = "x"; keys = "s"; }
 
-                {
-                  mode = "n";
-                  keys = "\"";
-                }
-                {
-                  mode = "x";
-                  keys = "\"";
-                }
-                {
-                  mode = "i";
-                  keys = "<C-r>";
-                }
-                {
-                  mode = "c";
-                  keys = "<C-r>";
-                }
+                { mode = "n"; keys = "\""; } 
+                { mode = "x"; keys = "\""; }
+                { mode = "i"; keys = "<C-r>"; }
+                { mode = "c"; keys = "<C-r>"; }
 
-                {
-                  mode = "n";
-                  keys = "<C-w>";
-                }
+                { mode = "n"; keys = "<C-w>"; }
 
-                {
-                  mode = "n";
-                  keys = "z";
-                }
-                {
-                  mode = "x";
-                  keys = "z";
-                }
+                { mode = "n"; keys = "z"; }
+                { mode = "x"; keys = "z"; }
               ];
               clues = lib.generators.mkLuaInline /* lua */ ''
                 {
@@ -294,40 +233,6 @@
         visuals.fidget-nvim.enable = true;
         presence.neocord.enable = true;
         terminal.toggleterm.enable = true;
-
-        notes.obsidian = {
-          enable = false;
-          setupOpts = {
-            ui.enable = false;
-            workspaces = [
-              {
-                name = "vault";
-                path = "~/Documentos/vault";
-              }
-            ];
-            daily_notes = {
-              folder = "fleeting/";
-              date = "%d-%m-%Y";
-              default_tags = [ "fleeting" ];
-            };
-            note_id_func = lib.generators.mkLuaInline /* lua */ ''
-              function(title)
-                local suffix = ""
-                if title ~= nil then
-                  -- If title is given, transform it into valid file name.
-                  suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
-                else
-                  -- If title is nil, just add 4 random uppercase letters to the suffix.
-                  for _ = 1, 4 do
-                    suffix = suffix .. string.char(math.random(65, 90))
-                  end
-                end
-                return tostring(os.time()) .. "-" .. suffix
-              end
-            '';
-          };
-        };
-
         notes.neorg = {
           enable = true;
           setupOpts = {
@@ -545,21 +450,6 @@
             silent = true;
             desc = "Open Jujutsu Log";
           }
-          # # Obsidian binds
-          # {
-          #   action = ":ObsidianQuickSwitch<cr>";
-          #   key = "<leader>oq";
-          #   mode = "n";
-          #   silent = true;
-          #   desc = "Quick switch Obsidian notes";
-          # }
-          # {
-          #   action = ":ObsidianNew<cr>";
-          #   key = "<leader>on";
-          #   mode = "n";
-          #   silent = true;
-          #   desc = "New Obsidian note";
-          # }
         ];
       };
     };

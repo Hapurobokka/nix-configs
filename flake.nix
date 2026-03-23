@@ -48,6 +48,7 @@
       imports = [
         ./nixos/flake-modules.nix
         ./home-manager/flake-module.nix
+        ./nvf/flake-modules.nix
       ];
     };
 }

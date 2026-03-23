@@ -11,7 +11,6 @@ in
     inherit pkgs;
     modules = [
       { nixpkgs.overlays = [ inputs.prism-launcher.overlays.default ]; }
-      inputs.nvf.homeManagerModules.default
       inputs.stylix.homeModules.stylix
       (inputs.import-tree [
         ./core
