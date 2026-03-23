@@ -13,13 +13,19 @@ let
       capt-of
       ;
   };
+  myRetroarch = pkgs.retroarch.withCores (
+    cores: with cores; [
+      melonDS
+      mgba
+    ]
+  );
 in
 {
   imports = [
     inputs.zen-browser.homeModules.beta
+    inputs.noctalia.homeModules.default
     ./helix.nix
-    # ./hypr.nix
-    ./nvf-configuration.nix
+    # ./nvf-configuration.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -80,7 +86,6 @@ in
     godot
     grex
     helix
-    hyprshot
     btop
     jujutsu
     just
@@ -130,9 +135,21 @@ in
     wofi
     zapzap
     zellij
+    nixd
+    statix
+    nb
     zoxide
     basilk
     prismlauncher
+    (retroarch.withCores (
+      cores: with cores; [
+        genesis-plus-gx
+        snes9x
+        beetle-psx-hw
+        melonds
+        mgba
+      ]
+    ))
     cachix
     (tree-sitter.withPlugins (p: [
       p.tree-sitter-python
@@ -167,6 +184,7 @@ in
   };
 
   programs = {
+    noctalia-shell.enable = true;
     emacs = {
       enable = true;
       extraPackages = epkgs: [
@@ -309,6 +327,7 @@ in
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-gnome
     ];
+    config.common.default = "*";
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -357,7 +376,7 @@ in
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/stella.yaml";
     polarity = "dark";
-    image = ./images/castorice-que.jpeg;
+    image = ./images/firefly-gato.jpeg;
     targets = {
       neovim.enable = false;
       nixvim.enable = false;
@@ -366,7 +385,6 @@ in
       zen-browser.enable = false;
       ghostty.enable = false;
       fish.enable = false;
-      hyprpaper.enable = true;
       helix.enable = false;
     };
   };

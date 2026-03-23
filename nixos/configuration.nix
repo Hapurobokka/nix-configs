@@ -6,54 +6,12 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
-
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-
-  services.power-profiles-daemon.enable = false;
-
-  services.tlp = {
-    enable = true;
-    settings = {
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
-      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_MIN_PERF_ON_AC = 0;
-      CPU_MAX_PERF_ON_AC = 100;
-
-      CPU_BOOST_ON_AC = 1;
-      CPU_BOOST_ON_BAT = 0;
-
-      STOP_CHARGE_THRESH_BAT0 = 1;
-    };
-  };
-
-  services.thermald.enable = true;
-  services.tailscale.enable = true;
-
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-
-  services.flatpak = {
-    enable = true;
-  };
-
-  # boot.kernelPackages = pkgs.linuxPackages_zen;
-
-  programs.appimage.enable = true;
-
-  programs.nix-index.enable = true;
-
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
 
   # Bootloader
   boot.loader = {
@@ -61,68 +19,74 @@
       enable = true;
       efiSupport = true;
       useOSProber = true;
-      devices = ["nodev"];
+      devices = [ "nodev" ];
       configurationLimit = 5;
     };
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot";
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  services = {
+    power-profiles-daemon.enable = false;
+    tlp = {
+      enable = true;
+      settings = {
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
+        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+        CPU_SCALING_GOVERNOR_ON_AC = "performance";
+        CPU_MIN_PERF_ON_AC = 0;
+        CPU_MAX_PERF_ON_AC = 100;
 
-  # Set your time zone.
-  time.timeZone = "America/Mexico_City";
+        CPU_BOOST_ON_AC = 1;
+        CPU_BOOST_ON_BAT = 0;
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "es_MX.UTF-8";
-
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver = {
-    enable = true;
-    videoDrivers = ["nvidia"];
+        STOP_CHARGE_THRESH_BAT0 = 1;
+      };
+    };
+    thermald.enable = true;
+    tailscale.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+    flatpak = {
+      enable = true;
+    };
+    xserver = {
+      enable = true;
+      videoDrivers = [ "nvidia" ];
+    };
+    logmein-hamachi.enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    xserver.xkb = {
+      layout = "latam";
+      variant = "";
+    };
+    printing.enable = true;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      wireplumber.enable = true;
+    };
   };
 
-  services.logmein-hamachi.enable = true;
-
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
-
-  # services = {
-  #   desktopManager.plasma6.enable = true;
-  #   displayManager = {
-  #     defaultSession = "plasma";
-  #     sddm = {
-  #       enable = true;
-  #       wayland.enable = true;
-  #     };
-  #   };
-  # };
-
-  programs.hyprland.enable = true;
-
-  environment.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS = 1;
-    NIXOS_OZONE_WL = 1;
-    NH_FLAKE = "/home/hapu/nix-configs";
-    EDITOR = "nvim";
-  };
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "latam";
-    variant = "";
-  };
+  security.rtkit.enable = true;
 
   hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
     graphics.enable = true;
     nvidia = {
       modesetting.enable = true;
@@ -136,33 +100,94 @@
     };
   };
 
-  console.keyMap = "la-latin1";
+  # boot.kernelPackages = pkgs.linuxPackages_zen;
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  # services.pulseaudio.enable = true;
-
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    wireplumber.enable = true;
+  programs = {
+    appimage.enable = true;
+    nix-index.enable = true;
+    hyprland.enable = false;
+    niri.enable = true;
+    fish.enable = true;
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      localNetworkGameTransfers.openFirewall = true;
+      gamescopeSession.enable = true;
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
+    };
+    gamemode.enable = true;
   };
+
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  # Enable networking
+  networking = {
+    networkmanager.enable = true;
+    hostName = "nixos";
+  }; # Define your hostname.
+
+  # Set your time zone.
+  time.timeZone = "America/Mexico_City";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "es_MX.UTF-8";
+
+  # Enable the X11 windowing system.
+  # You can disable this if you're only using the Wayland session.
+
+  # services = {
+  #   desktopManager.plasma6.enable = true;
+  #   displayManager = {
+  #     defaultSession = "plasma";
+  #     sddm = {
+  #       enable = true;
+  #       wayland.enable = true;
+  #     };
+  #   };
+  # };
+
+  environment = {
+    sessionVariables = {
+      WLR_NO_HARDWARE_CURSORS = 1;
+      NIXOS_OZONE_WL = 1;
+      NH_FLAKE = "/home/hapu/nix-configs";
+      EDITOR = "nvim";
+    };
+    systemPackages = with pkgs; [
+      clang
+      dunst
+      home-manager
+      gnome-tweaks
+      libnotify
+      neovim
+      wayland-utils
+      xwayland-satellite
+      fuzzel
+    ];
+    pathsToLink = [
+      "/share/xdg-desktop-portal"
+      "/share/applications"
+    ];
+  };
+
+  console.keyMap = "la-latin1";
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
-  # programs.fish.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.hapu = {
     isNormalUser = true;
     description = "Hapurobokka";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       ghostty
       qbittorrent
@@ -172,35 +197,11 @@
     shell = pkgs.fish;
   };
 
-  programs.fish.enable = true;
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-    gamescopeSession.enable = true;
-    extraCompatPackages = [pkgs.proton-ge-bin];
-  };
-
-  programs.gamemode.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    clang
-    dunst
-    home-manager
-    gnome-tweaks
-    libnotify
-    neovim
-    wayland-utils
-  ];
-
-  environment.pathsToLink = ["/share/xdg-desktop-portal" "/share/applications"];
 
   xdg.portal = {
     enable = true;
@@ -278,6 +279,21 @@
         ];
       };
     };
+  };
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      # Libs estándar que casi TODO binario externo necesita, nyaa~!
+      stdenv.cc.cc.lib # libstdc++
+      zlib
+      fuse3
+      icu
+      nss
+      openssl
+      curl
+      expat
+    ];
   };
 
   virtualisation.waydroid.enable = true;

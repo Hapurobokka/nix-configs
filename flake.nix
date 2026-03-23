@@ -16,12 +16,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # hyprland.url = "github:hyprwm/Hyprland";
-    # hyprland-plugins = {
-    #   url = "github:hyprwm/hyprland-plugins";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
-
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,71 +44,83 @@
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.noctalia-qs.follows = "noctalia-qs";
+    };
+
+    noctalia-qs = {
+      url = "github:noctalia-dev/noctalia-qs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {
-    nixpkgs,
-    home-manager,
-    ...
-  } @ inputs: let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-
-      config = {
-        allowUnfree = true;
-      };
-    };
-    vimOverlay = final: prev: {
-      vimPlugins =
-        prev.vimPlugins
-        // {
-          jj-nvim = prev.vimUtils.buildVimPlugin {
-            pname = "jj-nvim";
-            version = inputs.jj-nvim.lastModifiedDate;
-            src = inputs.jj-nvim;
-          };
-          warp-nvim = prev.vimUtils.buildVimPlugin {
-            pname = "warp-nvim";
-            version = inputs.warp-nvim.lastModifiedDate;
-            src = inputs.warp-nvim;
-          };
-        };
-    };
-  in {
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
         inherit system;
 
-        modules = [
-          ./nixos/configuration.nix
-          ./nixos/hardware-configuration.nix
-          inputs.nix-index-database.nixosModules.nix-index
-          # inputs.nixos-hardware.nixosModules.lenovo-ideapad-15ach6
-        ];
+        config = {
+          allowUnfree = true;
+        };
+      };
+      # vimOverlay = final: prev: {
+      #   vimPlugins = prev.vimPlugins // {
+      #     jj-nvim = prev.vimUtils.buildVimPlugin {
+      #       pname = "jj-nvim";
+      #       version = inputs.jj-nvim.lastModifiedDate;
+      #       src = inputs.jj-nvim;
+      #     };
+      #     warp-nvim = prev.vimUtils.buildVimPlugin {
+      #       pname = "warp-nvim";
+      #       version = inputs.warp-nvim.lastModifiedDate;
+      #       src = inputs.warp-nvim;
+      #     };
+      #   };
+      # };
+    in
+    {
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          inherit system;
 
-        specialArgs = {inherit inputs;};
+          modules = [
+            ./nixos/configuration.nix
+            ./nixos/hardware-configuration.nix
+            inputs.nix-index-database.nixosModules.nix-index
+            # inputs.nixos-hardware.nixosModules.lenovo-ideapad-15ach6
+          ];
+
+          specialArgs = { inherit inputs; };
+        };
+      };
+
+      homeConfigurations = {
+        "hapu@nixos" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          modules = [
+            {
+              nixpkgs.overlays = [
+                # vimOverlay
+                inputs.prism-launcher.overlays.default
+              ];
+            }
+            inputs.nvf.homeManagerModules.default
+            inputs.stylix.homeModules.stylix
+            ./home-manager/home.nix
+          ];
+
+          extraSpecialArgs = { inherit inputs; };
+        };
       };
     };
-
-    homeConfigurations = {
-      "hapu@nixos" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        modules = [
-          {
-            nixpkgs.overlays = [
-              vimOverlay
-              inputs.prism-launcher.overlays.default
-            ];
-          }
-          inputs.nvf.homeManagerModules.default
-          inputs.stylix.homeModules.stylix
-          ./home-manager/home.nix
-        ];
-
-        extraSpecialArgs = {inherit inputs;};
-      };
-    };
-  };
 }
