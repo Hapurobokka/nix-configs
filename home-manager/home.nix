@@ -122,6 +122,7 @@ in
     ripgrep
     pegasus-frontend
     rm-improved
+    nixfmt
     starship
     tldr
     tmux
@@ -136,6 +137,7 @@ in
     zapzap
     zellij
     nixd
+    spotify
     statix
     nb
     zoxide
@@ -333,12 +335,6 @@ in
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    "${config.xdg.configHome}/nvim/spell/es.latin1.spl".source = ./neovim/spell/es.latin1.spl;
-    "${config.xdg.configHome}/nvim/spell/es.latin1.sug".source = ./neovim/spell/es.latin1.sug;
-    "${config.xdg.configHome}/nvim/spell/es.utf-8.spl".source = ./neovim/spell/es.utf-8.spl;
-    "${config.xdg.configHome}/nvim/spell/es.utf-8.sug".source = ./neovim/spell/es.utf-8.sug;
-    "${config.xdg.configHome}/zellij/config.kdl".source = ./config.kdl;
-
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
