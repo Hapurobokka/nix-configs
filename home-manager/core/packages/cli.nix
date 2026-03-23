@@ -1,0 +1,41 @@
+# Packages with command-line utilities
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
+    acpi
+    bat
+    btop
+    cava
+    chafa
+    eza
+    fastfetch
+    fd
+    fzf
+    grex
+    helix
+    jujutsu
+    just
+    kew
+    lazygit
+    mpc
+    nb
+    nerd-fonts.iosevka
+    nerd-fonts.jetbrains-mono
+    nh
+    nitch
+    nix-output-monitor
+    nixd
+    nixfmt
+    playerctl
+    porsmo
+    presenterm
+    ripgrep
+    rm-improved
+    statix
+    television
+    tldr
+    tree-sitter
+    wl-clipboard
+    zellij
+  ];
+}

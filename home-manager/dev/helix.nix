@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+_: {
   programs.helix = {
     enable = true;
 
@@ -14,7 +13,7 @@
           insert = "bar";
           select = "underline";
         };
-      }; 
+      };
     };
 
     languages = {
@@ -29,7 +28,11 @@
       language = [
         {
           name = "ruby";
-          file-types = [ "rb" "rake" "gemspec" ];
+          file-types = [
+            "rb"
+            "rake"
+            "gemspec"
+          ];
           language-servers = [ "rubocop" ];
         }
         {
