@@ -4,7 +4,14 @@
     animate.enable = true;
     bracketed.enable = true;
     extra.enable = true;
-    files.enable = true;
+    files = {
+      enable = true;
+      setupOpts = {
+        windows = {
+          preview = true;
+        };
+      };
+    };
     bufremove.enable = true;
     icons.enable = true;
     jump.enable = true;

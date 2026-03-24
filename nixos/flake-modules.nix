@@ -11,9 +11,17 @@
         ./games
         ./dev
       ])
+      inputs.niri.nixosModules.niri
       inputs.nix-index-database.nixosModules.default
-      # inputs.nixos-hardware.nixosModules.lenovo-ideapad-15ach6
+      inputs.nixos-hardware.nixosModules.lenovo-ideapad-15ach6
     ];
-    specialArgs = { inherit inputs; self = inputs.self; };
+    specialArgs = {
+      inherit inputs;
+      inherit (inputs) self;
+      pkgs-stable = import inputs.nixpkgs-stable {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
+    };
   };
 }

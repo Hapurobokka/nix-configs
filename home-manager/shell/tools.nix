@@ -48,5 +48,15 @@
         set -g prefix C-Space
       '';
     };
+    ghostty = {
+      enable = true;
+      settings = {
+        font-family = "JetBrains Mono";
+        theme = "Kanagawa Wave";
+        background-opacity = 0.8;
+        font-size = 11;
+        background-blur = true;
+      };
+    };
   };
 }

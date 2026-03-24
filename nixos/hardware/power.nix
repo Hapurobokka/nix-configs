@@ -25,5 +25,5 @@
   };
 
   # Descomentar si quieres el kernel zen (mejor latencia para gaming/audio)
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  # boot.kernelPackages = pkgs.linuxPackages_zen;
 }

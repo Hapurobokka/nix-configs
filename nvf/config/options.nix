@@ -28,7 +28,6 @@
       timeoutlen = 400;
       undofile = true;
       virtualedit = "block";
-      winborder = "single";
       wrap = true;
     };
 

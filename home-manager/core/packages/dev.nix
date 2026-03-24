@@ -14,7 +14,7 @@
     podman-tui
     postman
     python313
-    qemu_full
+    # qemu_full
     vscode-fhs
     zed-editor-fhs
     (aspellWithDicts (
