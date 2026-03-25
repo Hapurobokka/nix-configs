@@ -12,7 +12,7 @@
     };
     starship = {
       enable = true;
-      enableFishIntegration = true;
+      enableFishIntegration = false;
       enableNushellIntegration = true;
     };
     yazi = {

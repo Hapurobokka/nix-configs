@@ -17,7 +17,9 @@
         beetle-psx-hw
         melonds
         mgba
+        desmume
       ]
     ))
+    melonds
   ];
 }

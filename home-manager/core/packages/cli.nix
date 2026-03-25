@@ -12,6 +12,7 @@
     fd
     fzf
     grex
+    tmux
     helix
     jujutsu
     just

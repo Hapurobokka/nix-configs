@@ -8,7 +8,7 @@
     };
     ui.noice.enable = true;
     git.gitsigns.enable = true;
-    visuals.fidget-nvim.enable = true;
+    visuals.fidget-nvim.enable = false;
     presence.neocord.enable = true;
     terminal.toggleterm.enable = true;
     binds.hardtime-nvim.enable = true;
@@ -47,26 +47,40 @@
         };
       };
     };
-    # lazy.plugins.jj-nvim = {
-    #   package = "jj-nvim";
-    #   setupModule = "jj";
-    #   keys = [
-    #     {
-    #       action = ":J log<cr>";
-    #       key = "<Leader>ojj";
-    #       mode = "n";
-    #       silent = true;
-    #       desc = "Open Jujutsu Log";
-    #     }
-    #     {
-    #       action = ":J status<cr>";
-    #       key = "<Leader>ojs";
-    #       mode = "n";
-    #       silent = true;
-    #       desc = "Open Jujutsu Log";
-    #     }
-    #   ];
-    # };
+    lazy.plugins = with pkgs.vimPlugins; {
+      "jj.nvim" = {
+        package = jj-nvim;
+        setupModule = "jj";
+        keys = [
+          {
+            action = ":J log<cr>";
+            key = "<leader>ojj";
+            mode = "n";
+            silent = true;
+            desc = "Open Jujutsu Log";
+          }
+          {
+            action = ":J status<cr>";
+            key = "<leader>ojs";
+            mode = "n";
+            silent = true;
+            desc = "Open Jujutsu Log";
+          }
+        ];
+      };
+      undotree = {
+        package = undotree;
+        keys = [
+          {
+            action = ":UndotreeToggle<cr>";
+            key = "<leader>tu";
+            desc = "Toggle Undotree";
+            mode = "n";
+            silent = true;
+          }
+        ];
+      };
+    };
     extraPlugins = with pkgs.vimPlugins; {
       plenary = {
         package = plenary-nvim;
@@ -76,9 +90,6 @@
       };
       table-mode = {
         package = vim-table-mode;
-      };
-      undotree = {
-        package = undotree;
       };
       typst-preview = {
         package = typst-preview-nvim;
