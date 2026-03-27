@@ -7,6 +7,8 @@
       pkgs.python313
       pkgs.uv
       pkgs.clang-tools
+      pkgs.ty
+      pkgs.ruff
     ];
   };
 }

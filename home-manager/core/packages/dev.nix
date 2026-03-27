@@ -3,6 +3,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    # qemu_full
     cachix
     cargo
     clang
@@ -15,7 +16,6 @@
     podman-tui
     postman
     python313
-    # qemu_full
     vscode-fhs
     zed-editor-fhs
     (aspellWithDicts (

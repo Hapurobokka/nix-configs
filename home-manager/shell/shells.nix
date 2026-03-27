@@ -9,8 +9,8 @@
         fish_add_path ~/.cargo/bin
         fish_add_path ~/.bin
         fish_add_path ~/.nimble/bin
+        fish_add_path ~/.config/emacs/bin
         alias ls 'eza --icons'
-        set -gx LD_LIBRARY_PATH ${pkgs.libX11}/lib $LD_LIBRARY_PATH
       '';
     };
     nushell = {

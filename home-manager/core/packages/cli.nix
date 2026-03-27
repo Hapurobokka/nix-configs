@@ -26,6 +26,7 @@
     nitch
     nix-output-monitor
     nixd
+    rassumfrassum
     nixfmt
     playerctl
     porsmo

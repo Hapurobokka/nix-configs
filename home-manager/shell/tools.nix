@@ -20,6 +20,7 @@
       enableFishIntegration = true;
       enableNushellIntegration = true;
       settings.mgr.show_hidden = true;
+      shellWrapperName = "y";
     };
     zoxide = {
       enable = true;

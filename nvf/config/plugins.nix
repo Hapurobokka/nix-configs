@@ -6,7 +6,14 @@
       name = "catppuccin";
       style = "frappe";
     };
-    ui.noice.enable = true;
+    ui.noice = {
+      enable = true;
+      setupOpts = {
+        messages.enabled = false;
+        lsp.progress.enabled = false;
+        notify.enabled = false;
+      };
+    };
     git.gitsigns.enable = true;
     visuals.fidget-nvim.enable = false;
     presence.neocord.enable = true;
@@ -77,6 +84,43 @@
             desc = "Toggle Undotree";
             mode = "n";
             silent = true;
+          }
+        ];
+      };
+      vim-tmux-navigator = {
+        package = vim-tmux-navigator;
+        cmd = [
+          "TmuxNavigateLeft"
+          "TmuxNavigateDown"
+          "TmuxNavigateUp"
+          "TmuxNavigateRight"
+          "TmuxNavigatePrevious"
+          "TmuxNavigatorProcessList"
+        ];
+        keys = [
+          {
+            key = "<c-h>";
+            action = "<cmd><C-U>TmuxNavigateLeft<cr>";
+            desc = "Tmux Left";
+            mode = "n";
+          }
+          {
+            key = "<c-j>";
+            action = "<cmd><C-U>TmuxNavigateDown<cr>";
+            desc = "Tmux Down";
+            mode = "n";
+          }
+          {
+            key = "<c-k>";
+            action = "<cmd><C-U>TmuxNavigateUp<cr>";
+            desc = "Tmux Up";
+            mode = "n";
+          }
+          {
+            key = "<c-l>";
+            action = "<cmd><C-U>TmuxNavigateRight<cr>";
+            desc = "Tmux Right";
+            mode = "n";
           }
         ];
       };

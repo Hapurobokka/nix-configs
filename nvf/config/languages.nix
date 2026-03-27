@@ -4,7 +4,7 @@
       enable = true;
       inlayHints.enable = true;
       lightbulb.enable = true;
-      lspconfig.enable = true;
+      lspconfig.enable = false;
     };
     formatter.conform-nvim = {
       enable = true;
@@ -42,6 +42,11 @@
         treesitter.enable = true;
       };
       clang = {
+        enable = true;
+        lsp.enable = true;
+        treesitter.enable = true;
+      };
+      scala = {
         enable = true;
         lsp.enable = true;
         treesitter.enable = true;
