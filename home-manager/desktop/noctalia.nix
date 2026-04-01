@@ -110,6 +110,29 @@
           ];
           right = [
             {
+              defaultSettings = {
+                audioCodec = "opus";
+                audioSource = "default_output";
+                colorRange = "limited";
+                copyToClipboard = false;
+                customReplayDuration = "30";
+                directory = "";
+                filenamePattern = "recording_yyyyMMdd_HHmmss";
+                frameRate = "60";
+                hideInactive = false;
+                iconColor = "none";
+                quality = "very_high";
+                replayDuration = "30";
+                replayEnabled = false;
+                replayStorage = "ram";
+                resolution = "original";
+                restorePortalSession = false;
+                showCursor = true;
+                videoCodec = "h264";
+                videoSource = "portal";
+              };
+            }
+            {
               id = "plugin:screen-recorder";
             }
             {
@@ -136,13 +159,13 @@
               showPowerProfiles = false;
             }
             {
-                clockColor = "none";
-                customFont = "";
-                formatHorizontal = "HH:mm ddd, MMM dd";
-                formatVertical = "HH mm - dd MM";
-                id = "Clock";
-                tooltipFormat = "HH:mm ddd, MMM dd";
-                useCustomFont = false;
+              clockColor = "none";
+              customFont = "";
+              formatHorizontal = "HH:mm ddd, MMM dd";
+              formatVertical = "HH mm - dd MM";
+              id = "Clock";
+              tooltipFormat = "HH:mm ddd, MMM dd";
+              useCustomFont = false;
             }
           ];
         };
@@ -255,7 +278,7 @@
       wallpaper = {
         enabled = true;
         overviewEnabled = false;
-        directory = "/home/hapu/Pictures/Wallpapers";
+        directory = "/home/hapu/nix-configs/home-manager/images";
         monitorDirectories = [ ];
         enableMultiMonitorDirectories = false;
         showHiddenFiles = false;
