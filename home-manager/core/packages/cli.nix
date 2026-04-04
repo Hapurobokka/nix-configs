@@ -10,14 +10,16 @@
     eza
     fastfetch
     fd
+    ffmpeg
+    ffmpegthumbnailer
     fzf
     grex
-    tmux
     helix
     jujutsu
     just
     kew
     lazygit
+    mediainfo
     mpc
     nb
     nerd-fonts.iosevka
@@ -26,17 +28,20 @@
     nitch
     nix-output-monitor
     nixd
-    rassumfrassum
     nixfmt
     playerctl
+    poppler-utils
     porsmo
     presenterm
+    rassumfrassum
     ripgrep
     rm-improved
     statix
     television
     tldr
+    tmux
     tree-sitter
+    vips
     wl-clipboard
     zellij
   ];

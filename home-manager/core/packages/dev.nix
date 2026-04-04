@@ -11,7 +11,7 @@
     docker-compose
     godot
     jetbrains.idea
-    jetbrains.pycharm-oss
+    jetbrains.pycharm
     nodejs_25
     podman-tui
     postman

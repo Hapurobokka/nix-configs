@@ -63,6 +63,7 @@
           "html"
           "javascript"
           "javascriptreact"
+          "json"
           "lua"
           "nim"
           "nix"
