@@ -15,8 +15,10 @@
     nodejs_25
     podman-tui
     postman
+    oterm
     python313
     vscode-fhs
+    uv
     zed-editor-fhs
     (aspellWithDicts (
       dicts: with dicts; [

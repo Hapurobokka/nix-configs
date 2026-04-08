@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 {
   programs = {
     nix-index.enable = true;
@@ -13,8 +17,14 @@
     mongosh
   ];
 
-  services.mongodb = {
-    enable = true;
-    package = pkgs.mongodb-ce;
+  services = {
+    mongodb = {
+      enable = true;
+      package = pkgs.mongodb-ce;
+    };
+    ollama = {
+      enable = true;
+      package = pkgs.ollama-cuda;
+    };
   };
 }

@@ -10,9 +10,9 @@
     packages = with pkgs; [
       qbittorrent
     ];
-    shell = pkgs.fish;
+    shell = pkgs.nushell;
   };
-  programs.fish.enable = true;
+  programs.fish.enable = false;
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "24.11";
 }
