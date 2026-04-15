@@ -13,6 +13,7 @@
       linebreak = true;
       number = true;
       relativenumber = true;
+      shell = "/run/current-system/sw/bin/nu";
       shiftwidth = 4;
       shortmess = "CFOSWaco";
       signcolumn = "yes";
@@ -68,10 +69,20 @@
           "nim"
           "nix"
           "svelte"
+          "toml"
           "typescript"
           "typescriptreact"
           "xml"
         ];
+      }
+      {
+        desc = "Highlight when yanking text";
+        event = [ "TextYankPost" ];
+        callback = lib.generators.mkLuaInline /* lua */ ''
+          function()
+            vim.highlight.on_yank({higroup="IncSearch", timeout=200})
+          end
+        '';
       }
     ];
   };

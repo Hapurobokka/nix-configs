@@ -2,7 +2,7 @@
 {
   vim = {
     theme = {
-      enable = false;
+      enable = true;
       name = "catppuccin";
       style = "frappe";
     };
@@ -139,13 +139,13 @@
         package = typst-preview-nvim;
         setup = /* lua */ "require 'typst-preview'.setup {}";
       };
-      kanagawa = {
-        package = kanagawa-nvim;
-        setup = /* lua */ ''
-          require('kanagawa').setup({ transparent = true; })
-          vim.cmd 'colorscheme kanagawa'
-        '';
-      };
+      # kanagawa = {
+      #   package = kanagawa-nvim;
+      #   setup = /* lua */ ''
+      #     require('kanagawa').setup({ transparent = true; })
+      #     vim.cmd 'colorscheme kanagawa'
+      #   '';
+      # };
     };
   };
 }

@@ -2,7 +2,7 @@
   vim = {
     lsp = {
       enable = true;
-      inlayHints.enable = true;
+      inlayHints.enable = false;
       lightbulb.enable = true;
       lspconfig.enable = false;
     };
@@ -13,7 +13,10 @@
         cpp = [ "clang-format" ];
       };
     };
-    treesitter.grammars = pkgs.vimPlugins.nvim-treesitter.allGrammars;
+    treesitter = {
+      grammars = pkgs.vimPlugins.nvim-treesitter.allGrammars;
+      highlight.enable = true;
+    };
     languages = {
       enableFormat = true;
       go = {

@@ -14,8 +14,8 @@
     jetbrains.pycharm
     nodejs_25
     podman-tui
+    javaPackages.compiler.temurin-bin.jdk-17
     postman
-    oterm
     python313
     vscode-fhs
     uv

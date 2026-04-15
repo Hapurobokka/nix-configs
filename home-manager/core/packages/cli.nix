@@ -25,6 +25,7 @@
     nerd-fonts.iosevka
     nerd-fonts.jetbrains-mono
     nh
+    graphviz
     nitch
     nix-output-monitor
     nixd

@@ -4,6 +4,7 @@
     atuin = {
       enable = true;
       enableFishIntegration = true;
+      flags = ["--disable-up-arrow"];
     };
     direnv = {
       enable = true;

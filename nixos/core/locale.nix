@@ -9,4 +9,5 @@ _: {
     layout = "latam";
     variant = "";
   };
+  fonts.enableDefaultPackages = true;
 }
