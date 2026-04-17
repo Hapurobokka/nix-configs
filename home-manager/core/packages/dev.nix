@@ -16,6 +16,7 @@
     podman-tui
     javaPackages.compiler.temurin-bin.jdk-17
     postman
+    claude-code
     python313
     vscode-fhs
     uv
