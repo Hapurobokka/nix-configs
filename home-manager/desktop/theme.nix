@@ -13,7 +13,7 @@
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/stella.yaml";
     polarity = "dark";
-    image = ../images/firefly-gato.jpeg;
+    image = ../images/Snapshot_Perlica_5.png;
     targets = {
       neovim.enable = false;
       nixvim.enable = false;

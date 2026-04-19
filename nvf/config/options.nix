@@ -3,6 +3,7 @@
   vim = {
     options = {
       autoindent = true;
+      conceallevel = 2;
       cursorline = true;
       expandtab = true;
       foldlevelstart = 99;

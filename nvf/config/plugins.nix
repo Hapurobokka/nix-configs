@@ -41,6 +41,17 @@
         cmdline.keymap.preset = "default";
       };
     };
+    notes.obsidian = {
+      enable = true;
+      setupOpts = {
+        workspaces = [
+          {
+            name = "vault";
+            path = "~/Documentos/vault";
+          }
+        ];
+      };
+    };
     notes.neorg = {
       enable = true;
       treesitter.enable = true;
