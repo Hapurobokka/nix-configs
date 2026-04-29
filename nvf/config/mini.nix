@@ -9,8 +9,9 @@
     jump.enable = true;
     jump2d.enable = false;
     map.enable = true;
+    indentscope.enable = true;
     move.enable = true;
-    notify.enable = true;
+    notify.enable = false;
     operators.enable = true;
     pairs.enable = true;
     pick.enable = true;

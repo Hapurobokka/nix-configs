@@ -6,14 +6,8 @@
       name = "catppuccin";
       style = "frappe";
     };
-    ui.noice = {
-      enable = true;
-      setupOpts = {
-        messages.enabled = false;
-        lsp.progress.enabled = false;
-        notify.enabled = false;
-      };
-    };
+    ui.noice = { enable = true; };
+    ui.ui2.enable = true;
     git.gitsigns.enable = true;
     visuals.fidget-nvim.enable = false;
     presence.neocord.enable = true;

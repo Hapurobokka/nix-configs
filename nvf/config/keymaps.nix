@@ -36,7 +36,7 @@ _: {
       desc = "Open buffers";
     }
     {
-      action = ":Pick diagnostic<cr>";
+      action = ":Trouble<cr>";
       key = "<leader>xx";
       mode = "n";
       silent = true;
@@ -51,14 +51,14 @@ _: {
     }
     {
       action = ":Pick lsp scope='document_symbol'<cr>";
-      key = "<leader>ls";
+      key = "<leader>fs";
       mode = "n";
       silent = true;
       desc = "Show lsp symbols";
     }
     {
       action = ":lua MiniFiles.open()<cr>";
-      key = "<leader>e";
+      key = "<leader>oe";
       mode = "n";
       silent = true;
       desc = "Open files";
@@ -78,27 +78,6 @@ _: {
       desc = "Delete all other buffers";
     }
     {
-      action = ":split<cr>";
-      key = "<leader>ws";
-      mode = "n";
-      silent = true;
-      desc = "Split window";
-    }
-    {
-      action = ":vsplit<cr>";
-      key = "<leader>wv";
-      mode = "n";
-      silent = true;
-      desc = "Vertically split window";
-    }
-    {
-      action = ":quit<cr>";
-      key = "<leader>wq";
-      mode = "n";
-      silent = true;
-      desc = "Close window";
-    }
-    {
       action = ":ToggleTerm<cr>";
       key = "<leader>ot";
       mode = "n";
@@ -107,17 +86,24 @@ _: {
     }
     {
       action = "<C-\\><C-n>";
-      key = "<C-d>";
+      key = "<C-p>";
       mode = "t";
       silent = true;
       desc = "Exit term mode";
     }
     {
-      action = ":lua require('conform').format()<cr>";
-      key = "<Leader>of";
+      action = ":lua vim.lsp.buf.definition()<cr>";
+      key = "gd";
       mode = "n";
       silent = true;
-      desc = "Format";
+      desc = "Go to definition";
+    }
+    {
+      action = ":lua vim.lsp.buf.declaration()<cr>";
+      key = "gD";
+      mode = "n";
+      silent = true;
+      desc = "Go to declaration";
     }
   ];
 }

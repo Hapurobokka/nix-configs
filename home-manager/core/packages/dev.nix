@@ -4,22 +4,23 @@
 {
   home.packages = with pkgs; [
     # qemu_full
+    bun
     cachix
     cargo
     clang
+    claude-code
     direnv
     docker-compose
     godot
+    javaPackages.compiler.temurin-bin.jdk-17
     jetbrains.idea
     jetbrains.pycharm
     nodejs_25
     podman-tui
-    javaPackages.compiler.temurin-bin.jdk-17
     postman
-    claude-code
     python313
-    vscode-fhs
     uv
+    vscode-fhs
     zed-editor-fhs
     (aspellWithDicts (
       dicts: with dicts; [

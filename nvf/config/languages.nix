@@ -1,16 +1,20 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   vim = {
     lsp = {
       enable = true;
       inlayHints.enable = false;
       lightbulb.enable = true;
       lspconfig.enable = false;
+      trouble.enable = true;
+      lspkind.enable = true;
     };
     formatter.conform-nvim = {
       enable = true;
       setupOpts.formatters_by_ft = {
         python = [ "ruff" ];
         cpp = [ "clang-format" ];
+        rust = [ "rustfmt" ];
       };
     };
     treesitter = {
@@ -43,6 +47,7 @@
         enable = true;
         lsp.enable = true;
         treesitter.enable = true;
+        format.enable = true;
       };
       clang = {
         enable = true;
