@@ -2,9 +2,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    bottles
     dolphin-emu
-    lutris
     prismlauncher
     protonup-ng
     r2modman

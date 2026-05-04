@@ -1,6 +1,6 @@
 # There was a very cringe comment here but
 # I recapacitated.
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   home.packages = with pkgs; [
     gearlever
@@ -10,6 +10,7 @@
     gnomeExtensions.blur-my-shell
     gnomeExtensions.appindicator
     kdePackages.okular
+    inputs.helium.packages.${pkgs.system}.default
     kitty
     nicotine-plus
     obsidian

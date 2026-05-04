@@ -20,10 +20,6 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     prism-launcher = {
       url = "github:Diegiwg/PrismLauncher-Cracked";
@@ -43,6 +39,10 @@
     };
     noctalia-qs = {
       url = "github:noctalia-dev/noctalia-qs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    helium = {
+      url = "github:tomsch/helium-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
