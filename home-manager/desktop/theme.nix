@@ -32,7 +32,7 @@
       logo = {
         type = "kitty";
         width = 25;
-        source = ../images/firefly-gato.jpeg;
+        source = ../images/Snapshot_Last_Rite_3.png;
         padding = {
           top = 0;
           right = 2;

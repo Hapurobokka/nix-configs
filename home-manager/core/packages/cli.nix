@@ -28,6 +28,7 @@
     graphviz
     nitch
     zip
+    fff
     unzip
     nix-output-monitor
     nixd

@@ -45,6 +45,7 @@
       url = "github:tomsch/helium-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
   };
 
   outputs =
