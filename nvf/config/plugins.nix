@@ -1,4 +1,14 @@
 { pkgs, ... }:
+let
+  lspHover = pkgs.vimUtils.buildVimPlugin {
+    name = "lsp-hover";
+    src = pkgs.writeTextFile {
+      name = "lsp-hover-src";
+      text = builtins.readFile ../lua/lsp_hover.lua;
+      destination = "/lua/lsp_hover.lua";
+    };
+  };
+in
 {
   vim = {
     theme = {
@@ -187,6 +197,10 @@
             },
           })
         '';
+      };
+      lsp-hover = {
+        package = lspHover;
+        setup = /* lua */ "require('lsp_hover').setup()";
       };
       typst-preview = {
         package = typst-preview-nvim;
