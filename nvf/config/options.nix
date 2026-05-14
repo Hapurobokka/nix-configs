@@ -7,7 +7,6 @@
       cursorline = true;
       expandtab = true;
       foldlevelstart = 99;
-      formatoptions = "rqnl1j";
       ignorecase = true;
       incsearch = true;
       infercase = true;
@@ -20,7 +19,7 @@
       showmode = false;
       signcolumn = "yes";
       smartcase = true;
-      smartindent = true;
+
       softtabstop = 4;
       splitbelow = true;
       splitkeep = "screen";

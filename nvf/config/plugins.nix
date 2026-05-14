@@ -7,7 +7,51 @@
       style = "frappe";
     };
     ui.noice = {
-      enable = false;
+      enable = true;
+      setupOpts = {
+        routes = [
+          {
+            filter = {
+              event = "msg_show";
+              kind = "";
+              find = "written";
+            };
+            opts = {
+              skip = true;
+            };
+          }
+          {
+            filter = {
+              event = "msg_show";
+              kind = "";
+              find = "lines --";
+            };
+            opts = {
+              skip = true;
+            };
+          }
+          {
+            filter = {
+              event = "msg_show";
+              kind = "";
+              find = "L,";
+            };
+            opts = {
+              skip = true;
+            };
+          }
+          {
+            filter = {
+              event = "msg_show";
+              kind = "";
+              find = "^\".*\"$";
+            };
+            opts = {
+              skip = true;
+            };
+          }
+        ];
+      };
     };
     git.gitsigns.enable = true;
     presence.neocord.enable = true;
@@ -136,6 +180,13 @@
       };
       markview = {
         package = markview-nvim;
+        setup = /* lua */ ''
+          require('markview').setup({
+            preview = {
+              ignore_buftypes = {},
+            },
+          })
+        '';
       };
       typst-preview = {
         package = typst-preview-nvim;
