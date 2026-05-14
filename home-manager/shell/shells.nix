@@ -30,9 +30,10 @@
 
         source /home/hapu/nix-configs/home-manager/nushell/completions-jj.nu
         source /home/hapu/nix-configs/home-manager/nushell/nb-completions.nu
-        '';
+        $env.LD_LIBRARY_PATH = $"/nix/store/5m91jqg1526jzsahrgmd37k4ml3nc5l4-libx11-1.8.13/lib/:($env.LD_LIBRARY_PATH? | default "")"
+      '';
     };
-   carapace.enable = true;
-   carapace.enableNushellIntegration = true;
+    carapace.enable = true;
+    carapace.enableNushellIntegration = true;
   };
 }

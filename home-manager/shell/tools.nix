@@ -4,7 +4,7 @@
     atuin = {
       enable = true;
       enableFishIntegration = true;
-      flags = ["--disable-up-arrow"];
+      flags = [ "--disable-up-arrow" ];
     };
     direnv = {
       enable = true;
@@ -15,6 +15,7 @@
       enable = true;
       enableFishIntegration = false;
       enableNushellIntegration = true;
+      enableBashIntegration = true;
     };
     yazi = {
       enable = true;

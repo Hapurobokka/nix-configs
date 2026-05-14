@@ -16,7 +16,8 @@
       relativenumber = true;
       shell = "/run/current-system/sw/bin/nu";
       shiftwidth = 4;
-      shortmess = "CFOSWaco";
+      shortmess = "CFIOSWaco";
+      showmode = false;
       signcolumn = "yes";
       smartcase = true;
       smartindent = true;

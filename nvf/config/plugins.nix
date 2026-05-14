@@ -6,10 +6,10 @@
       name = "catppuccin";
       style = "frappe";
     };
-    ui.noice = { enable = true; };
-    ui.ui2.enable = true;
+    ui.noice = {
+      enable = false;
+    };
     git.gitsigns.enable = true;
-    visuals.fidget-nvim.enable = false;
     presence.neocord.enable = true;
     terminal.toggleterm.enable = true;
     binds.hardtime-nvim.enable = true;
@@ -136,9 +136,6 @@
       };
       markview = {
         package = markview-nvim;
-      };
-      table-mode = {
-        package = vim-table-mode;
       };
       typst-preview = {
         package = typst-preview-nvim;
