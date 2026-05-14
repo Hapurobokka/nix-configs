@@ -208,10 +208,15 @@ lsp_hover.hover = function (error, result, context, _)
 		lines = vim.split(content or "", "\n", { trimempty = true });
 		ft = "markdown";
 	elseif vim.islist(content) then
-		content = content[1];
-
-		lines = vim.split(content.value or "", "\n", { trimempty = true });
-		ft = content.kind;
+		ft = (content[1] and content[1].kind) or "markdown";
+		for _, item in ipairs(content) do
+			local value = type(item) == "string" and item or (item.value or "");
+			local item_lines = vim.split(value, "\n", { trimempty = true });
+			if #item_lines > 0 then
+				vim.list_extend(lines, item_lines);
+				table.insert(lines, "");
+			end
+		end
 	else
 		lines = vim.split(content.value or "", "\n", { trimempty = true });
 		ft = content.kind;
