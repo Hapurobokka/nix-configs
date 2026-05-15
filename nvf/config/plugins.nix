@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   lspHover = pkgs.vimUtils.buildVimPlugin {
     name = "lsp-hover";
@@ -87,10 +87,27 @@ in
       setupOpts = {
         keymap.preset = "default";
         cmdline.keymap.preset = "default";
+        sources.providers.lsp.transform_items = lib.generators.mkLuaInline /* lua */ ''
+          function(_, items)
+            local function sanitize(t)
+              for k, v in pairs(t) do
+                if type(v) == "userdata" then
+                  t[k] = nil
+                elseif type(v) == "table" then
+                  sanitize(v)
+                end
+              end
+            end
+            for _, item in ipairs(items) do
+              sanitize(item)
+            end
+            return items
+          end
+        '';
       };
     };
     notes.obsidian = {
-      enable = true;
+      enable = false;
       setupOpts = {
         workspaces = [
           {
