@@ -3,7 +3,7 @@
   flake.nixosConfigurations.nixos = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
-      { nixpkgs.overlays = [ inputs.millennium.overlays.default ]; }
+      # { nixpkgs.overlays = [ inputs.millennium.overlays.default ]; }
       ./hardware/_generated/hardware-configuration.nix
       (inputs.import-tree [
         ./core

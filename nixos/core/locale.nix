@@ -1,4 +1,4 @@
-_: {
+{ pkgs, ... }: {
   # Set your time zone.
   time.timeZone = "America/Mexico_City";
 
@@ -9,5 +9,12 @@ _: {
     layout = "latam";
     variant = "";
   };
-  fonts.enableDefaultPackages = true;
+  fonts = {
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      noto-fonts-color-emoji
+    ];
+  };
 }
