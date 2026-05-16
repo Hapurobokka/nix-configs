@@ -19,7 +19,7 @@
       nixvim.enable = false;
       nvf.enable = false;
       emacs.enable = false;
-      zen-browser.enable = false;
+      zen-browser.enable = true;
       ghostty.enable = false;
       fish.enable = false;
       helix.enable = false;

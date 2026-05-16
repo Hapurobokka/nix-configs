@@ -117,19 +117,6 @@ in
         ];
       };
     };
-    notes.neorg = {
-      enable = true;
-      treesitter.enable = true;
-      setupOpts.load = {
-        "core.defaults".enable = true;
-        "core.concealer" = { };
-        "core.dirman".config = {
-          workspaces.main = "~/neorg";
-          index = "index.norg";
-          default_workspace = "main";
-        };
-      };
-    };
     lazy.plugins = with pkgs.vimPlugins; {
       "jj.nvim" = {
         package = jj-nvim;

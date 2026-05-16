@@ -11,6 +11,8 @@
     gnomeExtensions.appindicator
     kdePackages.okular
     inputs.helium.packages.${pkgs.system}.default
+    inputs.zen-browser.packages.${pkgs.system}.default
+    thunar
     kitty
     nicotine-plus
     obsidian

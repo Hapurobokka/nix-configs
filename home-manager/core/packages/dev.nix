@@ -1,8 +1,9 @@
 # Funky development utils
 # Unironically good distro for this shi
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   home.packages = with pkgs; [
+    inputs.self.packages.${pkgs.system}.nvim
     # qemu_full
     bun
     cachix
