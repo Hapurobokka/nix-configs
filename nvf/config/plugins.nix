@@ -60,6 +60,16 @@ in
               skip = true;
             };
           }
+          {
+            filter = {
+              event = "lsp";
+              kind = "progress";
+              find = "Checking document";
+            };
+            opts = {
+              skip = true;
+            };
+          }
         ];
       };
     };
