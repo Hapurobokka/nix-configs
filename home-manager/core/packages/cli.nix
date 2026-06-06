@@ -25,6 +25,8 @@
     nerd-fonts.iosevka
     nerd-fonts.jetbrains-mono
     nh
+    fsel
+    nvidia-container-toolkit
     graphviz
     nitch
     zip

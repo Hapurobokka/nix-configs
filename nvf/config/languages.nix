@@ -17,48 +17,6 @@
         rust = [ "rustfmt" ];
       };
     };
-    extraPackages = [ pkgs.nimlangserver ];
-
-    autocmds = [
-      {
-        desc = "Start nimlangserver for Nim files";
-        event = [ "FileType" ];
-        pattern = [ "nim" ];
-        callback = lib.generators.mkLuaInline /* lua */ ''
-          function(args)
-            local function sanitize(t)
-              for k, v in pairs(t) do
-                if type(v) == "userdata" then
-                  t[k] = nil
-                elseif type(v) == "table" then
-                  sanitize(v)
-                end
-              end
-            end
-            vim.lsp.start({
-              name = "nimlangserver",
-              cmd = { "nimlangserver" },
-              root_dir = vim.fs.root(args.buf, { "*.nimble", ".git" }),
-              handlers = {
-                ["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
-                  if result and result.diagnostics then
-                    for _, diag in ipairs(result.diagnostics) do
-                      sanitize(diag)
-                    end
-                  end
-                  vim.lsp.handlers["textDocument/publishDiagnostics"](err, result, ctx, config)
-                end,
-                ["textDocument/rename"] = function(err, result, ctx, config)
-                  if result then sanitize(result) end
-                  vim.lsp.handlers["textDocument/rename"](err, result, ctx, config)
-                end,
-              },
-            })
-          end
-        '';
-      }
-    ];
-
     treesitter = {
       grammars = pkgs.vimPlugins.nvim-treesitter.allGrammars;
       highlight.enable = true;
@@ -82,7 +40,7 @@
       };
       nim = {
         enable = true;
-        lsp.enable = false;
+        lsp.enable = true;
         treesitter.enable = true;
       };
       rust = {

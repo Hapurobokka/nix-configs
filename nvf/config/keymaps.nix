@@ -57,11 +57,11 @@ _: {
       desc = "Show lsp symbols";
     }
     {
-      action = ":lua MiniFiles.open()<cr>";
+      action = ":Oil<cr>";
       key = "<leader>oe";
       mode = "n";
       silent = true;
-      desc = "Open files";
+      desc = "Open file explorer";
     }
     {
       action = ":lua MiniBufremove.delete()<cr>";

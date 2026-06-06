@@ -27,6 +27,7 @@
         path add "~/.local/bin/"
         path add "~/.local/share/nvim/mason/staging/nil/bin"
         path add "~/.config/emacs/bin"
+        path add "~/.cache/npm/global/bin"
 
         source /home/hapu/nix-configs/home-manager/nushell/completions-jj.nu
         source /home/hapu/nix-configs/home-manager/nushell/nb-completions.nu

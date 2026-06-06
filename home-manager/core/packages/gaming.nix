@@ -6,6 +6,7 @@
     # prismlauncher
     protonup-ng
     r2modman
+    lutris
     wine
     winetricks
     (retroarch.withCores (

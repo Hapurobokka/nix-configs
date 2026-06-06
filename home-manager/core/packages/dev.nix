@@ -14,9 +14,7 @@
     docker-compose
     godot
     javaPackages.compiler.temurin-bin.jdk-17
-    jetbrains.idea
-    jetbrains.pycharm
-    nodejs_25
+    nodejs_26
     podman-tui
     postman
     python313

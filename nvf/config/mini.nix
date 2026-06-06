@@ -21,7 +21,7 @@
     tabline.enable = true;
     trailspace.enable = true;
     files = {
-      enable = true;
+      enable = false;
       setupOpts = {
         windows = {
           preview = true;

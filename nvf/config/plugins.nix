@@ -79,7 +79,7 @@ in
     binds.hardtime-nvim.enable = true;
     fzf-lua.enable = false;
     utility = {
-      oil-nvim.enable = false;
+      oil-nvim.enable = true;
       motion = {
         precognition.enable = false;
         flash-nvim = {
