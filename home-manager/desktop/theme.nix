@@ -12,7 +12,7 @@
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/stella.yaml";
     polarity = "dark";
-    image = ../images/Snapshot_Perlica_5.png;
+    image = ../images/castorice-awitada.jpg;
     targets = {
       neovim.enable = false;
       nixvim.enable = false;

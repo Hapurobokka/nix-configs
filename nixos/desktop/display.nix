@@ -5,8 +5,15 @@
     xserver = {
       enable = true;
     };
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd ${pkgs.niri-unstable}/bin/niri-session";
+          user = "greeter";
+        };
+      };
+    };
   };
 
   programs = {
@@ -26,7 +33,6 @@
     };
     systemPackages = with pkgs; [
       dunst
-      gnome-tweaks
       libnotify
       wayland-utils
       xwayland-satellite

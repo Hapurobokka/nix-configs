@@ -67,6 +67,6 @@ _: {
         }
       ];
     };
-    waydroid.enable = true;
+    waydroid.enable = false;
   };
 }

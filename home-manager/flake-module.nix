@@ -12,6 +12,7 @@ in
     modules = [
       { nixpkgs.overlays = [ inputs.prism-launcher.overlays.default ]; }
       inputs.stylix.homeModules.stylix
+      inputs.niri.homeModules.config
       (inputs.import-tree [
         ./core
         ./shell
