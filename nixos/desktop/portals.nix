@@ -8,12 +8,17 @@
     ];
     config = {
       common = {
-        default = [ "gtk" ];
+        default = [ "kde" "gtk" ];
       };
       niri = {
         default = [ "gtk" ];
         "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
         "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
+      };
+      plasma = {
+        default = [ "kde" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "kde" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "kde" ];
       };
     };
   };
