@@ -87,7 +87,7 @@
     };
 
     spawn-at-startup = [
-      { sh = "noctalia-shell"; }
+      { sh = "noctalia"; }
       { sh = "XMODIFIERS='' GTK_IM_MODULE='gtk-im-context-simple' doom emacs --daemon"; }
     ];
 
@@ -109,12 +109,18 @@
       }
       {
         geometry-corner-radius = {
-          top-left = 12.0;
-          top-right = 12.0;
-          bottom-left = 12.0;
-          bottom-right = 12.0;
+          top-left = 20.0;
+          top-right = 20.0;
+          bottom-left = 20.0;
+          bottom-right = 20.0;
         };
         clip-to-geometry = true;
+      }
+      {
+        matches = [ {app-id = "dev.noctalia.Noctalia.settings";} ];
+        open-floating = true;
+        default-column-width = { fixed = 1080; };
+        default-window-height = { fixed = 920; };
       }
       {
         matches = [
@@ -145,7 +151,7 @@
 
     layer-rules = [
       {
-        matches = [ { namespace = "^noctalia-overview*"; } ];
+        matches = [ { namespace = "^noctalia-backdrop*"; } ];
         place-within-backdrop = true;
       }
     ];
@@ -171,12 +177,13 @@
       };
       "Mod+Shift+B" = {
         hotkey-overlay.title = "Lock screen";
-        action.spawn-sh = "noctalia-shell ipc call lockScreen lock";
+        action.spawn-sh = "noctalia msg session lock";
       };
       "Alt+Space".action.spawn = [
-        "kitty"
-        "--title=otter"
-        "otter-launcher"
+        "noctalia"
+        "msg"
+        "panel-open"
+        "launcher"
       ];
 
       "Super+Alt+S" = {
@@ -222,21 +229,17 @@
       "XF86MonBrightnessUp" = {
         allow-when-locked = true;
         action.spawn = [
-          "noctalia-shell"
-          "ipc"
-          "call"
-          "brightness"
-          "increase"
+          "noctalia"
+          "msg"
+          "brightness-up"
         ];
       };
       "XF86MonBrightnessDown" = {
         allow-when-locked = true;
         action.spawn = [
-          "noctalia-shell"
-          "ipc"
-          "call"
-          "brightness"
-          "decrease"
+          "noctalia"
+          "msg"
+          "brightness-down"
         ];
       };
 
@@ -249,6 +252,8 @@
         repeat = false;
         action.close-window = [ ];
       };
+
+      "Mod+Space".action.spawn-sh = "noctalia msg panel-toggle control-center";
 
       "Mod+Left".action.focus-column-left = [ ];
       "Mod+Down".action.focus-window-down = [ ];
@@ -394,10 +399,9 @@
 
     switch-events = {
       lid-close.action.spawn = [
-        "noctalia-shell"
-        "ipc"
-        "call"
-        "lockScreen"
+        "noctalia"
+        "msg"
+        "session"
         "lock"
       ];
     };

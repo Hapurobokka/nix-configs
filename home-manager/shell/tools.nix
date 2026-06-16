@@ -52,7 +52,7 @@
       '';
     };
     ghostty = {
-      enable = true;
+      enable = false;
       settings = {
         font-family = "JetBrains Mono";
         theme = "Kanagawa Wave";

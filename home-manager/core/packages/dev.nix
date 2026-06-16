@@ -18,6 +18,7 @@
     podman-tui
     postman
     python313
+    ghostty
     uv
     vscode-fhs
     zed-editor-fhs

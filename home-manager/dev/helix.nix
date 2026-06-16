@@ -1,6 +1,12 @@
-_: {
+{pkgs, ...}: {
   programs.helix = {
     enable = true;
+
+    extraPackages = [
+      pkgs.nimlsp
+      pkgs.ruff
+      pkgs.ty
+    ];
 
     settings = {
       theme = "kanagawa";
@@ -21,9 +27,16 @@ _: {
         command = "rubocop";
         args = [ "--lsp" ];
       };
-      language-server.pyright = {
-        command = "pyright-langserver";
-        args = [ "--stdio" ];
+      language-server.ruff = {
+        command = "ruff";
+        args = [ "server" ];
+      };
+      language-server.ty = {
+        command = "ty";
+        args = [ "server" ];
+      };
+      language-server.nimlsp = {
+        command = "nimlsp";
       };
       language = [
         {
@@ -37,7 +50,11 @@ _: {
         }
         {
           name = "python";
-          language-servers = [ "pyright" ];
+          language-servers = [ "ruff" "ty" ];
+        }
+        {
+          name = "nim";
+          language-servers = [ "nimlsp" ];
         }
       ];
     };

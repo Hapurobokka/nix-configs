@@ -14,7 +14,6 @@
     ffmpegthumbnailer
     fzf
     grex
-    helix
     jujutsu
     just
     kew

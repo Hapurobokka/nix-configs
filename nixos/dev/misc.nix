@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}:
+{pkgs, ...}:
 {
   programs = {
     nix-index.enable = true;
@@ -19,13 +15,5 @@
     neovim
     home-manager
     # inputs.self.packages.${pkgs.system}.nvim
-    mongosh
   ];
-
-  services = {
-    mongodb = {
-      enable = true;
-      package = pkgs.mongodb-ce;
-    };
-  };
 }
