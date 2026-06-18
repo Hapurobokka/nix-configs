@@ -22,6 +22,7 @@
       ghostty.enable = false;
       fish.enable = false;
       helix.enable = false;
+      hyprland.enable = false;
     };
   };
 
