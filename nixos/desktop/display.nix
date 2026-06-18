@@ -4,7 +4,10 @@
   services.xserver.enable = true;
 
   programs = {
-    hyprland.enable = false;
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
     niri = {
       enable = true;
       package = pkgs.niri-unstable;

@@ -4,6 +4,9 @@
   home.packages = with pkgs; [
     acpi
     bat
+    brightnessctl
+    hyprshot
+    ncpamixer
     btop
     cava
     chafa

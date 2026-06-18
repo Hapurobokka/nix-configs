@@ -20,6 +20,10 @@
     spotify
     vesktop
     vivaldi
+    waybar
+    wofi
+    bluetui
+    networkmanagerapplet
     zapzap
   ];
 }
