@@ -49,6 +49,7 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixcats.url = "path:./nixcats";
   };
 
   outputs =
@@ -60,5 +61,8 @@
         ./home-manager/flake-module.nix
         ./nvf/flake-modules.nix
       ];
+      perSystem = { system, ... }: {
+        packages.nixcats-nvim = inputs.nixcats.packages.${system}.nvim;
+      };
     };
 }

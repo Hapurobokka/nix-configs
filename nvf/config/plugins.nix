@@ -95,8 +95,26 @@ in
       enable = true;
       friendly-snippets.enable = true;
       setupOpts = {
-        keymap.preset = "default";
-        cmdline.keymap.preset = "default";
+        keymap = {
+          preset = "none";
+          "<C-n>" = [ "select_next" "fallback" ];
+          "<Tab>" = [ "select_next" "fallback" ];
+          "<Down>" = [ "select_next" "fallback" ];
+          "<C-p>" = [ "select_prev" "fallback" ];
+          "<S-Tab>" = [ "select_prev" "fallback" ];
+          "<Up>" = [ "select_prev" "fallback" ];
+          "<CR>" = [ "accept" "fallback" ];
+        };
+        cmdline.keymap = {
+          preset = "none";
+          "<C-n>" = [ "select_next" "fallback" ];
+          "<Tab>" = [ "show_and_insert_or_accept_single" "select_next" ];
+          "<Down>" = [ "select_next" "fallback" ];
+          "<C-p>" = [ "select_prev" "fallback" ];
+          "<S-Tab>" = [ "show_and_insert_or_accept_single" "select_prev" ];
+          "<Up>" = [ "select_prev" "fallback" ];
+          "<CR>" = [ "accept" "fallback" ];
+        };
         sources.providers.lsp.transform_items = lib.generators.mkLuaInline /* lua */ ''
           function(_, items)
             local function sanitize(t)
