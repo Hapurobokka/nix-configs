@@ -9,6 +9,7 @@
       pkgs.clang-tools
       pkgs.ty
       pkgs.ruff
+      pkgs.sqlite
     ];
   };
 }

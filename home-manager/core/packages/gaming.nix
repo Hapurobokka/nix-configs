@@ -5,8 +5,8 @@
     dolphin-emu
     # prismlauncher
     protonup-ng
+    ppsspp
     r2modman
-    lutris
     wine
     winetricks
     (retroarch.withCores (

@@ -62,7 +62,7 @@
         ./nvf/flake-modules.nix
       ];
       perSystem = { system, ... }: {
-        packages.nixcats-nvim = inputs.nixcats.packages.${system}.nvim;
+        packages.nvim = inputs.nixcats.packages.${system}.nvim;
       };
     };
 }

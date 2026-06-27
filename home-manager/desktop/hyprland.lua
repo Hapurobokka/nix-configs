@@ -96,8 +96,8 @@ for i = 1, 9 do
 end
 
 -- Previous/next workspace
-hl.bind(mod .. " + U", hl.dsp.focus({ workspace = "-1" }))
-hl.bind(mod .. " + I", hl.dsp.focus({ workspace = "+1" }))
+hl.bind(mod .. " + I", hl.dsp.focus({ workspace = "-1" }))
+hl.bind(mod .. " + U", hl.dsp.focus({ workspace = "+1" }))
 
 -- Scroll through workspaces
 hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
@@ -155,10 +155,10 @@ hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"),  { locked = t
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),    { locked = true })
 
 -- Window rules
--- hl.window_rule({
---   match          = { class = ".*" },
---   suppress_event = "maximize",
--- })
+hl.window_rule({
+  match          = { class = ".*" },
+  suppress_event = "maximize",
+})
 
 hl.window_rule({
   match = {

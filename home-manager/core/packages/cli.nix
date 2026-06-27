@@ -1,7 +1,8 @@
 # Packages with command-line utilities
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   home.packages = with pkgs; [
+    inputs.nixcats.packages.${pkgs.system}.nvim
     acpi
     bat
     brightnessctl
@@ -35,6 +36,7 @@
     fff
     unzip
     nix-output-monitor
+    ncspot
     nixd
     nixfmt
     playerctl

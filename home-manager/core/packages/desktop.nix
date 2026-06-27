@@ -3,27 +3,25 @@
 { pkgs, inputs, ... }:
 {
   home.packages = with pkgs; [
-    gearlever
     brave
     firefox
     gimp
     gnomeExtensions.blur-my-shell
     gnomeExtensions.appindicator
     kdePackages.okular
-    inputs.helium.packages.${pkgs.system}.default
-    inputs.zen-browser.packages.${pkgs.system}.default
-    thunar
+    # inputs.helium.packages.${pkgs.system}.default
+    # inputs.zen-browser.packages.${pkgs.system}.default
     kitty
     nicotine-plus
     obsidian
     papirus-icon-theme
     spotify
-    vesktop
+    # vesktop
     vivaldi
-    waybar
-    wofi
+    # waybar
+    # wofi
     bluetui
-    networkmanagerapplet
+    # networkmanagerapplet
     zapzap
   ];
 }

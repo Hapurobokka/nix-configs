@@ -143,8 +143,8 @@
       optionalPlugins = {
         gitPlugins = with pkgs.neovimPlugins; [ ];
         general = with pkgs.vimPlugins; {
-          always = [ mini-pick mini-surround mini-pairs ];
-          extra = [ fidget-nvim which-key-nvim undotree ];
+          always = [ mini-pick mini-surround mini-pairs mini-jump mini-jump2d ];
+          extra = [ fidget-nvim which-key-nvim undotree jj-nvim claudecode-nvim ];
         };
       };
 
@@ -219,7 +219,7 @@
           gitPlugins = true;
           customPlugins = true;
           test = true;
-          godot = true;
+          ai = true;
           example = {
             youCan = "add more than just booleans";
             toThisSet = [

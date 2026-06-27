@@ -6,6 +6,6 @@
       modules = [ (inputs.import-tree ./config) ];  # ← apunta a config/
     };
   in {
-    packages.nvim = nvimPkg.neovim;
+    packages.nvf-nvim = nvimPkg.neovim;
   };
 }
