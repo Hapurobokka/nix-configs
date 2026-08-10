@@ -12,7 +12,6 @@
         ./games
         ./dev
       ])
-      inputs.niri.nixosModules.niri
       inputs.nix-index-database.nixosModules.default
       inputs.nixos-hardware.nixosModules.lenovo-ideapad-15ach6
       {

@@ -5,6 +5,7 @@
     dolphin-emu
     # prismlauncher
     protonup-ng
+    deadlock-mod-manager
     ppsspp
     r2modman
     wine

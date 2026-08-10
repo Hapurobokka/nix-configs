@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   xdg.portal = {
     enable = true;
@@ -10,7 +10,8 @@
       common = {
         default = [ "kde" "gtk" ];
       };
-      niri = {
+      # programs.niri (nixpkgs) also sets a default here ("gnome;gtk"); override for our gtk/wlr setup.
+      niri = lib.mkForce {
         default = [ "gtk" ];
         "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
         "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];

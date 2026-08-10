@@ -1,6 +1,5 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
-  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
   services.xserver.enable = true;
 
   programs = {
@@ -10,7 +9,8 @@
     };
     niri = {
       enable = true;
-      package = pkgs.niri-unstable;
+      # Portal is managed explicitly in nixos/desktop/portals.nix (gtk/wlr, not gnome).
+      useNautilus = false;
     };
   };
 
