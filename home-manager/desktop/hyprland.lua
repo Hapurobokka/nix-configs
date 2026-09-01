@@ -3,8 +3,9 @@ local terminal = "kitty"
 local fileMgr  = "kitty yazi"
 local ipc      = "noctalia msg"
 local web      = "firefox"
-local volume   = "kitty ncpamixer"
-local blue     = "kitty bluetui"
+local ekg      = [[kitty --class ekg-capture emacsclient -t -e '(ekg-capture)']]
+local music    = "kitty"
+local discord  = "flatpak run com.discordapp.Discord"
 
 hl.config({
   general = {
@@ -16,7 +17,7 @@ hl.config({
     column_width             = 0.5,
     fullscreen_on_one_column = true,
     follow_focus             = true,
-    wrap_focus               = true,
+    wrap_focus               = false,
     direction                = "right",
     explicit_column_widths   = "0.5, 1.0",
   },
@@ -38,11 +39,12 @@ hl.config({
   },
   input = {
     kb_layout    = "latam",
-    follow_mouse = 1,
+    follow_mouse = 0,
     sensitivity  = 0,
     touchpad = {
-      natural_scroll = false,
+      natural_scroll = true,
     },
+
   },
   animations = {
     enabled = true,
@@ -69,6 +71,13 @@ hl.monitor({
   output   = "",
   mode     = "highres",
   position = "auto",
+  scale    = 1,
+})
+
+hl.monitor({
+  output   = "HDMI-A-1",
+  mode     = "highres",
+  position = "1920x0",
   scale    = 1,
 })
 
@@ -99,8 +108,7 @@ end
 hl.bind(mod .. " + I", hl.dsp.focus({ workspace = "-1" }))
 hl.bind(mod .. " + U", hl.dsp.focus({ workspace = "+1" }))
 
--- Scroll through workspaces
-hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+-- Scroll through workspaces hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
 -- Move windows to workspace
@@ -116,11 +124,14 @@ hl.bind(mod .. " + SHIFT + L", hl.dsp.focus({ monitor = "+1" }))
 hl.bind(mod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
+hl.bind(mod .. " + D", hl.dsp.workspace.toggle_special("chat"))
+hl.bind(mod .. " + M", hl.dsp.workspace.toggle_special("music"))
+
 -- Window actions
 hl.bind(mod .. " + F",         hl.dsp.layout("colresize +conf"))
 hl.bind(mod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
 hl.bind(mod .. " + V",         hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mod .. " + D",         hl.dsp.window.pseudo())
+-- hl.bind(mod .. " + D",         hl.dsp.window.pseudo())
 hl.bind(mod .. " + SHIFT + Q", hl.dsp.window.close())
 hl.bind(mod .. " + SHIFT + C", hl.dsp.exit())
 
@@ -130,9 +141,8 @@ hl.bind(mod .. " + Space",     hl.dsp.exec_cmd(ipc .. " panel-toggle control-cen
 hl.bind(mod .. " + E",         hl.dsp.exec_cmd(terminal))
 hl.bind(mod .. " + T",         hl.dsp.exec_cmd(web))
 hl.bind(mod .. " + Y",         hl.dsp.exec_cmd(fileMgr))
-hl.bind(mod .. " + SHIFT + V", hl.dsp.exec_cmd(volume))
-hl.bind(mod .. " + B",         hl.dsp.exec_cmd(blue))
 hl.bind(mod .. " + SHIFT + B", hl.dsp.exec_cmd(ipc .. "session lock"))
+hl.bind(mod .. " + C",         hl.dsp.exec_cmd(ekg))
 
 -- Screenshots
 hl.bind("Print",               hl.dsp.exec_cmd("hyprshot -m region"))
@@ -153,6 +163,8 @@ hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),        { locked = t
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"),  { locked = true })
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"),  { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),    { locked = true })
+
+hl.gesture({ fingers = 3, direction = "vertical", action = "workspace" })
 
 -- Window rules
 hl.window_rule({
@@ -182,7 +194,58 @@ hl.window_rule({
   no_focus         = true,
 })
 
+hl.window_rule({
+  match = { class = "^firefox" },
+  workspace = "1"
+})
+
+hl.window_rule({
+  match = { class = "^discord$" },
+  workspace = "special:chat",
+})
+
+hl.window_rule({
+  match = { class = "^spotify$" },
+  workspace = "special:music"
+})
+
+hl.window_rule({
+  match = { class = "^steam$" },
+  workspace = "2"
+})
+
+hl.window_rule({
+  match = { class = "^steam$", title = "^Friends List$" },
+  size = {400, 800},
+  float = true,
+  workspace = "2",
+})
+
+hl.window_rule({
+  match = { class = "ekg-capture" },
+  size = {800, 800},
+  float = true,
+})
+
+-- Workspaces rules
+hl.workspace_rule({
+  workspace = "special:music",
+  on_created_empty = music
+})
+
+hl.workspace_rule({
+  workspace = "special:chat",
+  on_created_empty = discord
+})
+
 -- Startup
 hl.on("hyprland.start", function()
   hl.exec_cmd("noctalia")
+  hl.exec_cmd("emacs --daemon")
 end)
+
+hl.env("HYPRCURSOR_THEME", "agnes-tachyon")
+hl.env("HYPRCURSOR_SIZE", 22)
+
+hl.env("XCURSOR_THEME", "agnes-tachyon")
+hl.env("XCURSOR_SIZE", 22)

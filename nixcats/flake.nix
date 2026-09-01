@@ -100,11 +100,11 @@
             tree-sitter
           ];
           nix = with pkgs; [
-            nil
+            nixd
             alejandra
           ];
           nim = with pkgs; [
-            nimlsp
+            nimlangserver
           ];
           rust = [
             rust-analyzer
@@ -113,6 +113,13 @@
           ];
           godot = [
             netcat-openbsd
+          ];
+          python = [
+            ty
+            ruff
+          ];
+          c = [
+            clang-tools
           ];
         };
       };
@@ -141,7 +148,8 @@
       # not loaded automatically at startup.
       # use with packadd and an autocommand in config to achieve lazy loading
       optionalPlugins = {
-        gitPlugins = with pkgs.neovimPlugins; [ ];
+        gitPlugins = with pkgs; [ vimPlugins.gitsigns-nvim ];
+        mdPlugins = with pkgs.vimPlugins; [ markview-nvim ];
         general = with pkgs.vimPlugins; {
           always = [ mini-pick mini-surround mini-pairs mini-jump mini-jump2d ];
           extra = [ fidget-nvim which-key-nvim undotree jj-nvim claudecode-nvim ];
@@ -217,6 +225,7 @@
         categories = {
           general = true;
           gitPlugins = true;
+          mdPlugins = true;
           customPlugins = true;
           test = true;
           ai = true;

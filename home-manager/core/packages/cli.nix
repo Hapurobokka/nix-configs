@@ -49,9 +49,11 @@
     statix
     television
     tldr
+    cowsay
     tmux
     tree-sitter
     vips
+    codex
     wl-clipboard
     zellij
   ];

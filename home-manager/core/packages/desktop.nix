@@ -15,13 +15,13 @@
     nicotine-plus
     obsidian
     papirus-icon-theme
+    hyprpicker
     spotify
     # vesktop
-    vivaldi
     # waybar
     # wofi
-    bluetui
+    # bluetui
     # networkmanagerapplet
-    zapzap
+    # zapzap
   ];
 }

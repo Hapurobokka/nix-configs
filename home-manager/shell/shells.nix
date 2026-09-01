@@ -25,6 +25,7 @@
         path add "~/.emacs.d/bin"
         path add "~/.bin"
         path add "~/.local/bin/"
+        path add "~/.cargo/bin/"
         path add "~/.local/share/nvim/mason/staging/nil/bin"
         path add "~/.config/emacs/bin"
         path add "~/.cache/npm/global/bin"

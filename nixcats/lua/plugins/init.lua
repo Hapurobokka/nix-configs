@@ -1,6 +1,7 @@
 require("lze").register_handlers(require('nixCatsUtils.lzUtils').for_cat)
 require('lze').register_handlers(require('lzextras').lsp)
 
+-- Plugins que siempre queremos cargados
 require('mini.icons').setup()
 require('mini.statusline').setup()
 require('mini.starter').setup()
@@ -13,8 +14,6 @@ require('oil').setup({
   },
   columns = {
     "icon",
-    "permissions",
-    "size",
   },
 })
 
@@ -37,6 +36,7 @@ require('blink.cmp').setup({
   fuzzy = { implementation = "rust" }
 })
 
+-- Plugins que queremos cargados de forma particular
 require('lze').load({
   {
     "mini.surround",
@@ -69,6 +69,10 @@ require('lze').load({
     after = function()
       require('mini.pairs').setup()
     end,
+  },
+  {
+    "markview.nvim",
+    for_cat = 'mdPlugins'
   },
   {
     "mini.pick",
@@ -191,4 +195,11 @@ require('lze').load({
       })
     end
   },
+  {
+    "gitsigns.nvim",
+    for_cat = "gitPlugins",
+    after = function()
+      require('gitsigns').setup({})
+    end
+  }
 })

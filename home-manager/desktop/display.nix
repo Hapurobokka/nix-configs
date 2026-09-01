@@ -10,11 +10,6 @@
       common = {
         default = ["gtk"];
       };
-      niri = {
-        default = ["gtk"];
-        "org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
-        "org.freedesktop.impl.portal.Screenshot" = ["wlr"];
-      };
       hyprland = {
         default = ["gtk"];
         "org.freedesktop.impl.portal.ScreenCast" = ["hyprland"];

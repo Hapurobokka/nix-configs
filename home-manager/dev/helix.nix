@@ -3,7 +3,7 @@
     enable = true;
 
     extraPackages = [
-      pkgs.nimlsp
+      pkgs.nimlangserver
       pkgs.ruff
       pkgs.ty
     ];
@@ -35,9 +35,6 @@
         command = "ty";
         args = [ "server" ];
       };
-      language-server.nimlsp = {
-        command = "nimlsp";
-      };
       language = [
         {
           name = "ruby";
@@ -51,10 +48,6 @@
         {
           name = "python";
           language-servers = [ "ruff" "ty" ];
-        }
-        {
-          name = "nim";
-          language-servers = [ "nimlsp" ];
         }
       ];
     };

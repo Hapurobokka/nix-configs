@@ -9,6 +9,7 @@
     ];
     packages = with pkgs; [
       qbittorrent
+      nautilus
     ];
     shell = pkgs.nushell;
   };

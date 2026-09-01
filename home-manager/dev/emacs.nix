@@ -2,6 +2,7 @@
 {
   programs.emacs = {
     enable = true;
+    package = pkgs.emacs-pgtk;
     extraPackages = epkgs: [
       epkgs.vterm
       pkgs.python313

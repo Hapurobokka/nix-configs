@@ -30,10 +30,12 @@ vim.o.wrap = true;
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
-vim.lsp.enable('nil_ls')
-vim.lsp.enable('nimls')
+vim.lsp.enable('nixd')
+vim.lsp.enable('nimlangserver')
 vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('gdscript')
+vim.lsp.enable('ty')
+vim.lsp.enable('clangd')
 
 require('autocmds')
 require('plugins')
