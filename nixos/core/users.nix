@@ -10,6 +10,7 @@
     packages = with pkgs; [
       qbittorrent
       nautilus
+      gparted-full
     ];
     shell = pkgs.nushell;
   };
