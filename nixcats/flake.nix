@@ -139,6 +139,7 @@
             mini-icons
             kanagawa-nvim
             nvim-lspconfig
+            rainbow-delimiters-nvim
           ];
           blink = [ blink-cmp ];
           treesitter = [ nvim-treesitter.withAllGrammars nvim-treesitter-textobjects ];
@@ -151,8 +152,8 @@
         gitPlugins = with pkgs; [ vimPlugins.gitsigns-nvim ];
         mdPlugins = with pkgs.vimPlugins; [ markview-nvim ];
         general = with pkgs.vimPlugins; {
-          always = [ mini-pick mini-surround mini-pairs mini-jump mini-jump2d ];
-          extra = [ fidget-nvim which-key-nvim undotree jj-nvim claudecode-nvim ];
+          always = [ mini-pick mini-surround mini-pairs mini-jump mini-jump2d neorg ];
+          extra = [ fidget-nvim which-key-nvim undotree jj-nvim claudecode-nvim conform-nvim ];
         };
       };
 

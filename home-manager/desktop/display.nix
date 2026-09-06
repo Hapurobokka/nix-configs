@@ -17,4 +17,7 @@
       };
     };
   };
+  services.udiskie = {
+      enable = true;
+  };
 }

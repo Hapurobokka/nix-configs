@@ -192,6 +192,8 @@ require('lze').load({
         { "<leader>o_", hidden = true },
         { "<leader>oj", group = "[j]ujutsu" },
         { "<leader>oj_", hidden = true },
+        { "<leader>c", group = "[c]ode" },
+        { "<leader>c_", hidden = true },
       })
     end
   },
@@ -200,6 +202,20 @@ require('lze').load({
     for_cat = "gitPlugins",
     after = function()
       require('gitsigns').setup({})
+    end
+  },
+  {
+    "conform.nvim",
+    for_cat = "general.extra",
+    keys = {
+      { "<leader>cf", "<cmd>lua require('conform').format()<cr>", desc = "Format" },
+    },
+    after = function()
+      require('conform').setup({
+        formatters_by_ft = {
+          rust = { "rustfmt", lsp_format = "fallback" },
+        },
+      })
     end
   }
 })

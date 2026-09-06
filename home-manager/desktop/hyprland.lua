@@ -6,6 +6,7 @@ local web      = "firefox"
 local ekg      = [[kitty --class ekg-capture emacsclient -t -e '(ekg-capture)']]
 local music    = "kitty"
 local discord  = "flatpak run com.discordapp.Discord"
+local task_manager = "kitty btop"
 
 hl.config({
   general = {
@@ -143,6 +144,7 @@ hl.bind(mod .. " + T",         hl.dsp.exec_cmd(web))
 hl.bind(mod .. " + Y",         hl.dsp.exec_cmd(fileMgr))
 hl.bind(mod .. " + SHIFT + B", hl.dsp.exec_cmd(ipc .. "session lock"))
 hl.bind(mod .. " + C",         hl.dsp.exec_cmd(ekg))
+hl.bind(mod .. " + B",         hl.dsp.exec_cmd(task_manager))
 
 -- Screenshots
 hl.bind("Print",               hl.dsp.exec_cmd("hyprshot -m region"))
