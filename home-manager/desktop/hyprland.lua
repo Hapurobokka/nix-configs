@@ -111,6 +111,7 @@ hl.bind(mod .. " + U", hl.dsp.focus({ workspace = "+1" }))
 
 -- Scroll through workspaces hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mod .. " + mouse_down",   hl.dsp.focus({ workspace = "e+1" }))
 
 -- Move windows to workspace
 for i = 1, 9 do
