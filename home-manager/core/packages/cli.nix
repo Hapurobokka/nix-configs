@@ -6,39 +6,41 @@
     acpi
     bat
     brightnessctl
-    hyprshot
-    ncpamixer
     btop
     cava
     chafa
+    codex
+    cowsay
     eza
     fastfetch
     fd
+    fff
     ffmpeg
     ffmpegthumbnailer
+    fossil
+    fsel
     fzf
+    graphviz
     grex
+    hyprshot
     jujutsu
     just
     kew
+    gh
     lazygit
     mediainfo
     mpc
     nb
+    ncpamixer
+    ncspot
     nerd-fonts.iosevka
     nerd-fonts.jetbrains-mono
     nh
-    fsel
-    nvidia-container-toolkit
-    graphviz
     nitch
-    zip
-    fff
-    unzip
     nix-output-monitor
-    ncspot
     nixd
     nixfmt
+    nvidia-container-toolkit
     playerctl
     poppler-utils
     porsmo
@@ -46,15 +48,16 @@
     rassumfrassum
     ripgrep
     rm-improved
+    ruby
     statix
     television
     tldr
-    cowsay
     tmux
     tree-sitter
+    unzip
     vips
-    codex
     wl-clipboard
     zellij
+    zip
   ];
 }

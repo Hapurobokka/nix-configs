@@ -38,7 +38,9 @@ local fts = {
   "c",
   "cpp",
   "gdscript",
-  "python"
+  "python",
+  "ruby",
+  "yaml",
 }
 
 vim.api.nvim_create_autocmd("FileType", {

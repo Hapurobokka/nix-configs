@@ -148,8 +148,8 @@ hl.bind(mod .. " + C",         hl.dsp.exec_cmd(ekg))
 hl.bind(mod .. " + B",         hl.dsp.exec_cmd(task_manager))
 
 -- Screenshots
-hl.bind("Print",               hl.dsp.exec_cmd("hyprshot -m region"))
-hl.bind(mod .. " + PRINT",     hl.dsp.exec_cmd("hyprshot -m window"))
+hl.bind("Print",               hl.dsp.exec_cmd([[hyprshot -m region -o "$HOME/Imágenes/Capturas de pantalla"]]))
+hl.bind(mod .. " + PRINT",     hl.dsp.exec_cmd([[hyprshot -m window -o "$HOME/Imágenes/Capturas de pantalla"]]))
 
 -- Volume
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(ipc .. " volume-up"),   { locked = true, repeating = true })

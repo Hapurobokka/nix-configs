@@ -36,6 +36,8 @@ require('blink.cmp').setup({
   fuzzy = { implementation = "rust" }
 })
 
+vim.cmd "colorscheme catppuccin-macchiato"
+
 -- Plugins que queremos cargados de forma particular
 require('lze').load({
   {
@@ -68,6 +70,22 @@ require('lze').load({
     for_cat = 'general.always',
     after = function()
       require('mini.pairs').setup()
+    end,
+  },
+  {
+    "mini.bracketed",
+    event = "DeferredUIEnter",
+    for_cat = 'general.always',
+    after = function()
+      require('mini.bracketed').setup()
+    end,
+  },
+  {
+    "mini.ai",
+    event = "DeferredUIEnter",
+    for_cat = 'general.always',
+    after = function()
+      require('mini.ai').setup()
     end,
   },
   {
@@ -112,12 +130,12 @@ require('lze').load({
       vim.g.undotree_SplitWidth = 40
     end,
   },
-  {
-    "kanagawa.nvim",
-    after = function()
-      vim.cmd("colorscheme kanagawa")
-    end
-  },
+  -- {
+  --   "kanagawa.nvim",
+  --   after = function()
+  --     vim.cmd("colorscheme kanagawa")
+  --   end
+  -- },
   {
     "jj.nvim",
     for_cat = 'general.extra',
@@ -195,13 +213,6 @@ require('lze').load({
         { "<leader>c", group = "[c]ode" },
         { "<leader>c_", hidden = true },
       })
-    end
-  },
-  {
-    "gitsigns.nvim",
-    for_cat = "gitPlugins",
-    after = function()
-      require('gitsigns').setup({})
     end
   },
   {

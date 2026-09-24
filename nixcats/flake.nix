@@ -138,8 +138,10 @@
             mini-extra
             mini-icons
             kanagawa-nvim
+            catppuccin-nvim
             nvim-lspconfig
             rainbow-delimiters-nvim
+            vim-signify
           ];
           blink = [ blink-cmp ];
           treesitter = [ nvim-treesitter.withAllGrammars nvim-treesitter-textobjects ];
@@ -149,10 +151,18 @@
       # not loaded automatically at startup.
       # use with packadd and an autocommand in config to achieve lazy loading
       optionalPlugins = {
-        gitPlugins = with pkgs; [ vimPlugins.gitsigns-nvim ];
         mdPlugins = with pkgs.vimPlugins; [ markview-nvim ];
         general = with pkgs.vimPlugins; {
-          always = [ mini-pick mini-surround mini-pairs mini-jump mini-jump2d neorg ];
+          always = [
+            mini-ai
+            mini-bracketed
+            mini-jump
+            mini-jump2d
+            mini-pairs
+            mini-pick
+            mini-surround
+            neorg
+          ];
           extra = [ fidget-nvim which-key-nvim undotree jj-nvim claudecode-nvim conform-nvim ];
         };
       };
@@ -307,5 +317,4 @@
     inherit utils nixosModule homeModule;
     inherit (utils) templates;
   });
-
 }

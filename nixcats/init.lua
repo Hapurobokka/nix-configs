@@ -27,6 +27,8 @@ vim.o.undofile = true;
 vim.o.virtualedit = "block";
 vim.o.wrap = true;
 
+vim.opt.clipboard = "unnamedplus"
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 

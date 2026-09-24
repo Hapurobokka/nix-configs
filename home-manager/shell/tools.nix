@@ -16,6 +16,7 @@
       enableFishIntegration = false;
       enableNushellIntegration = true;
       enableBashIntegration = true;
+      presets = [ "pure-preset" ];
     };
     yazi = {
       enable = true;

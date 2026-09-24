@@ -13,10 +13,13 @@
     # inputs.zen-browser.packages.${pkgs.system}.default
     kitty
     nicotine-plus
+    easyeffects
     obsidian
     papirus-icon-theme
     hyprpicker
     spotify
+    aseprite
+    libresprite
     # vesktop
     # waybar
     # wofi

@@ -11,6 +11,7 @@
       qbittorrent
       nautilus
       gparted-full
+      evsieve
     ];
     shell = pkgs.nushell;
   };
