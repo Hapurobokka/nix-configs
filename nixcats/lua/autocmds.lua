@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking text",
   callback = function()
-    vim.hl.hl_op({higroup="IncSearch", timeout=200})
+    vim.hl.on_yank({ higroup = "IncSearch", timeout = 200 })
   end
 })
 
@@ -50,5 +50,8 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
     vim.wo[0][0].foldmethod = 'expr'
     vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    if vim.bo.filetype == "ruby" then
+      vim.opt_local.indentkeys:remove(".")
+    end
   end,
 })

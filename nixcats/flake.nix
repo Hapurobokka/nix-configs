@@ -51,7 +51,7 @@
     # will not apply to module imports
     # as that will have your system values
     extra_pkg_config = {
-      # allowUnfree = true;
+      allowUnfree = true;
     };
     # management of the system variable is one of the harder parts of using flakes.
 
@@ -143,7 +143,7 @@
             rainbow-delimiters-nvim
             vim-signify
           ];
-          blink = [ blink-cmp ];
+          completion = [ coq_nvim coq-artifacts ];
           treesitter = [ nvim-treesitter.withAllGrammars nvim-treesitter-textobjects ];
         };
       };
@@ -161,9 +161,10 @@
             mini-pairs
             mini-pick
             mini-surround
+            mini-notify
             neorg
           ];
-          extra = [ fidget-nvim which-key-nvim undotree jj-nvim claudecode-nvim conform-nvim ];
+          extra = [ which-key-nvim undotree jj-nvim claudecode-nvim conform-nvim ];
         };
       };
 
@@ -202,6 +203,7 @@
       # vim.g.python3_host_prog
       # or run from nvim terminal via :!<packagename>-python3
       python3.libraries = {
+        general.always = ps: with ps; [ pynvim-pp pyyaml std2 ];
         test = (_:[]);
       };
       # populates $LUA_PATH and $LUA_CPATH
@@ -226,10 +228,11 @@
           suffix-path = true;
           suffix-LD = true;
           wrapRc = true;
+          hosts.python3.enable = true;
           # IMPORTANT:
           # your alias may not conflict with your other packages.
           aliases = [ "vim" ];
-          neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
+          neovim-unwrapped = pkgs.neovim-unwrapped;
         };
         # and a set of categories that you want
         # (and other information to pass to lua)

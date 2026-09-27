@@ -17,24 +17,7 @@ require('oil').setup({
   },
 })
 
-require('blink.cmp').setup({
-  keymap = {
-    preset = "enter",
-    ["<Tab>"] = { "select_next", "fallback" },
-    ["<S-Tab>"] = { "select_prev", "fallback" },
-  },
-  completion = {
-    list = {
-      selection = {
-        preselect = true,
-        auto_insert = true,
-      },
-    },
-    documentation = { auto_show = true },
-  },
-  sources = { default = { 'lsp', 'path', 'snippets', 'buffer' } },
-  fuzzy = { implementation = "rust" }
-})
+require('coq').setup({})
 
 vim.cmd "colorscheme catppuccin-macchiato"
 
@@ -113,11 +96,11 @@ require('lze').load({
     end,
   },
   {
-    "fidget.nvim",
-    for_cat = 'general.extra',
+    "mini.notify",
+    for_cat = 'general.always',
     event = "DeferredUIEnter",
     after = function()
-      require('fidget').setup()
+      require('mini.notify').setup()
     end,
   },
   {
