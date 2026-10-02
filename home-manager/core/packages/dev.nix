@@ -3,7 +3,7 @@
 { pkgs, inputs, ... }:
 {
   home.packages = with pkgs; [
-    inputs.self.packages.${pkgs.system}.nvim
+    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
     # qemu_full
     bun
     cachix
@@ -28,13 +28,11 @@
         en
       ]
     ))
-    (pkgs.texlive.combine {
-      inherit (pkgs.texlive)
-        scheme-medium
-        dirtytalk
-        wrapfig
-        capt-of
-        ;
-    })
+    (texliveSmall.withPackages (texlive: [
+      texlive.scheme-medium
+      texlive.dirtytalk
+      texlive.wrapfig
+      texlive.capt-of
+    ]))
   ];
 }

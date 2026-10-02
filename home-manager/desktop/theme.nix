@@ -23,6 +23,7 @@
       fish.enable = false;
       helix.enable = false;
       hyprland.enable = false;
+      rofi.enable = false;
     };
   };
 

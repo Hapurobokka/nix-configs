@@ -2,7 +2,7 @@
 { pkgs, inputs, ... }:
 {
   home.packages = with pkgs; [
-    inputs.nixcats.packages.${pkgs.system}.nvim
+    inputs.nixcats.packages.${pkgs.stdenv.hostPlatform.system}.nvim
     acpi
     bat
     brightnessctl
