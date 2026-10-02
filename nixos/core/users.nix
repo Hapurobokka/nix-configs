@@ -13,9 +13,9 @@
       gparted-full
       evsieve
     ];
-    shell = pkgs.nushell;
+    shell = pkgs.fish;
   };
-  programs.fish.enable = false;
+  programs.fish.enable = true;
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "24.11";
 }

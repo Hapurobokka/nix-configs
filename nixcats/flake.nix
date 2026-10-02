@@ -118,6 +118,9 @@
             ty
             ruff
           ];
+          ruby = [
+            rubyPackages.rubocop
+          ];
           c = [
             clang-tools
           ];
@@ -164,7 +167,7 @@
             mini-notify
             neorg
           ];
-          extra = [ which-key-nvim undotree jj-nvim claudecode-nvim conform-nvim ];
+          extra = [ which-key-nvim undotree jj-nvim claudecode-nvim conform-nvim chadtree nvim-lint ];
         };
       };
 

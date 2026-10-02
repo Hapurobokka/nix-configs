@@ -27,6 +27,8 @@
     just
     kew
     gh
+    kakoune
+    nnn
     lazygit
     mediainfo
     mpc

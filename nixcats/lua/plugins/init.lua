@@ -1,3 +1,17 @@
+vim.g.chadtree_settings = { xdg = true }
+
+-- nixCats' Python wrapper unsets PYTHONPATH; CHADTree needs it for :CHADdeps.
+local python3_host = vim.g.python3_host_prog
+if type(python3_host) == "string" and python3_host:match("/nvim%-python3$") then
+  for _, line in ipairs(vim.fn.readfile(python3_host)) do
+    local interpreter = line:match('^exec "([^"]+)"')
+    if interpreter and vim.fn.executable(interpreter) == 1 then
+      vim.g.python3_host_prog = interpreter
+      break
+    end
+  end
+end
+
 require("lze").register_handlers(require('nixCatsUtils.lzUtils').for_cat)
 require('lze').register_handlers(require('lzextras').lsp)
 
@@ -197,6 +211,31 @@ require('lze').load({
         { "<leader>c_", hidden = true },
       })
     end
+  },
+  {
+    "chadtree",
+    for_cat = "general.extra",
+    keys = {
+      { "<leader>ot", "<cmd>CHADopen<cr>", desc = "Open ChadTree" },
+    },
+  },
+  {
+    "nvim-lint",
+    for_cat = "general.extra",
+    event = { "BufReadPost", "BufWritePost" },
+    after = function()
+      local lint = require('lint')
+      lint.linters_by_ft = {
+        ruby = { 'rubocop' },
+      }
+
+      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
+        group = vim.api.nvim_create_augroup('nvim-lint', { clear = true }),
+        callback = function()
+          lint.try_lint()
+        end,
+      })
+    end,
   },
   {
     "conform.nvim",

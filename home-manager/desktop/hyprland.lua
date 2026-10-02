@@ -127,6 +127,8 @@ hl.bind(mod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 hl.bind(mod .. " + D", hl.dsp.workspace.toggle_special("chat"))
+hl.bind(mod .. " + SHIFT + D", hl.dsp.window.move({ workspace = "special:chat" }))
+
 hl.bind(mod .. " + M", hl.dsp.workspace.toggle_special("music"))
 
 -- Window actions
