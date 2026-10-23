@@ -28,7 +28,10 @@
     kew
     gh
     kakoune
-    nnn
+    wtype
+    (nnn.override {
+      withNerdIcons = true;
+    })
     lazygit
     mediainfo
     mpc
@@ -50,7 +53,7 @@
     rassumfrassum
     ripgrep
     rm-improved
-    ruby
+    ruby_4_0
     statix
     television
     tldr

@@ -3,7 +3,8 @@
   programs = {
     atuin = {
       enable = true;
-      enableFishIntegration = true;
+      enableFishIntegration = false;
+      enableNushellIntegration = true;
       flags = [ "--disable-up-arrow" ];
     };
     direnv = {
@@ -20,14 +21,14 @@
     };
     yazi = {
       enable = true;
-      enableFishIntegration = true;
+      enableFishIntegration = false;
       enableNushellIntegration = true;
       settings.mgr.show_hidden = true;
       shellWrapperName = "y";
     };
     zoxide = {
       enable = true;
-      enableFishIntegration = true;
+      enableFishIntegration = false;
       enableNushellIntegration = true;
     };
     tmux = {

@@ -15,6 +15,7 @@ vim.api.nvim_create_autocmd('FileType', {
     "typescript",
     "typescriptreact",
     "xml",
+    "revo"
   },
   callback = function(ev)
     vim.bo.tabstop = 2

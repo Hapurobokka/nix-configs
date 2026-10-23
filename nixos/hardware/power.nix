@@ -16,9 +16,9 @@
         CPU_BOOST_ON_AC = 1;
         CPU_BOOST_ON_BAT = 0;
 
-        # Limita la carga al 80% para preservar la batería
-        # Cambia a 0 para deshabilitar el límite
-        STOP_CHARGE_THRESH_BAT0 = 1;
+        # Activa el modo Long_Life de Lenovo (el límite exacto depende del hardware).
+        # Cambia a 0 para desactivar el modo de conservación.
+        STOP_CHARGE_THRESH_BAT1 = 1;
       };
     };
     thermald.enable = false;

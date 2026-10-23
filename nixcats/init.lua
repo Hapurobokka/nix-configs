@@ -39,6 +39,46 @@ vim.lsp.enable('gdscript')
 vim.lsp.enable('ty')
 vim.lsp.enable('clangd')
 
-require('autocmds')
 require('plugins')
 require('mappings')
+
+vim.filetype.add({
+	extension = {
+		rv = "revo",
+		revo = "revo",
+	},
+})
+
+vim.lsp.config("revo", {
+	cmd = { "revo", "lsp" },
+	filetypes = { "rv", "revo" },
+	root_markers = {
+		"lib.json",
+		"exe.json",
+		".git",
+	},
+})
+
+vim.lsp.enable("revo")
+
+vim.treesitter.language.register("revo", {
+	"rv",
+	"revo",
+})
+
+require("nvim-treesitter").setup({
+	local_parsers = {
+		revo = {
+			source = {
+				type = "git",
+				url = "https://codeberg.org/doomy/tree-sitter-revo",
+				revision = "main",
+			},
+			filetype = "revo",
+		},
+	},
+})
+
+require("nvim-treesitter").install({ "revo" })
+
+require('autocmds')
