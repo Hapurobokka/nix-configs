@@ -42,8 +42,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixcats.url = "path:./nixcats";
-    spotifast.url = "github:crmne/spotifast";
-    zapfast.url = "github:crmne/zapfast";
   };
 
   outputs =

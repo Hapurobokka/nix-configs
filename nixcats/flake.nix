@@ -82,7 +82,21 @@
     # see :help nixCats.flake.outputs.categories
     # and
     # :help nixCats.flake.outputs.categoryDefinitions.scheme
-    categoryDefinitions = { pkgs, settings, categories, extra, name, mkPlugin, ... }@packageDef: {
+    categoryDefinitions = { pkgs, settings, categories, extra, name, mkPlugin, ... }@packageDef: let
+      revoSrc = pkgs.fetchzip {
+        url = "https://codeberg.org/doomy/tree-sitter-revo/archive/610fa6a4ff0fecd9cc81806e5e85ea61c92091b4.tar.gz";
+        hash = "sha256-Fes7+T5nupvuz5SlLNlHODg7SydW+0GOSgmveZctllQ=";
+      };
+      revoGrammar = pkgs.neovimUtils.grammarToPlugin (pkgs.tree-sitter.buildGrammar {
+        language = "revo";
+        version = "0-610fa6a";
+        src = revoSrc;
+      });
+      revoQueries = pkgs.runCommand "revo-treesitter-queries" {} ''
+        mkdir -p $out/queries/revo
+        cp ${revoSrc}/queries/*.scm $out/queries/revo/
+      '';
+    in {
       # to define and use a new category, simply add a new list to a set here, 
       # and later, you will include categoryname = true; in the set you
       # provide when you build the package using this builder function.
@@ -145,9 +159,11 @@
             nvim-lspconfig
             rainbow-delimiters-nvim
             vim-signify
+            neorg
+            nui-nvim
           ];
           completion = [ coq_nvim coq-artifacts ];
-          treesitter = [ nvim-treesitter.withAllGrammars nvim-treesitter-textobjects ];
+          treesitter = [ nvim-treesitter.withAllGrammars nvim-treesitter-textobjects revoGrammar revoQueries ];
         };
       };
 
@@ -165,7 +181,6 @@
             mini-pick
             mini-surround
             mini-notify
-            neorg
           ];
           extra = [ which-key-nvim undotree jj-nvim claudecode-nvim conform-nvim chadtree nvim-lint ];
         };

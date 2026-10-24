@@ -1,5 +1,5 @@
 # Packages with command-line utilities
-{ pkgs, inputs, ... }:
+{ pkgs, pkgs-stable, inputs, ... }:
 {
   home.packages = with pkgs; [
     inputs.nixcats.packages.${pkgs.stdenv.hostPlatform.system}.nvim
@@ -39,6 +39,9 @@
     ncpamixer
     ncspot
     nerd-fonts.iosevka
+    # Work around a broken ELF layout in the unstable build.
+    pkgs-stable.rar
+    p7zip
     nerd-fonts.jetbrains-mono
     nh
     nitch
@@ -52,6 +55,7 @@
     presenterm
     rassumfrassum
     ripgrep
+    typst
     rm-improved
     ruby_4_0
     statix

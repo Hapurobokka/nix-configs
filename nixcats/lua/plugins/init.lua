@@ -33,6 +33,20 @@ require('oil').setup({
 
 require('coq').setup({})
 
+require('neorg').setup({
+  load = {
+    ["core.defaults"] = {},
+    ["core.concealer"] = {},
+    ["core.dirman"] = {
+      config = {
+        workspaces = { notes = "~/notes" },
+        default_workspace = "notes",
+        index = "index.norg",
+      },
+    },
+  },
+})
+
 vim.cmd "colorscheme catppuccin-macchiato"
 
 -- Plugins que queremos cargados de forma particular

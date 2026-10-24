@@ -42,6 +42,7 @@ local fts = {
   "python",
   "ruby",
   "yaml",
+  "revo",
 }
 
 vim.api.nvim_create_autocmd("FileType", {

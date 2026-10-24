@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     dolphin-emu
-    # prismlauncher
+    prismlauncher
     protonup-ng
     deadlock-mod-manager
     ppsspp

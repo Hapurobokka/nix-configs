@@ -10,7 +10,11 @@ in
   flake.homeConfigurations."hapu@nixos" = inputs.home-manager.lib.homeManagerConfiguration {
     inherit pkgs;
     modules = [
-      { nixpkgs.overlays = [ inputs.prism-launcher.overlays.default ]; }
+      {
+        nixpkgs.overlays = [
+          inputs.prism-launcher.overlays.default
+        ];
+      }
       inputs.stylix.homeModules.stylix
       (inputs.import-tree [
         ./core
