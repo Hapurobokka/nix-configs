@@ -22,6 +22,7 @@
       };
     };
     thermald.enable = false;
+    upower.enable = true;
   };
 
   # Descomentar si quieres el kernel zen (mejor latencia para gaming/audio)

@@ -47,7 +47,7 @@ require('neorg').setup({
   },
 })
 
-vim.cmd "colorscheme catppuccin-macchiato"
+vim.cmd "colorscheme kanagawa"
 
 -- Plugins que queremos cargados de forma particular
 require('lze').load({
