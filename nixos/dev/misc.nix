@@ -27,7 +27,6 @@
     clang
     neovim
     home-manager
-    # inputs.self.packages.${pkgs.system}.nvim
   ];
   services.gvfs.enable = true;
   services.udisks2.enable = true;

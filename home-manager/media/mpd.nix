@@ -1,4 +1,3 @@
-# Someday I will actually use this
 _: {
   services.mpd = {
     enable = true;

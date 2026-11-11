@@ -2,7 +2,7 @@
 {
   wayland.windowManager.niri = {
     enable = true;
-    # Portal is managed explicitly in home-manager/desktop/display.nix (gtk/wlr, not gnome).
+    # NixOS owns portal routing; niri uses GNOME screencasting and GTK file picking.
     portalPackage = null;
 
     settings = {

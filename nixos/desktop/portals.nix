@@ -1,21 +1,18 @@
-{ pkgs, lib, ... }:
+{ ... }:
 {
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
-    ];
     config = {
       common = {
-        default = [ "kde" "gtk" ];
+        default = [ "gtk" ];
       };
-      # programs.niri (nixpkgs) also sets a default here ("gnome;gtk"); override for our gtk/wlr setup.
-      plasma = {
-        default = [ "kde" ];
-        "org.freedesktop.impl.portal.ScreenCast" = [ "kde" ];
-        "org.freedesktop.impl.portal.Screenshot" = [ "kde" ];
+      hyprland = {
+        default = [ "gtk" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "hyprland" ];
       };
+      # programs.niri supplies GNOME screencasting and GTK file picking.
+      # Both compositor modules also supply their required portal backends.
     };
   };
 

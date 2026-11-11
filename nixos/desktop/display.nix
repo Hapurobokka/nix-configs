@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   services.xserver.enable = true;
+  services.displayManager.ly.enable = true;
 
   programs = {
     hyprland = {
@@ -9,7 +10,7 @@
     };
     niri = {
       enable = true;
-      # Portal is managed explicitly in nixos/desktop/portals.nix (gtk/wlr, not gnome).
+      # Keep niri's GNOME screencasting, but use GTK instead of Nautilus for file picking.
       useNautilus = false;
     };
   };
@@ -22,6 +23,13 @@
       EDITOR = "nvim";
     };
     systemPackages = with pkgs; [
+      # KDE applications (without the Plasma desktop).
+      kdePackages.kdenlive
+      kdePackages.gwenview
+      kdePackages.ark
+      kdePackages.ksystemlog
+      kdePackages.partitionmanager
+
       dunst
       libnotify
       wayland-utils

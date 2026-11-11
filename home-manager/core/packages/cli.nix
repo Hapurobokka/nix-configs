@@ -1,8 +1,7 @@
 # Packages with command-line utilities
-{ pkgs, pkgs-stable, inputs, ... }:
+{ pkgs, pkgs-stable, ... }:
 {
   home.packages = with pkgs; [
-    inputs.nixcats.packages.${pkgs.stdenv.hostPlatform.system}.nvim
     acpi
     bat
     brightnessctl
@@ -12,7 +11,6 @@
     codex
     cowsay
     eza
-    fastfetch
     fd
     fff
     ffmpeg
@@ -22,12 +20,10 @@
     fzf
     graphviz
     grex
-    hyprshot
     jujutsu
     just
     kew
     gh
-    kakoune
     wtype
     (nnn.override {
       withNerdIcons = true;
@@ -38,16 +34,12 @@
     nb
     ncpamixer
     ncspot
-    nerd-fonts.iosevka
     # Work around a broken ELF layout in the unstable build.
     pkgs-stable.rar
     p7zip
-    nerd-fonts.jetbrains-mono
     nh
     nitch
     nix-output-monitor
-    nixd
-    nixfmt
     nvidia-container-toolkit
     playerctl
     poppler-utils
@@ -57,12 +49,9 @@
     ripgrep
     typst
     rm-improved
-    ruby_4_0
-    statix
     television
     tldr
     tmux
-    tree-sitter
     unzip
     vips
     wl-clipboard

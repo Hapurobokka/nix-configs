@@ -3,7 +3,6 @@ local terminal = "kitty"
 local fileMgr  = "kitty yazi"
 local ipc      = "noctalia msg"
 local web      = "firefox"
-local ekg      = [[kitty --class ekg-capture emacsclient -t -e '(ekg-capture)']]
 local music    = "kitty"
 local discord  = "flatpak run com.discordapp.Discord"
 local task_manager = "kitty btop"
@@ -18,7 +17,7 @@ hl.config({
     column_width             = 0.5,
     fullscreen_on_one_column = true,
     follow_focus             = true,
-    wrap_focus               = false,
+    wrap_focus               = true,
     direction                = "right",
     explicit_column_widths   = "0.5, 1.0",
   },
@@ -40,12 +39,16 @@ hl.config({
   },
   input = {
     kb_layout    = "latam",
-    follow_mouse = 0,
+    follow_mouse = 2,
     sensitivity  = 0,
     touchpad = {
       natural_scroll = true,
     },
 
+  },
+  cursor = {
+    no_warps = true,
+    hide_on_key_press = true,
   },
   animations = {
     enabled = true,
@@ -146,7 +149,6 @@ hl.bind(mod .. " + E",         hl.dsp.exec_cmd(terminal))
 hl.bind(mod .. " + T",         hl.dsp.exec_cmd(web))
 hl.bind(mod .. " + Y",         hl.dsp.exec_cmd(fileMgr))
 hl.bind(mod .. " + SHIFT + B", hl.dsp.exec_cmd(ipc .. "session lock"))
-hl.bind(mod .. " + C",         hl.dsp.exec_cmd(ekg))
 hl.bind(mod .. " + B",         hl.dsp.exec_cmd(task_manager))
 
 -- Screenshots
@@ -170,6 +172,8 @@ hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"),  { locked = t
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),    { locked = true })
 
 hl.gesture({ fingers = 3, direction = "vertical", action = "workspace" })
+hl.gesture({ fingers = 3, direction = "horizontal", action = "scroll_move" })
+hl.gesture({ fingers = 3, direction = "pinch", action = "cursor_zoom", zoom_level = 1, mode = "live" })
 
 -- Window rules
 hl.window_rule({
@@ -224,12 +228,6 @@ hl.window_rule({
   size = {400, 800},
   float = true,
   workspace = "2",
-})
-
-hl.window_rule({
-  match = { class = "ekg-capture" },
-  size = {800, 800},
-  float = true,
 })
 
 -- Workspaces rules

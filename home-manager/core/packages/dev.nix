@@ -1,24 +1,26 @@
-# Funky development utils
-# Unironically good distro for this shi
+# Development tools, editors, and language runtimes.
 { pkgs, inputs, ... }:
 {
   home.packages = with pkgs; [
     inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
-    # qemu_full
     bun
     cachix
     cargo
     clang
     claude-code
-    direnv
     docker-compose
     godot
+    kakoune
     javaPackages.compiler.temurin-bin.jdk-17
+    nixd
+    nixfmt
     nodejs_26
     podman-tui
     postman
     python313
-    ghostty
+    ruby_4_0
+    statix
+    tree-sitter
     uv
     vscode-fhs
     zed-editor-fhs

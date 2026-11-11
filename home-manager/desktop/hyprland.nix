@@ -12,6 +12,8 @@
   wayland.windowManager.hyprland = {
     enable     = true;
     configType = "lua";
+    # NixOS supplies the portal backend and routing for both compositors.
+    portalPackage = null;
 
     extraLuaFiles."config" = {
       content  = ./hyprland.lua;

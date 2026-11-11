@@ -1,13 +1,6 @@
 _: {
   vim.keymaps = [
     {
-      action = ":Pick spellsuggest<cr>";
-      key = "z=";
-      mode = "n";
-      silent = true;
-      desc = "Trigger spell suggestions";
-    }
-    {
       action = ":Pick grep_live<cr>";
       key = "<leader>sg";
       mode = "n";

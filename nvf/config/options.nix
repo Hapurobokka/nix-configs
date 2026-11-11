@@ -38,16 +38,6 @@
       registers = "unnamedplus";
     };
 
-    spellcheck = {
-      enable = false;
-      languages = [ "es" ];
-      ignoredFiletypes = [
-        "toggleterm"
-        "term"
-        "scratch"
-      ];
-    };
-
     autocmds = [
       {
         desc = "Changes the indent size to 2 in certain files";
